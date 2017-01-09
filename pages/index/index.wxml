@@ -1,0 +1,47 @@
+<!--index.wxml-->
+<view class="page">
+
+  <!--焦点图-->
+  <view class="page__bd page__bd_spacing">
+  <swiper indicator-dots="true"
+    autoplay="true" interval="5000" duration="500">
+    <block wx:for="{{data.data.focus.items}}">
+      <swiper-item>
+        <image src="{{item.cover}}" class="slide-image" width="355" height="150"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  </view>
+
+  <!--标签列表-->
+  <view class="weui-flex tag-container">
+      <view class="weui-flex__item tag-item" wx:for="{{data.category.items}}" wx:for-item="item">
+        <image style="width: 40px; height: 40px; background-color: #eeeeee;" mode="aspectFit" src="{{item.cover}}"></image>
+        <view class="section__title">{{item.title}}</view>
+      </view>
+  </view>
+
+  <!--专辑列表-->
+  <view wx:for="{{data.section.items}}" wx:for-item="sectionItem">
+        <view class="weui-cells__title">{{sectionItem.title}}</view>
+          <!--专辑-->
+          <block wx:if="{{sectionItem.type == globalData.constant.sectionTypeAlbum}}">
+            <view>
+              <view wx:for="{{sectionItem.items}}" wx:for-item="albumItem">
+                <image style="width: 45%; height: 180px; background-color: #eeeeee;" mode="aspectFit" src="{{albumItem.cover}}"></image>
+                <view>{{albumItem.title}}</view>
+                <view>{{albumItem.recommenddesc}}</view>
+              </view>
+            </view>
+          </block>
+          <!--作者-->
+          <block wx:elif="{{sectionItem.type == globalData.constant.sectionTypeAuthor}}">
+            <view>
+              <view wx:for="{{sectionItem.items}}" wx:for-item="authorItem">
+                <image style="width: 45%; height: 180px; background-color: #eeeeee;" mode="aspectFit" src="{{authorItem.avatar}}"></image>
+                <view>{{authorItem.nickname}}</view>
+              </view>
+            </view>
+          </block>
+      </view>
+</view>
