@@ -1,0 +1,39 @@
+<view class="page flex">
+
+  <view class="page__bd page__bd_spacing" >
+
+    <!--导航-->
+    <view class="weui-navbar">
+      <!--推荐..好评榜-->
+      <block wx:for="{{data.specialtaglist}}" wx:key="data.specialtaglist" wx:for-index="idx" wx:for-item="specialTagItem">
+      <view class="weui-navbar__item">
+            <view class="weui-navbar__title weui-bar__item_on">{{specialTagItem.name}}</view>
+          </view>
+
+      </block>
+
+      <!--二级标签-->
+     <block wx:for="{{data.secondtaglist}}" wx:key="data.secondtaglist" wx:for-index="idx" wx:for-item="secondTagItem">
+        <view class="weui-navbar__item">
+            <view class="weui-navbar__title weui-bar__item_on">{{secondTagItem.name}}</view>
+          </view>
+
+      </block>
+      <view class="weui-navbar__slider"></view>
+    </view>
+    <!--专辑-->
+
+    <view class="weui-tab__panel weui-flex row-flex" >
+      <block wx:for="{{data.tagalbumlist}}" wx:key="data.tagalbumlist" wx:for-index="idx" wx:for-item="tagAlbumItem">
+        <view class="weui-flex__item row-2">
+          <image style="width: 200px; height: 200px; background-color: #eeeeee;" mode="aspectFill" src="{{tagAlbumItem.albuminfo.cover}}"></image>
+          <view>{{tagAlbumItem.albuminfo.title}}</view>
+          <view class="text_ellipsis">{{tagAlbumItem.albuminfo.recommenddesc}}</view>
+          <view class="text_ellipsis">{{tagAlbumItem.albuminfo.intro}}</view>
+          <view>{{tagAlbumItem.albuminfo.listennum}}</view>
+        </view>
+      </block>
+    </view>
+
+  </view>
+</view>

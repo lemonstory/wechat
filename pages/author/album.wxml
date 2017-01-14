@@ -1,0 +1,58 @@
+<!--参考文档：
+  https://weui.io/#panel
+-->
+<view class="page flex">
+  <view class="page__bd page__bd_spacing" >
+    <!--作者信息-start-->
+    <view class="weui-panel">
+      <view class="weui-cell">
+        <view class="weui-media-box__hd_in-appmsg">
+          <image class="circular-squareP weui-media-box__thumb" style="width: 66px; height: 66px; background-color: #eeeeee;" mode="aspectFit" src="{{data.info.avator}}"></image>
+        </view>
+        <view class="weui-media-box__bd_in-appmsg">
+          <!--<view>{{authorItem.uid}} </view>-->
+          <view class="weui-media-box__title" style="vertical-align: middle">{{data.info.nickname}}</view> 
+          <view class="weui-media-box__desc">{{data.info.intro}} </view>
+        </view>
+        <!--TODO:向右侧的箭头不出现-->
+        <view class="weui-cell__ft"></view>
+      </view>
+    </view>
+    <!--作者信息-end-->
+
+    <!--故事列表 -start-->
+    <view class="weui-cells">
+      <block wx:for="{{data.items}}" wx:key="data.items" wx:for-index="idx" wx:for-item="albumItem">
+        <view class="weui-cell" >
+            <view class="weui-media-box__hd">
+              <image class="weui-media-box__thumb" style="width: 180px; height: 120px; background-color: #eeeeee;" mode="aspectFill" src="{{albumItem.cover}}"></image>
+            </view>
+            <view class="weui-media-box__bd">
+              <view class="weui-media-box__title">{{albumItem.title}}</view>
+              <view class="weui-media-box__desc">{{albumItem.age_str}}</view>
+              <view class="weui-media-box__desc">播放量: {{albumItem.listennum}}</view>
+              <view class="weui-media-box__desc">{{albumItem.recommenddesc}}</view>
+            </view> 
+        </view>
+      </block>
+    </view>
+    
+    <!--故事列表-end-->
+    <view>查看更多</view>
+
+    <!--加载更多-start-->
+    <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <!--加载更多-end-->
+
+  </view>
+
+  <view class="page__ft page__ft_spacing">
+    <view class="weui-footer">
+      <view class="weui-footer__text">小柠檬-听儿歌故事</view>
+    </view>        
+  </view>
+  
+  </view>

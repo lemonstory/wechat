@@ -1,0 +1,142 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+.textStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textContainer {
+  margin-top: 200px;
+}
+
+.album-detail-hd {
+  background-color:#FFFFFF;
+  font-size: 16px;
+  padding: 12rpx;
+  margin-top:10rpx;
+}
+.album-intro-bd-fold {
+  font-size: 14px;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  margin: 14px 15px 10px;
+}
+
+.album-intro-bd-unfold {
+  font-size: 14px;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 0;
+  -webkit-box-orient: vertical;
+  padding: 14px 15px 10px;
+}
+
+.album-intro-action-btn {
+  font-size: 13px;
+  padding: 14px 15px 10px;
+  color: #F5A623;
+  text-align: right;
+}
+
+.weui-cells:before {
+  border-top: 0rpx;
+}
+
+.weui-cells:after {
+  border-bottom: 0rpx;
+}
+
+/*.weui-cell {
+  border-top: 1rpx solid blue;
+}*/
+.weui-cell:before {
+  border-top:0rpx;
+  border-bottom:0rpx;
+}
+
+
+
+.album-storys-container {
+  background-color: #FFFFFF;
+  margin-top: 10rpx;
+}
+
+.album-story-title {
+  border-top:0rpx;
+  border-bottom:1rpx solid #D9D9D9;
+}
+
+.album-story-action-btn {
+  font-size: 12px;
+  padding: 14px 15px 10px;
+  color: #999999;
+  text-align: center;
+  margin:0 auto;
+}
+
+.album-star {
+  width:26rpx; 
+  height:26rpx; 
+  margin-right:4rpx;
+}
+
+.album-action-icon {
+  width: 44rpx; 
+  height: 44rpx;
+}
+
+.album-action-label {
+  margin-top: 6rpx;
+  font-size: 13px;
+  color:#4A4A4A;
+}
+
+.album-tag-grids {
+  border-top: 0rpx;
+  border-left: 0rpx;
+}
+
+.album-tag-grid {
+  border-right: 0rpx;
+  border-bottom:0rpx
+}
+
+.album-tag-icon {
+  width: 56px;
+  height: 56px;
+}
+
+.album-detail-navbar {
+
+  border-bottom:0rpx;
+  margin-top: 16rpx;
+  width:70%;
+  margin:0 auto;
+  position: static;
+  color:#9B9B9B;
+}
+
+.weui-navbar__item.weui-bar__item_on {
+  color:#9B9B9B;
+}
+.weui-bar__item_on {
+  border-bottom:4rpx solid #FFBE4C;
+  
+}
+
+.weui-tab__panel {
+  padding-top:0rpx;
+}

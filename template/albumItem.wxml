@@ -1,0 +1,29 @@
+<!--
+参考文档：
+    https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/conditional.html?t=201715
+    https://mp.weixin.qq.com/debug/wxadoc/dev/component/?t=201715
+    -->
+<!--
+专辑模板
+    title: String 专辑名称
+    cover: String 专辑图标
+    desc:  String 推荐语
+    listenNum: String 收听量
+    tagName: String 标签名称
+    isDescVisible: Boolean 是否显示推荐语
+    isTagNameVisible: Boolean 是否显示标题名称
+-->
+<template name="albumItem">
+    <view class="weui-flex__item album-item" style="margin-bottom:10px" data-index="{{index}}"  data-id="{{id}}" bindtap="handleAlbumTap">
+        <image style="width:174px; height: 126px; border-radius:3px;" mode="aspectFill" src="{{cover}}"></image>
+        <view class="weui-media-box__title" style="width:174px;text-overflow: ellipsis;font-size: 14px;">{{title}}</view>
+        <image style="width:13px;height:13px;margin-top:3px;margin-right:4px;float:left;" src="http://jic.xiaoningmeng.net/www/img/ic_player.png"></image>
+        <view class="weui-media-box__desc" style="text-overflow: ellipsis; margin-top:3px;">{{listenNum}}</view>
+        <block wx:if="{{isDescVisible}}">
+            <view class="weui-media-box__desc" style="margin-top:3px">{{desc}}</view>
+        </block>
+        <block wx:if="{{isTagNameVisible}}">
+            <view>{{tagName}}</view>
+        </block>
+    </view>
+</template>

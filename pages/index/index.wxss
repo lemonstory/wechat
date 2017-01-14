@@ -20,11 +20,3 @@
   margin-top: 200px;
 }
 
-
-.tag-container {
-  flex-flow: row wrap;
-}
-
-.tag-item {
-  flex: 0 0 25%;
-}

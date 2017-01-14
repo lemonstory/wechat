@@ -1,7 +1,14 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/album/detail"
+    "pages/author/index",
+    "pages/tag/album",
+    "pages/recommend/recommend",
+    "pages/author/album",
+    "pages/author/wiki",
+    "pages/album/detail",
+    "pages/category/category",
+    "pages/album/album"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -1,0 +1,10 @@
+<!--
+分段标题模板
+    title: String 分段标题
+-->
+<template name="sectionTitle">
+    <view class="weui-cells__title section-title">
+        <view style="float:left;">{{title}}</view>
+        <view style="text-align:right;">更多 ></view>
+    </view>
+</template>

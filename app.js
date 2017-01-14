@@ -29,8 +29,9 @@ App({
   // TODO:constant啰嗦了
   globalData:{
     // userInfo:null,
-    constant:constant.constant,
+    
   },
+  constant:constant.constant,
   
 })
 

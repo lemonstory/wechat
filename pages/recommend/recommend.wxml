@@ -1,0 +1,34 @@
+<view class="page flex">
+
+  <view class="page__bd page__bd_spacing" >
+    
+    <view class="weui-tab">
+      <!--导航-start-->
+      <view class="weui-navbar">
+        <block wx:for="{{data.age_level.items}}" wx:key="data.age_level" wx:for-index="idx" wx:for-item="ageLevelItem">
+          <view class="weui-navbar__item">
+            <view class="weui-navbar__title weui-bar__item_on">{{ageLevelItem.age_level_str}}</view>
+          </view>
+          <view class="weui-navbar__slider"></view>  
+        </block>
+      </view>
+      <!--导航-end-->
+
+      <!--专辑-start-->
+      <view class="weui-tab__panel weui-flex row-flex" >
+        <block wx:for="{{data.items}}" wx:key="data.items" wx:for-index="idx" wx:for-item="recommendAlbumItem">
+          <view class="weui-flex__item row-2">
+            <image style="width: 200px; height: 200px; background-color: #eeeeee;" mode="aspectFill" src="{{recommendAlbumItem.cover}}"></image>
+            <view>{{recommendAlbumItem.title}}</view>
+            <view class="text_ellipsis">{{recommendAlbumItem.recommenddesc}}</view>
+            <view class="text_ellipsis">{{recommendAlbumItem.intro}}</view>
+            <view>{{recommendAlbumItem.listennum}}</view>
+            <view>{{recommendAlbumItem.tag.name}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!--专辑-end-->
+
+  </view>
+</view>
