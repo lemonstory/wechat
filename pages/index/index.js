@@ -879,6 +879,14 @@ Page({
       wx.navigateTo({
       url: authorUrl
     })
-  }
+  },
+
+  onPullDownRefresh: function () {
+   wx.stopPullDownRefresh();
+  },
+
+
+
+
   
 });

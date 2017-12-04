@@ -43,7 +43,7 @@
             <block wx:for="{{sectionItem.items}}" wx:key="sectionItem.items" wx:for-index="idx" wx:for-item="authorItem" >
               <view class="weui-flex__item tag-item" style="margin-bottom:20rpx" id="authorItem" data-index="{{idx}}"  data-uid="{{authorItem.uid}}" bindtap="handleTapAuthor">
                 <image class="circular-squareP weui-media-box__title" style="width: 120rpx; height: 120rpx; background-color: #eeeeee;" mode="aspectFit" src="{{authorItem.avatar}}"></image>
-                <view class="weui-media-box__title" style="text-overflow: ellipsis;font-size: 24rpx;">{{authorItem.nickname}}</view>
+                <view class="weui-media-box__title" style="text-overflow: ellipsis;font-size: 26rpx; margin-top:10rpx; color:#494949">{{authorItem.nickname}}</view>
               </view>
             </block>
           </view>
