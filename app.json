@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/author/index",
     "pages/tag/album",
@@ -10,16 +10,36 @@
     "pages/category/category",
     "pages/album/album"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black",
-    "enablePullDownRefresh":true
+    "navigationBarTitleText": "小柠檬-听儿歌故事",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "disableScroll":false,
+    "onReachBottomDistance":"15px"
+  },
+  "tabBar": {
+    "color":"#626262",
+    "selectedColor":"#fdc971",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "精选",
+        "iconPath": "icon/discover.png",
+        "selectedIconPath": "icon/discover-selected.png"
+      },
+      {
+        "pagePath": "pages/tag/album",
+        "text": "我的",
+        "iconPath": "icon/my.png",
+        "selectedIconPath": "icon/my-selected.png"
+      }
+    ]
   },
   "networkTimeout": {
-    "request": 10000,
-    "downloadFile": 10000
+    "request": 60000,
+    "downloadFile": 60000
   },
-  "debug":true
+  "debug": true
 }
