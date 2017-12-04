@@ -1,5 +1,12 @@
+/**
+ * 
+ */
+
 //获取应用实例
 var app = getApp()
+var audioPauseImageUrl = "http://p.xiaoningmeng.net/static/www/btn_album_pause.png";
+var audioPlayImageUrl = "http://p.xiaoningmeng.net/static/www/btn_album_play.png";
+
 Page({
   data:{
     "code": 10000,
@@ -184,7 +191,7 @@ Page({
   },
   onLoad: function(options) {
     // 生命周期函数--监听页面加载
-    console.log('onLoad-------')
+    console.log('######## onLoad ############')
     //接收页面参数
     var albumId = options.albumId;
     console.log("albumId = " + albumId);
@@ -195,7 +202,6 @@ Page({
         'albumIntroBdClass':'album-intro-bd-fold',
         'albumIntroBdText':'展开简介',
 
-        
         'isAlbumIntroHidden':true,
         'isAlbumStorysHidden':false,
         'isAlbumSimilarHidden':true,
@@ -203,10 +209,9 @@ Page({
         'albumStorysNavBarOn':'weui-bar__item_on',
         'albumSimilarNavBarOn':'',
         
-        
+        'currentPosition':0,
+        'audioPlayBtnImageUrl':audioPlayImageUrl,
     });
-    
-
   },
 
   onReady: function() {
@@ -237,6 +242,7 @@ Page({
 
   onUnload: function() {
     // 生命周期函数--监听页面卸载
+
   },
   
   onPullDownRefresh: function() {
@@ -246,10 +252,76 @@ Page({
   onReachBottom: function() {
     // 页面上拉触底事件的处理函数
   },
-  
-  audioPlay: function () {
-    this.audioCtx.play()
+
+/**
+ * 音频播放按钮点击
+ * 
+ */
+  handleAudioPlayTap: function (event) {
+
+    console.log("##### handleAudioPlayTap #####");
+    var that = this;
+    wx.getBackgroundAudioPlayerState({
+        success:function(res) {
+            //播放状态（2：没有音乐在播放，1：播放中，0：暂停中）
+            var status = res.status;
+            console.log("status = " + status);
+
+            switch(status) {
+
+                //没有音乐在播放: 则开始播放
+                case 2:
+                    wx.playBackgroundAudio({
+                        dataUrl: event.currentTarget.dataset.url,
+                        title: event.currentTarget.dataset.title,
+                        coverImgUrl: event.currentTarget.dataset.cover_img_url,
+                        fail:function() {
+                            wx.showToast({
+                                title: '播放出现故障',
+                                icon: 'info',
+                                duration: 2000
+                            })
+                        },
+                    });
+                    break;
+
+                //播放中: 则暂停播放
+                case 1:
+                    wx.pauseBackgroundAudio();
+                    break;
+                    
+                //暂停中:则控制播放进度至position后继续播放
+                case 0:
+                    console.log("that.data.currentPosition = " + that.data.currentPosition);
+                    wx.seekBackgroundAudio({
+                        position: that.data.currentPosition
+                    });
+                    wx.playBackgroundAudio({
+                        dataUrl: event.currentTarget.dataset.url,
+                        title: event.currentTarget.dataset.title,
+                        coverImgUrl: event.currentTarget.dataset.cover_img_url,
+                        fail:function() {
+                            wx.showToast({
+                                title: '播放出现故障',
+                                icon: 'info',
+                                duration: 2000
+                            })
+                        },
+                    });
+                    break;
+            }
+
+        },
+        fail:function() {
+
+        },
+        complete:function() {
+
+        },
+    })
+
   },
+
 
   audioPause: function () {
     this.audioCtx.pause()
@@ -276,6 +348,7 @@ Page({
         })
   },
 
+
   handleBatchDownloadAlbum: function () {
      wx.showModal({
         title: '提示',
@@ -287,7 +360,6 @@ Page({
         }
      })
   },
-
 
   handleAlbumIntroActionBtn: function() {
     console.log(this.data);
@@ -352,7 +424,6 @@ Page({
 
     /**
    * 处理标签点击
-   *    1) 含有字符串tag_id={2}跳转至标签页
    */
   handleTagTap: function(event) {
     var tagId = event.currentTarget.dataset.id;
@@ -361,5 +432,38 @@ Page({
       url: tagUrl
     })
   },
-
 })
+
+  //监听音乐暂停
+  wx.onBackgroundAudioPause(function(){
+    
+    console.log("######## wx.onBackgroundAudioPause ######");
+    var pages = getCurrentPages();
+    var currentPage = pages[pages.length - 1];
+    wx.getBackgroundAudioPlayerState({
+        success: function(res) {
+            console.log("currentPosition = " + res.currentPosition);
+            currentPage.setData({
+                'currentPosition':res.currentPosition,
+                'audioPlayBtnImageUrl':audioPlayImageUrl,
+            })  
+        }
+    })
+  });
+
+  //监听音乐播放
+  wx.onBackgroundAudioPlay(function(){
+    
+    console.log("######## wx.onBackgroundAudioPlay ######");
+    var pages = getCurrentPages();
+    var currentPage = pages[pages.length - 1];
+    wx.getBackgroundAudioPlayerState({
+        success: function(res) {
+            if(1 === res.status)
+            console.log("status = " + res.status);
+            currentPage.setData({
+                'audioPlayBtnImageUrl':audioPauseImageUrl,
+            })  
+        }
+    })
+  })
