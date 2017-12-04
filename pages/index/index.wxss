@@ -1,22 +1,48 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+.slide-image {
+     width: 750rpx;
+     height: 300rpx;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.weui-grid__label {
+     font-family: PingFang-SC-Regular;
+     font-size: 30rpx;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.section-title {
+     padding-left: 30rpx;
+     font-family: PingFang-SC-Regular;
+     font-size: 24rpx;
+     color:#666;
+     margin-bottom: 20rpx;
 }
 
-.usermotto {
-  margin-top: 200px;
+.weui-flex {
+     display: flex;
+     justify-content: space-between;
+     margin: 0;
 }
+
+.row-container {
+     display: flex;
+     justify-content: space-between;
+     margin: 0;
+}
+.weui-media-box__title{
+     font-family: PingFang-SC-Regular;
+     font-size: 30rpx;
+}
+
+.tag-item{
+     display: flex;
+     align-content: center;
+     flex-direction: column;
+     align-items: center;
+     
+}
+
+
+
+     
 

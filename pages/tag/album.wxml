@@ -10,7 +10,7 @@
             <view class="weui-navbar__title weui-bar__item_on">{{specialTagItem.name}}</view>
           </view>
 
-      </block>
+   </block>
 
       <!--二级标签-->
      <block wx:for="{{data.secondtaglist}}" wx:key="data.secondtaglist" wx:for-index="idx" wx:for-item="secondTagItem">

@@ -2,9 +2,13 @@
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
+  justify-content: space-between;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
 }
 .weui-flex__item {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;
+     
 }

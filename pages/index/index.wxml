@@ -10,22 +10,22 @@
     <block wx:for="{{data.focus.items}}" wx:key="data.focus.items" wx:for-index="idx">
       <!--只显示故事专辑焦点图-->
       <swiper-item data-index="{{idx}}"  data-id="{{item.id}}" bindtap="handleAlbumTap">
-        <image src="{{item.cover}}" class="slide-image" width="355" height="150"/>
+        <image src="{{item.cover}}" class="slide-image" width="375" height="150"/>
       </swiper-item>
     </block>
   </swiper>
   </view>
-    <!--焦点图-end-->
+<!--焦点图-end-->
 
-  <!--标签列表-start-->
-  <view class="weui-flex row-container" style="background-color: #FFFFFF;padding-bottom:10px">
+<!--标签列表-start-->
+  <view class="weui-flex row-container" style="background-color: #FFFFFF;padding-bottom:20rpx">
       <block wx:for="{{data.category.items}}" wx:key="data.category.items" wx:for-item="item" wx:for-index="idx">
       <template is="tagItem" data="{{index:idx,title: item.title,cover: item.cover}}"/>
       </block>
   </view>
   <!--标签列表-end-->
-
-  <!--专辑列表-start-->
+ 
+ <!--专辑列表-start-->
   <block wx:for="{{data.section.items}}" wx:key="data.section.items" wx:for-item="sectionItem">
     <view style="background-color: #FFFFFF;">
       <template is="sectionTitle" data="{{title:sectionItem.title}}"/>
@@ -41,9 +41,9 @@
         <block wx:elif="{{sectionItem.type == constant.sectionTypeAuthor}}">
           <view class="weui-flex row-container page__bd_spacing" >
             <block wx:for="{{sectionItem.items}}" wx:key="sectionItem.items" wx:for-index="idx" wx:for-item="authorItem" >
-              <view class="weui-flex__item tag-item" style="margin-bottom:10px" id="authorItem" data-index="{{idx}}"  data-uid="{{authorItem.uid}}" bindtap="handleTapAuthor">
-                <image class="circular-squareP weui-media-box__title" style="width: 70px; height: 70px; background-color: #eeeeee;" mode="aspectFit" src="{{authorItem.avatar}}"></image>
-                <view class="weui-media-box__title" style="text-overflow: ellipsis;font-size: 14px;">{{authorItem.nickname}}</view>
+              <view class="weui-flex__item tag-item" style="margin-bottom:20rpx" id="authorItem" data-index="{{idx}}"  data-uid="{{authorItem.uid}}" bindtap="handleTapAuthor">
+                <image class="circular-squareP weui-media-box__title" style="width: 120rpx; height: 120rpx; background-color: #eeeeee;" mode="aspectFit" src="{{authorItem.avatar}}"></image>
+                <view class="weui-media-box__title" style="text-overflow: ellipsis;font-size: 24rpx;">{{authorItem.nickname}}</view>
               </view>
             </block>
           </view>

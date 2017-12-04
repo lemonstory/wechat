@@ -13,15 +13,16 @@
     isDescVisible: Boolean 是否显示推荐语
     isTagNameVisible: Boolean 是否显示标题名称
 -->
-<template name="albumItem">
-    <view class="weui-flex__item album-item" style="margin-bottom:10px" data-index="{{index}}"  data-id="{{id}}" bindtap="handleAlbumTap">
-        <image style="width:174px; height: 126px; border-radius:3px;" mode="aspectFill" src="{{cover}}"></image>
-        <view class="weui-media-box__title" style="width:174px;text-overflow: ellipsis;font-size: 14px;">{{title}}</view>
-        <image style="width:13px;height:13px;margin-top:3px;margin-right:4px;float:left;" src="http://jic.xiaoningmeng.net/www/img/ic_player.png"></image>
-        <view class="weui-media-box__desc" style="text-overflow: ellipsis; margin-top:3px;">{{listenNum}}</view>
+<template name="albumItem" style="display:flex; justify-content: space-between;">
+    <view class="weui-flex__item album-item" style="margin-bottom:10px;width:340rpx;" data-index="{{index}}"  data-id="{{id}}" bindtap="handleAlbumTap">
+        <image style="width:348rpx; height: 210rpx; border-radius:6rpx;" mode="aspectFill" src="{{cover}}"></image>
+        <view class="weui-media-box__title" style="width:340rpx;text-overflow: ellipsis;font-size: 30rpx;">{{title}}</view>
+
         <block wx:if="{{isDescVisible}}">
-            <view class="weui-media-box__desc" style="margin-top:3px">{{desc}}</view>
+            <view class="weui-media-box__desc" style="margin-top:6rpx;font-size:28rpx;width:340rpx;text-overflow:ellipsis; overflow: hidden;">{{desc}}</view>
         </block>
+                <image style="width:26rpx;height:26rpx;margin-top:6rpx;margin-right:8rpx;float:left;" src="http://jic.xiaoningmeng.net/www/img/ic_player.png"></image>
+        <view class="weui-media-box__desc" style="text-overflow:ellipsis; margin-top:6rpx;font-size: 30rpx;">{{listenNum}}</view>
         <block wx:if="{{isTagNameVisible}}">
             <view>{{tagName}}</view>
         </block>

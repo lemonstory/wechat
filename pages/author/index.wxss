@@ -17,3 +17,7 @@
 .textContainer {
   margin-top: 200px;
 }
+.page__bd{
+     display: flex;
+     justify-content: center;
+}
