@@ -15,7 +15,7 @@
     </block>
   </swiper>
   </view>
-<!--焦点图-end-->
+<!--焦点图-end-->    
 
 <!--标签列表-start-->
   <view class="weui-flex row-container" style="background-color: #FFFFFF;padding-bottom:20rpx">

@@ -33,13 +33,11 @@
      font-family: PingFang-SC-Regular;
      font-size: 30rpx;
 }
-
 .tag-item{
      display: flex;
      align-content: center;
      flex-direction: column;
      align-items: center;
-     
 }
 
 
