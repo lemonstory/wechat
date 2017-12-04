@@ -6,13 +6,11 @@
 }
 
 .weui-grid__label {
-     font-family: PingFang-SC-Regular;
      font-size: 30rpx;
 }
 
 .section-title {
      padding-left: 30rpx;
-     font-family: PingFang-SC-Regular;
      font-size: 24rpx;
      color:#666;
      margin-bottom: 20rpx;
@@ -30,7 +28,6 @@
      margin: 0;
 }
 .weui-media-box__title{
-     font-family: PingFang-SC-Regular;
      font-size: 30rpx;
 }
 .tag-item{
