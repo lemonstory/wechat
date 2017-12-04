@@ -4,7 +4,7 @@
 -->
 <template name="sectionTitle">
     <view class="weui-cells__title section-title">
-    <view style="float:left; font-size:30rpx"><view style="float:left;width:8rpx;height:28rpx;background:#fec45f;border-radius:20rpx; margin-right:18rpx; margin-top:10rpx;"></view>{{title}} </view>
-        <view style="text-align:right; font-size:30rpx">更多 ></view>
+    <view style="float:left; font-size:26rpx;color:#494949"><view style="float:left;width:8rpx;height:28rpx;background:#fec45f;border-radius:20rpx; margin-right:18rpx; margin-top:5rpx;"></view>{{title}} </view>
+        <view style="text-align:right; font-size:26rpx;color:#494949">更多 ></view>
     </view>
-</template>
+</template>     
