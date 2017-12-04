@@ -13,7 +13,7 @@ declare interface IApp {
     /**
      * 生命周期函数--监听小程序显示。当小程序启动，或从后台进入前台显示，会触发 onShow
      */
-    onShow?: () => void;
+    onShow?: () =>   void;
 
     /**
      * 生命周期函数--监听小程序隐藏。当小程序从前台进入后台，会触发 onHide
