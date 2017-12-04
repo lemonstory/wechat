@@ -5,7 +5,7 @@
     cover: 标签图标
     title: 标签名称
 -->
-<template name="tagItem">
+<template name="tagItem"   >
     <!--
         TODO:data-tagID 在handleTagTap中使用event.currentTarget.dataset.tagId接收不到.
             使用event.currentTarget.dataset.tagid可以接收到.故改为data-id这样不会有歧义
@@ -14,4 +14,4 @@
         <image class="tag-icon weui-grid__icon" mode="aspectFit" src="{{cover}}"></image>
         <view class="weui-grid__label">{{title}}</view>
     </view>  
-</template>
+</template>   
