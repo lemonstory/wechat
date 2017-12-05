@@ -13,22 +13,22 @@
 
           <!--标签-->
 
-          <block wx:for="{{data.tag.items}}" wx:key="data.tag.items" wx:for-index="idx" wx:for-item="tagItem">
-
-               <view>{{tagItem.name}}</view>
+          <view class="section" block wx:for="{{data.tag.items}}" wx:key="data.tag.items" wx:for-index="idx" wx:for-item="tagItem">
+               <view style=" font-size:26rpx;color:#9B9B9B">{{tagItem.name}}
+                    <view style="float:left;width:6rpx;height:26rpx;background:#fec45f;border-radius:20rpx; margin-right:18rpx; margin-top:6rpx;"></view>{{title}} </view>
                <view class="weui-flex row-flex">
                     <block wx:for="{{tagItem.child_items}}" wx:key="tagItem.child_items" wx:for-item="tagChildItem">
                          <view class="weui-flex__item row-2">
+                         <view class="name">{{tagChildItem.name}}</view>
 
-                              <image style="width: 80px; height: 80px; " mode="aspectFill" src="{{tagChildItem.cover}}"></image>
+                              <image class="img" style="border-radius: 10rpx; display:flex" mode="aspectFill" src="{{tagChildItem.cover}}"></image>
 
-                              <view>{{tagChildItem.name}}</view>
+                              
                          </view>
-                  </block>
+                    </block>
 
-       </view>
-          </block>
-
+               </view>
+          </view>
      </view>
 
 </view>
