@@ -6,23 +6,16 @@ Page({
   //页面的初始数据
   data: {
     'isLoaded': false,
+    'constant': app.constant
   },
 
   onLoad: function (options) {
 
-    // 生命周期函数--监听页面加载
-    console.log('🤡  onLoad');
-
-    wx.showLoading({
+    wx.showToast({
       title: '加载中...',
+      icon: 'loading'
     });
-
     this.getData();
-
-    //调用应用实例的方法获取全局数据
-    this.setData({
-      constant: app.constant
-    });
   },
 
   // 生命周期函数--监听页面初次渲染完成
@@ -32,13 +25,13 @@ Page({
     wx.setNavigationBarTitle({
       title: app.constant.appName,
       success: function () {
-        console.log('setNavigationBarTitle --- success');
       },
+
       fail: function () {
-        console.log('setNavigationBarTitle --- fail');
+
       },
       complete: function () {
-        console.log('setNavigationBarTitle --- complete');
+
       },
     });
   },
@@ -55,12 +48,6 @@ Page({
     // 生命周期函数--监听页面卸载
   },
 
-  onPullDownRefresh: function () {
-    // 页面相关事件处理函数--监听用户下拉动作
-    // this.getData();
-    wx.startPullDownRefresh();
-  },
-
   onReachBottom: function () {
     // 页面上拉触底事件的处理函数
   },
@@ -73,11 +60,17 @@ Page({
       path: 'pages/index/index'
     }
   },
+  /**
+   * 下拉刷新
+   */
+  onPullDownRefresh: function () {
+    this.getData();
+  },
 
   getData: function () {
     var that = this;
     wx.request({
-      url: 'http://dev.xiaoningmeng.net/default/v2.6.4/index.php', //仅为示例，并非真实的接口地址
+      url: that.data.constant.domain+'/default/v2.6.4/index.php', //仅为示例，并非真实的接口地址
       data: {},
       header: {
         'content-type': 'application/json', // 默认值
@@ -87,9 +80,8 @@ Page({
         wx.hideLoading();
         res.data.isLoaded = true;
         console.log(res.data);
-        that.setData(res.data, function () {
-          that.setDataCallBack();
-        });
+        that.setData(res.data);
+        that.setDataCallBack();
       }
     })
   },
@@ -100,6 +92,7 @@ Page({
    */
   setDataCallBack: function () {
 
+    this.stopPullDownRefresh();
     var focusArr = this.data.data.focus.items;
     var albumFocusArr = new Array();
 
@@ -203,7 +196,13 @@ Page({
     })
   },
 
-  onPullDownRefresh: function () {
-    wx.stopPullDownRefresh();
-  },
+  /**
+   * 停止下拉刷新动画
+   */
+  stopPullDownRefresh: function () {
+    wx.stopPullDownRefresh({
+      complete: function (res) {
+      }
+    });
+  }
 });

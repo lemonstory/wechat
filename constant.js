@@ -4,6 +4,7 @@ var constant = {
     "appDesc":"让儿歌故事带给宝贝多彩童年",
     "sectionTypeAlbum":"album",
     "sectionTypeAuthor":"author",
+    "domain":"http://dev.xiaoningmeng.net",
 }
 
 module.exports.constant = constant;
