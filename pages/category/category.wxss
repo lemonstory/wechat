@@ -36,8 +36,6 @@
    height:150rpx;
    margin-bottom: 20rpx;
    position: relative;
- 
-  
 } 
 .row-flex{
      margin-top:20rpx;

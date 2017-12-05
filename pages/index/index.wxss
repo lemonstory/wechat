@@ -45,7 +45,6 @@
   flex-direction: column;
   align-items: center;
 }
-
 .weui-media-box__desc {
   color: #9b9b9b;
 }
