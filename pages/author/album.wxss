@@ -19,6 +19,5 @@
 .page__bd{
   background: #F7F7F7 100%; 
   box-sizing: border-box;
-
 }
 
