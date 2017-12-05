@@ -381,8 +381,7 @@ Page({
   handleAlbumIntroNavTap:function() {
     this.setData({
         'isAlbumIntroHidden':false,
-        'isAlbumStorysHidden':true,
-        'isAlbumSimilarHidden':true,
+        'isAlbumStorysHidden':true,                                                                                      'isAlbumSimilarHidden':true,
         'albumIntroNavBarOn':'weui-bar__item_on',
         'albumStorysNavBarOn':'',
         'albumSimilarNavBarOn':'',
@@ -391,7 +390,7 @@ Page({
 
     handleAlbumStorysNavTap:function() {
     this.setData({
-        'isAlbumIntroHidden':true,
+        'isAlbumIntroHidden':true,                                                              
         'isAlbumStorysHidden':false,
         'isAlbumSimilarHidden':true,
         'albumIntroNavBarOn':'',

@@ -6,8 +6,19 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
+  width: 100%;
+ 
 }
-
+.page{
+ background: #eee 100%;
+ width: 100%;
+}
+.main{
+     padding-top: 20rpx;
+     padding-left: 260rpx;
+     box-sizing: border-box;
+    
+}
 .textStyle {
   display: flex;
   flex-direction: column;
@@ -20,7 +31,7 @@
 
 .album-detail-hd {
   background-color:#FFFFFF;
-  font-size: 16px;
+  
   padding: 12rpx;
   margin-top:10rpx;
 }
