@@ -6,7 +6,7 @@
   z-index: 500;
   top: 0;
   width: 100%;
-  border-bottom: 1rpx solid #CCCCCC;
+  border-bottom: 1rpx solid #eee;
 }
 .weui-navbar__item {
   position: relative;
@@ -17,9 +17,11 @@
   padding: 13px 0;
   text-align: center;
   font-size: 0;
+ 
 }
 .weui-navbar__item.weui-bar__item_on {
   color: #1AAD19;
+
 }
 .weui-navbar__slider {
   position: absolute;

@@ -9,7 +9,7 @@
   width: 100%;
  }
 .page{
- background: #eee 100%;
+background: #F7F7F7 100%;
  width: 100%;
  padding: 0;
  margin: 0;
@@ -158,7 +158,7 @@
   color:#9B9B9B;
 }
 .weui-bar__item_on {
-  border-bottom:4rpx solid #FFBE4C;
+  border-bottom:6rpx solid #FFBE4C;
   
 }
 

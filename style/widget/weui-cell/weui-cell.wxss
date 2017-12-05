@@ -43,7 +43,6 @@ padding-right: 30rpx;
   font-size: 14px;
 }
 .weui-cell {
-
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -58,7 +57,6 @@ padding-right: 30rpx;
   left: 0;
   top: 0;
   right: 0;
-  height: 1px;
   border-top: 1rpx solid #D9D9D9;
   color: #D9D9D9;
   left: 15px;

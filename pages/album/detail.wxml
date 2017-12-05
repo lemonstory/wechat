@@ -65,9 +65,9 @@
     <!--收藏...批量下载功能区-end-->
     <view class="weui-tab">
       <view class="weui-navbar album-detail-navbar">
-        <view class="weui-navbar__item {{albumIntroNavBarOn}}" bindtap="handleAlbumIntroNavTap" style='font-size:32rpx;'> 简介</view>
-        <view class="weui-navbar__item {{albumStorysNavBarOn}}" bindtap="handleAlbumStorysNavTap" style='font-size:32rpx;'>声音</view>
-        <view class="weui-navbar__item {{albumSimilarNavBarOn}}" bindtap="handleAlbumSimilarNavTap" style='font-size:32rpx;'>相似</view>
+        <view class="weui-navbar__item {{albumIntroNavBarOn}}" bindtap="handleAlbumIntroNavTap" style='font-size:30rpx;'> 简介</view>
+        <view class="weui-navbar__item {{albumStorysNavBarOn}}" bindtap="handleAlbumStorysNavTap" style='font-size:30rpx;'>声音</view>
+        <view class="weui-navbar__item {{albumSimilarNavBarOn}}" bindtap="handleAlbumSimilarNavTap" style='font-size:30rpx;'>相似</view>
       </view>
       <view class="weui-tab__panel" style="background-color:#FFFFFF;">
         <!--专辑简介-start-->
@@ -78,7 +78,7 @@
             <block wx:for="{{data.tagList}}" wx:key="data.tagList" wx:for-index="idx" wx:for-item="tagItem">
               <view class="weui-grid album-tag-grid" data-id="{{tagItem.id}}" bindtap="handleTagTap">
                 <image class="weui-grid__icon album-tag-icon circular-squareP" mode="aspectFit" src="{{tagItem.cover}}"></image>
-                < text class="weui-grid__label" style="font-size:30rpx;color:#494949" >{{tagItem.name}}</text>
+                < text class="weui-grid__label" style="font-size:26rpx;color:#494949" >{{tagItem.name}}</text>
               </view>
             </block>
           </view>
@@ -89,7 +89,7 @@
         <view class="weui-cells album-storys-container page__bd_spacing" hidden="{{isAlbumStorysHidden}}">
           <block wx:for="{{data.storyList.items}}" wx:key="data.storyList" wx:for-index="idx" wx:for-item="storyItem">
             <view style="align: center;">
-              <view class="album-story-index"   style='color:#9B9B9B;font-size:30rpx;'>{{idx + 1}}</view>
+              <view class="album-story-index" style='color:#9B9B9B;font-size:30rpx;'>{{idx + 1}}</view>
               <view class="weui-cell album-story-title" style='color:#494949;font-size:30rpx;'>{{storyItem.title}}</view>
             </view>
           </block>
