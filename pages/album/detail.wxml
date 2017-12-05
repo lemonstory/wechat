@@ -8,7 +8,7 @@
     <!--专辑信息-start-->
     <view class="page__bd_spacing" style="width:100%; background-color:#FFFFFF;">
       <view style="float:left; background-color:#FFFFFF;">
-        <image style="width: 300rpx; height: 300rpx; border-radius:6rpx; margin-top:20rpx" mode="aspectFill" src="{{data.albumInfo.cover}}"></image>
+        <image style="width: 280rpx; height: 280rpx; border-radius:6rpx; margin-top:20rpx" mode="aspectFill" src="{{data.albumInfo.cover}}"></image>
         <!--<text>{{data.albumInfo.listennum}}</text>-->
       </view>
       <view class="main" style="background-color:#fff; height:100%;">
@@ -30,7 +30,7 @@
 
           </block>
         </view>
-        <image bindtap="handleAudioPlayTap" src="{{audioPlayBtnImageUrl}}" style="width: 130rpx; height: 130rpx;position:relative;top:18rpx;left:250rpx;" data-url="http://mf.xiaoningmeng.net/2016/09/14/fe1e85cb628223111bd0bfe3a5135afb.mp3" data-title="标题" data-cover_img_url="http://p.xiaoningmeng.net/tag/2016/01/28/c81e728d9d4c2f636f067f89cc14862c.png?v=1453911544">
+        <image bindtap="handleAudioPlayTap" src="{{audioPlayBtnImageUrl}}" style="width: 130rpx; height: 130rpx;position:relative;left:250rpx;" data-url="http://mf.xiaoningmeng.net/2016/09/14/fe1e85cb628223111bd0bfe3a5135afb.mp3" data-title="标题" data-cover_img_url="http://p.xiaoningmeng.net/tag/2016/01/28/c81e728d9d4c2f636f067f89cc14862c.png?v=1453911544">
         </image>
       </view>
     </view>
@@ -39,21 +39,21 @@
     <view class="weui-flex" style="width:100%; background-color:#FFFFFF; border-bottom:1rpx solid #eee;padding-bottom:20rpx; padding-top:20rpx;">
       <view class="weui-flex__item">
         <block wx:if="{{data.albumInfo.fav == 1}}">
-          <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_album_fav_selected.png"></image>
+          <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_album_fav_selected.png" style='width:38rpx;height:38rpx;'></image>
         </block>
         <block wx:else>
-          <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_fav.png"></image>
+          <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_fav.png" style='width:38rpx;height:38rpx;'></image>
         </block>
         <text class="weui-grid__label album-action-label">{{data.albumInfo.favnum}}</text>
       </view>
 
       <view class="weui-flex__item">
-        <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_commit.png"></image>
+        <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_commit.png" style='width:38rpx;height:38rpx;'></image>
         <text class="weui-grid__label album-action-label">{{data.albumInfo.commentnum}}</text>
       </view>
 
       <view class="weui-flex__item" bindtap="handleShareAlbumTap">
-        <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_player_share_normal.png"></image>
+        <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_player_share_normal.png" style='width:38rpx;height:38rpx;'></image>
         <text class="weui-grid__label album-action-label">分享</text>
       </view>
 
@@ -65,7 +65,7 @@
     <!--收藏...批量下载功能区-end-->
     <view class="weui-tab">
       <view class="weui-navbar album-detail-navbar">
-        <view class="weui-navbar__item {{albumIntroNavBarOn}}" bindtap="handleAlbumIntroNavTap">简介</view>
+        <view class="weui-navbar__item {{albumIntroNavBarOn}}" bindtap="handleAlbumIntroNavTap"> 简介</view>
         <view class="weui-navbar__item {{albumStorysNavBarOn}}" bindtap="handleAlbumStorysNavTap">声音</view>
         <view class="weui-navbar__item {{albumSimilarNavBarOn}}" bindtap="handleAlbumSimilarNavTap">相似</view>
       </view>

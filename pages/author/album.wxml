@@ -5,24 +5,24 @@
      <view class="page__bd page__bd_spacing" style='padding:0'>
           <!--作者信息-start-->
           <view class="weui-panel">
-               <view class="weui-cell" style='width:100%; padding-left:30rpx;padding-right:30rpx'>
+               <view class="weui-cell" style='width:100%; padding-left:30rpx;padding-right:30rpx;'>
                     <view class="weui-media-box__hd_in-appmsg">
                          <image class="circular-squareP weui-media-box__thumb" style="width: 120rpx; height: 120rpx;"  mode="aspectFit" src="{{data.info.avator}}"></image>
                     </view>
                     <view class="weui-media-box__bd_in-appmsg">
                          <!--<view>{{authorItem.uid}} </view>-->
                          <view class="weui-media-box__title" style="vertical-align: middle;color:#494949;font-size:32rpx; ">{{data.info.nickname}}</view>
-                         <view class="weui-media-box__desc">{{data.info.intro}} </view>
+                         <view class="weui-media-box__desc" style="padding-right:30rpx; ">{{data.info.intro}} </view>
                     </view>
                     <!--TODO:向右侧的箭头不出现-->
-                    <view class="weui-cell__ft" style="margin-top:40rpx;margin-left:30rpx;">></view>
+                    <view class="weui-cell__ft" style="margin-top:40rpx;">></view>
                </view>
           </view>
           <!--作者信息-end-->
 
           <!--故事列表 -start-->
           
-          <view class="weui-cells" style='margin-top:10rpx; padding-left:30rpx;padding-right:30rpx'>
+          <view class="weui-cells" style='border:none;margin-top:10rpx; padding-top:10rpx;padding-left:30rpx;padding-right:30rpx'>
           <view style='margin-top:20rpx;color:#9B9B9B;font-size:28rpx'>作品</view>
                <block wx:for="{{data.items}}" wx:key="data.items" wx:for-index="idx" wx:for-item="albumItem">
                
@@ -44,10 +44,10 @@
         
 
           <!--加载更多-start-->
-          <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
+           <view class="weui-loadmore  weui-loadmore_dot"> 
                <view class="weui-loading"></view>
                <view class="weui-loadmore__tips">更多内容，敬请期待</view>
-          </view>
+           </view> 
           <!--加载更多-end-->
 
      </view>
@@ -57,5 +57,11 @@
                <view class="weui-footer__text">小柠檬-听儿歌故事</view>
           </view>
      </view>
+
+       <!--页尾-start-->
+     <block wx:if="{{isLoaded}}">
+          <include src="../footer.wxml" />
+     </block>
+     <!--页尾-end-->
 
 </view>
