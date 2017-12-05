@@ -19,11 +19,10 @@
                <view class="weui-flex row-flex">
                     <block wx:for="{{tagItem.child_items}}" wx:key="tagItem.child_items" wx:for-item="tagChildItem">
                          <view class="weui-flex__item row-2">
-                         <view class="name">{{tagChildItem.name}}</view>
-
+                              <view class="name">{{tagChildItem.name}}</view>
                               <image class="img" style="border-radius: 10rpx; display:flex" mode="aspectFill" src="{{tagChildItem.cover}}"></image>
 
-                              
+
                          </view>
                     </block>
 

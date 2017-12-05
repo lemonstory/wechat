@@ -14,11 +14,10 @@
     isTagNameVisible: Boolean 是否显示标题名称
 -->
 <template name="albumItem" style="display:flex; justify-content: space-between;">
-    <view class="weui-flex__item album-item" style="margin-bottom:10px;width:340rpx;" data-index="{{index}}"  data-id="{{id}}" bindtap="handleAlbumTap">
-        <image style="width:340rpx; margin-left:10rpx; height: 210rpx; border-radius:10rpx;" mode="aspectFill" src="{{cover}}"></image>
+    <view class="weui-flex__item album-item" style="margin-bottom:10px;width:350rpx;" data-index="{{index}}"  data-id="{{id}}" bindtap="handleAlbumTap">
+        <image style="width:345rpx; margin-left:10rpx; height: 200rpx; border-radius:6rpx;" mode="aspectFill" src="{{cover}}"></image>
         <view class="weui-media-box__title" style="margin-left:10rpx;width:340rpx;text-overflow: ellipsis;font-size: 26rpx;">{{title}}</view>
-
-        <block wx:if="{{isDescVisible}}">
+ <block wx:if="{{isDescVisible}}">
             <view class="weui-media-box__desc" style="margin-left:10rpx;margin-top:6rpx;font-size:22rpx;width:340rpx; height:26rpx;text-overflow: ellipsis; overflow:hidden">{{desc}}</view>
         </block>
                 <image style="width:22rpx;height:22rpx;margin-top:10rpx;margin-left:10rpx;margin-right:10rpx;float:left;" src="http://jic.xiaoningmeng.net/www/img/ic_player.png"></image>

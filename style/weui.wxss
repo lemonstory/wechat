@@ -51,7 +51,7 @@ icon {
   font-size: 14px;
 }
 .weui-cell {
-  padding: 10px 15px;
+   padding: 10px 0px; 
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -63,11 +63,11 @@ icon {
 .weui-cell:before {
   content: " ";
   position: absolute;
-  left: 0;
+  /* left: 0; */
   top: 0;
   right: 0;
   height: 1px;
-  border-top: 1rpx solid #D9D9D9;
+  /* border-top: 1rpx solid #D9D9D9; */
   color: #D9D9D9;
   left: 15px;
 }
@@ -336,7 +336,6 @@ icon {
           transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
   position: relative;
   top: -2px;
-  position: absolute;
   top: 50%;
   right: 15px;
   margin-top: -4px;
