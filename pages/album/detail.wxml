@@ -65,9 +65,9 @@
     <!--收藏...批量下载功能区-end-->
     <view class="weui-tab">
       <view class="weui-navbar album-detail-navbar">
-        <view class="weui-navbar__item {{albumIntroNavBarOn}}" bindtap="handleAlbumIntroNavTap"> 简介</view>
-        <view class="weui-navbar__item {{albumStorysNavBarOn}}" bindtap="handleAlbumStorysNavTap">声音</view>
-        <view class="weui-navbar__item {{albumSimilarNavBarOn}}" bindtap="handleAlbumSimilarNavTap">相似</view>
+        <view class="weui-navbar__item {{albumIntroNavBarOn}}" bindtap="handleAlbumIntroNavTap" style='font-size:32rpx;'> 简介</view>
+        <view class="weui-navbar__item {{albumStorysNavBarOn}}" bindtap="handleAlbumStorysNavTap" style='font-size:32rpx;'>声音</view>
+        <view class="weui-navbar__item {{albumSimilarNavBarOn}}" bindtap="handleAlbumSimilarNavTap" style='font-size:32rpx;'>相似</view>
       </view>
       <view class="weui-tab__panel" style="background-color:#FFFFFF;">
         <!--专辑简介-start-->
