@@ -314,8 +314,10 @@ Page({
     //调用应用实例的方法获取全局数据
 
   },
-
-  onReady: function() {
+  onPullDownRefresh: function () {
+       wx.stopPullDownRefresh();
+  },
+ onReady: function() {
     // 生命周期函数--监听页面初次渲染完成
         app.getUserInfo(function(userInfo){
       //更新数据

@@ -15,9 +15,10 @@
      justify-content: space-around;
      align-items: center;
      font-size: 26rpx;
-     padding-top: 30rpx;
-     padding-bottom: 30rpx;
+     padding-top: 20rpx;
+     padding-bottom: 20rpx;
      color:#494949;
+
 }
 .section{
   background: #fff;  

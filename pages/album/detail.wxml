@@ -1,19 +1,19 @@
 <!--参考文档：https://mp.weixin.qq.com/debug/wxadoc/dev/component/audio.html-->
 <import src="../../template/albumItem.wxml" />
-<view class="page flex" style="padding-top:8px;">
+<view class="page flex" style="padding-top:1rpx;">
   <view class="page__bd">
     <view>
       <audio hidden="true" poster="{{data.albumInfo.cover}}" name="{{data.storyList.items[0].title}}" author="小柠檬-听儿歌故事" src="{{data.storyList.items[0].mediapath}}" id="albumAudio"></audio>
     </view>
     <!--专辑信息-start-->
-    <view class="page__bd_spacing" style="width:100%; height:150rpx; background-color:#FFFFFF;">
-      <view style="width:40%;float:left; background-color:#FFFFFF;">
-        <image style="width: 140rpx; height: 140rpx; border-radius:3px;" mode="aspectFill" src="{{data.albumInfo.cover}}"></image>
+    <view class="page__bd_spacing" style="width:100%; background-color:#FFFFFF;">
+      <view style="float:left; background-color:#FFFFFF;">
+        <image style="width: 240rpx; height: 240rpx; border-radius:10rpx; margin-top:20rpx" mode="aspectFill" src="{{data.albumInfo.cover}}"></image>
         <!--<text>{{data.albumInfo.listennum}}</text>-->
       </view>
-      <view style="background-color:#FFFFFF; height:100%;">
-        <text class="weui-media-box__title" style="display:block;text-overflow: ellipsis;font-size: 16px;">{{data.albumInfo.title}}</text>
-        <text class="weui-media-box__desc" style="margin-top:8rpx;">{{data.albumInfo.age_str}}</text>
+      <view class="main" style="background-color:#fff; height:100%;">
+        <text class="weui-media-box__title" style="display:block;margin-top:20rpxtext-overflow: ellipsis;font-size: 32rpx; color:#494949">{{data.albumInfo.title}}</text>
+        <text class="weui-media-box__desc" style="margin-top:8rpx; font-size: 24rpx; color:#9B9B9B">{{data.albumInfo.age_str}}</text>
         <view>
           <block wx:for="{{[1, 2, 3, 4, 5]}}" wx:key="data.albumInfo.star_level" wx:for-index="idx" wx:for-item="i">
             <block wx:if="{{data.albumInfo.star_level > 0}}">
@@ -30,13 +30,13 @@
 
           </block>
         </view>
-        <image bindtap="handleAudioPlayTap" src="{{audioPlayBtnImageUrl}}" style="width: 60rpx; height: 60rpx;position:relative;top: -10rpx;left: 150rpx;" data-url="http://mf.xiaoningmeng.net/2016/09/14/fe1e85cb628223111bd0bfe3a5135afb.mp3" data-title="标题" data-cover_img_url="http://p.xiaoningmeng.net/tag/2016/01/28/c81e728d9d4c2f636f067f89cc14862c.png?v=1453911544">
+        <image bindtap="handleAudioPlayTap" src="{{audioPlayBtnImageUrl}}" style="width: 100rpx; height: 100rpx;position:relative;top: 15rpx;left:300rpx;" data-url="http://mf.xiaoningmeng.net/2016/09/14/fe1e85cb628223111bd0bfe3a5135afb.mp3" data-title="标题" data-cover_img_url="http://p.xiaoningmeng.net/tag/2016/01/28/c81e728d9d4c2f636f067f89cc14862c.png?v=1453911544">
         </image>
       </view>
     </view>
     <!--专辑信息-end-->
     <!--收藏...批量下载功能区-start-->
-    <view class="weui-flex" style="width:100%; background-color:#FFFFFF; border-bottom:1px solid #e2e7ed;padding-bottom:8px;">
+    <view class="weui-flex" style="width:100%; background-color:#FFFFFF; border-bottom:1rpx solid #eeee;padding-bottom:10rpx; padding-top:10rpx;">
       <view class="weui-flex__item">
         <block wx:if="{{data.albumInfo.fav == 1}}">
           <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_album_fav_selected.png"></image>
@@ -57,10 +57,10 @@
         <text class="weui-grid__label album-action-label">分享</text>
       </view>
 
-      <view class="weui-flex__item" bindtap="handleBatchDownloadAlbum">
+      <!-- <!-- <view class="weui-flex__item" bindtap="handleBatchDownloadAlbum">
         <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_download.png"></image>
         <text class="weui-grid__label album-action-label">批量下载</text>
-      </view>
+      </view> -->
     </view>
     <!--收藏...批量下载功能区-end-->
     <view class="weui-tab">
@@ -72,13 +72,13 @@
       <view class="weui-tab__panel" style="background-color:#FFFFFF;">
         <!--专辑简介-start-->
         <view class="album-detail-hd" hidden="{{isAlbumIntroHidden}}">
-          <text class="{{albumIntroBdClass}}">{{data.albumInfo.intro}}</text>
+          <text class="{{albumIntroBdClass}}" style='color:#494949;font-size:26rpx;line-height:48rpx;'>{{data.albumInfo.intro}}</text>
           <view class="album-intro-action-btn" bindtap="handleAlbumIntroActionBtn">{{albumIntroBdText}}</view>
           <view class="weui-grids album-tag-grids">
             <block wx:for="{{data.tagList}}" wx:key="data.tagList" wx:for-index="idx" wx:for-item="tagItem">
               <view class="weui-grid album-tag-grid" data-id="{{tagItem.id}}" bindtap="handleTagTap">
                 <image class="weui-grid__icon album-tag-icon circular-squareP" mode="aspectFit" src="{{tagItem.cover}}"></image>
-                < text class="weui-grid__label">{{tagItem.name}}</text>
+                < text class="weui-grid__label" style="font-size:26rpx;color:#494949" >{{tagItem.name}}</text>
               </view>
             </block>
           </view>
@@ -89,8 +89,8 @@
         <view class="weui-cells album-storys-container page__bd_spacing" hidden="{{isAlbumStorysHidden}}">
           <block wx:for="{{data.storyList.items}}" wx:key="data.storyList" wx:for-index="idx" wx:for-item="storyItem">
             <view style="align: center;">
-              <view class="album-story-index">{{idx + 1}}</view>
-              <view class="weui-cell album-story-title">{{storyItem.title}}</view>
+              <view class="album-story-index"   style='color:#9B9B9B;font-size:30rpx;'>{{idx + 1}}</view>
+              <view class="weui-cell album-story-title" style='color:#494949;font-size:30rpx;'>{{storyItem.title}}</view>
             </view>
           </block>
           <view class="album-story-action-btn">查看更多</view>
@@ -107,7 +107,7 @@
         <view class="album-detail-hd page__bd_spacing" hidden="{{isAlbumSimilarHidden}}">
           <view class="weui-flex row-container " style="background-color:#FFFFFF;">
             <block wx:for="{{data.recommendAlbumList}}" wx:key="data.recommendAlbumList" wx:for-index="idx" wx:for-item="albumItem">
-              <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:true,isTagNameVisible:false}}" />
+              <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:true,isTagNameVisible:false}}"/>
             </block>
           </view>
         </view>
@@ -115,7 +115,7 @@
       </view>
 
       <!--页尾-start-->
-      <include src="../footer.wxml" />
+      <include src="../footer.wxml"/>
       <!--页尾-end-->
     </view>
   </view>
