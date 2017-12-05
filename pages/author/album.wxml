@@ -4,8 +4,13 @@
 <view class="page flex">
      <view class="page__bd page__bd_spacing" style='padding:0'>
           <!--作者信息-start-->
+<<<<<<< HEAD
           <view class="weui-panel">
                <view class="weui-cell" style='width:100%; padding-left:30rpx;padding-right:30rpx;'>
+=======
+          <view class="weui-panel" data-url="{{data.info.wiki_url}}" bindtap="handleAuthorTap">
+               <view class="weui-cell" style='width:100%; padding-left:30rpx;padding-right:30rpx'>
+>>>>>>> 0f49b525edfdb8873fd4c8fc22ff2a185462bf5b
                     <view class="weui-media-box__hd_in-appmsg">
                          <image class="circular-squareP weui-media-box__thumb" style="width: 120rpx; height: 120rpx;"  mode="aspectFit" src="{{data.info.avator}}"></image>
                     </view>
