@@ -11,7 +11,7 @@
           "pages/album/album"
      ],
      "window": {
-          "backgroundTextStyle": "light",
+          "backgroundTextStyle": "dark",
           "navigationBarBackgroundColor": "#fff",
           "navigationBarTitleText": "小柠檬-听儿歌故事",
           "navigationBarTextStyle": "black",

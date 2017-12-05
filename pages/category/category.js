@@ -1,13 +1,15 @@
 //获取应用实例
 var app = getApp()
 Page({
-  
+
   data: {
     'isLoaded': false,
     'constant': app.constant
   },
 
   onLoad: function (options) {
+
+    wx.startPullDownRefresh();
     this.getData();
   },
 
@@ -38,8 +40,8 @@ Page({
   },
 
   /**
- * 下拉刷新
- */
+   * 下拉刷新
+   */
   onPullDownRefresh: function () {
     this.getData();
   },
@@ -69,7 +71,6 @@ Page({
       success: function (res) {
         wx.hideLoading();
         res.data.isLoaded = true;
-        console.log(res.data);
         that.setData(res.data);
         that.setDataCallBack();
       }
