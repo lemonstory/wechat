@@ -7,7 +7,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  background: red;
+  background: #F7F7F7 100%;
 }
 .weui-flex__item{
      display: flex;
@@ -15,9 +15,46 @@
      justify-content: space-around;
      align-items: center;
      font-size: 26rpx;
-     padding-top: 20rpx;
-     padding-bottom: 20rpx;
+     padding-top: 30rpx;
+     padding-bottom: 30rpx;
+     color:#494949;
 }
 .section{
-  background: red;  
+  background: #fff;  
+  margin-top: 20rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+  padding-bottom: 10rpx;
 }
+ .row-2{
+   border-radius: 10rpx;
+   background: #F7F7F7 100%;
+   flex: 0 0 48%;
+   padding: 0;
+   margin: 0;
+   height:150rpx;
+   margin-bottom: 20rpx;
+   position: relative;
+ 
+  
+} 
+.row-flex{
+     margin-top:20rpx;
+     display: flex;
+     justify-content: space-between;
+}
+.img{
+     position: absolute;
+     top:20rpx;
+     right:20rpx;
+     width: 140rpx;
+     height:140rpx;
+     overflow: hidden;
+}
+.name{
+    
+     margin-right: 170rpx;
+     margin-bottom: 60rpx;
+     color:#494949;
+}
+
