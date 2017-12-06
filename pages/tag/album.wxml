@@ -1,37 +1,110 @@
-<view class="page flex">
-     <view class="page__bd page__bd_spacing" style='padding-top:0'>
+<import src="../../template/tagItem.wxml" />
+<import src="../../template/albumItem.wxml" />
+<view class="page">
 
-          <!--导航-->
-          <view class="weui-navbar" style='width:auto;;line-height:60rpx;padding:0'>
-               <!--推荐..好评榜-->
-               <block wx:for="{{data.specialtaglist}}" wx:key="data.specialtaglist" wx:for-index="idx" wx:for-item="specialTagItem">
-                    <view class="weui-navbar__item" style='margin-top:1rpx;padding:0;height:40rpx;'>
-                         <view class="weui-navbar__title weui-bar__item_on" style='width:auto;;padding:0 20rpx;'>{{specialTagItem.name}}</view>
-                    </view>
 
-               </block>
+     <!--简介 声音 相似 -start-->
+     <view class="weui-tab">
+          <view class="weui-navbar album-detail-navbar" style='height:80rpx;'>
 
-               <!--二级标签-->
-               <!-- <block wx:for="{{data.secondtaglist}}" wx:key="data.secondtaglist" wx:for-index="idx" wx:for-item="secondTagItem">
-                    <view class="weui-navbar__item">
-                         <view class="weui-navbar__title weui-bar__item_on">{{secondTagItem.name}}</view>
-                    </view>
-
-               </block>
-               <view class="weui-navbar__slider" style='background:red;width:110rpx;height:4rpx;background:#f60;'></view> -->
+          <view class="weui-navbar__item {{currentTab==0 ? 'weui-bar__item_on' : ''}}" data-current="0" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'> 简介</view>
+               <view class="weui-navbar__item {{currentTab==1 ? 'weui-bar__item_on' : ''}}" data-current="1" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>声音</view>
+               <view class="weui-navbar__item {{currentTab==2 ? 'weui-bar__item_on' : ''}}" data-current="2" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>相似</view>
+         
           </view>
-          <!--专辑-->
+          <view class="weui-tab__panel" style="background-color:#FFFFFF;">
+               <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:auto;overflow:hidden" bindchange="bindChange">
+                    <!--专辑简介-start-->
+                    <swiper-item>
+                         <view class="album-detail-hd">
+                              <text class="{{albumIntroBdClass}}" style='color:#494949;font-size:30rpx;line-height:48rpx;'>{{data.albumInfo.intro}}</text>
+                              <view class="album-intro-action-btn" bindtap="handleAlbumIntroActionBtn">{{albumIntroBdText}}</view>
+                              <view class="weui-grids album-tag-grids">
+                                   <block wx:for="{{data.tagList}}" wx:key="data.tagList" wx:for-index="idx" wx:for-item="tagItem">
+                                        <view class="weui-grid album-tag-grid" data-id="{{tagItem.id}}" bindtap="handleTagTap">
+                                             <image class="weui-grid__icon album-tag-icon circular-squareP" mode="aspectFit" src="{{tagItem.cover}}"></image>
+                                             < text class="weui-grid__label" style="font-size:26rpx;color:#494949">{{tagItem.name}}</text>
+                                        </view>
+                                   </block>
+                              </view>
+                         </view>
+                    </swiper-item>
+                    <!--专辑简介-end-->
 
-          <view class="weui-tab__panel weui-flex row-flex">
-               <block wx:for="{{data.tagalbumlist}}" wx:key="data.tagalbumlist" wx:for-index="idx" wx:for-item="tagAlbumItem">
-                    <view class="weui-flex__item row-2" style='margin:0;width:50%;margin-top:10rpx;'>
-                         <image style="width:345rpx; margin-left:10rpx; height: 215rpx; border-radius:6rpx;" mode="aspectFill" src="{{tagAlbumItem.albuminfo.cover}}"></image>
-                         <view style='margin-left:10rpx;width:340rpx;text-overflow: ellipsis;font-size: 26rpx; color:#494949'>{{tagAlbumItem.albuminfo.title}}</view>
-                         <view class="text_ellipsis">{{tagAlbumItem.albuminfo.recommenddesc}}</view>
-                         <view class="text_ellipsis" style='margin-left:10rpx;margin-top:6rpx;font-size:22rpx;width:340rpx;color:#9B9B9B; background:#fff;text-overflow: ellipsis; overflow:hidden'>{{tagAlbumItem.albuminfo.intro}}</view>
-                         <view style="text-overflow: ellipsis;margin-left:10rpx;margin-top:11rpx; font-size: 22rpx; color:#9B9B9B">播放量：{{tagAlbumItem.albuminfo.listennum}}</view>
-                    </view>
-               </block>
+                    <!--故事列表 -start-->
+                    <swiper-item>
+                         <view class="weui-cells album-storys-container page__bd_spacing">
+                              <block wx:for="{{data.storyList.items}}" wx:key="data.storyList" wx:for-index="idx" wx:for-item="storyItem">
+                                   <view style="align: center;">
+                                        <view class="album-story-index" style='color:#9B9B9B;font-size:30rpx;'>{{idx + 1}}</view>
+                                        <view class="weui-cell album-story-title" style='color:#494949;font-size:30rpx;'>{{storyItem.title}}</view>
+                                   </view>
+                              </block>
+                              <view class="album-story-action-btn">查看更多</view>
+                              <!--加载更多-start-->
+                              <view class="weui-loadmore album-story-action-btn">
+                                   <view class="weui-loading"></view>
+                                   <view class="weui-loadmore__tips">正在加载</view>
+                              </view>
+                              <!--加载更多-end-->
+                         </view>
+                    </swiper-item>
+                    <!--故事列表-end-->
+
+                    <!--相关专辑-start-->
+                    <swiper-item>
+                         <view class="album-detail-hd page__bd_spacing">
+                              <view class="weui-flex row-container " style="background-color:#FFFFFF;">
+                                   <block wx:for="{{data.recommendAlbumList}}" wx:key="data.recommendAlbumList" wx:for-index="idx" wx:for-item="albumItem">
+                                        <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:true,isTagNameVisible:false}}" />
+                                   </block>
+                              </view>
+                         </view>
+                    </swiper-item>
+                    <!--相关专辑-end-->
+               </swiper>
           </view>
      </view>
+
+
+
+
+
+
+
+
+
+
+     <!--专辑列表-start-->
+     <block wx:for="{{data.section.items}}" wx:key="data.section.items" wx:for-item="sectionItem">
+          <view style="background-color: #FFFFFF;">
+               <template is="sectionTitle" data="{{title:sectionItem.title}}" />
+               <!--专辑-->
+               <block wx:if="{{sectionItem.type == constant.sectionTypeAlbum}}">
+                    <view class="weui-flex row-container page__bd_spacing">
+                         <block wx:for="{{sectionItem.items}}" wx:key="sectionItem.items" wx:for-index="idx" wx:for-item="albumItem">
+                              <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:true,isTagNameVisible:false}}" />
+                         </block>
+                    </view>
+               </block>
+               <!--作者-->
+
+          </view>
+     </block>
+     <!--专辑列表-end-->
+
+
+
+     <!--页尾-start-->
+     <block wx:if="{{isLoaded}}">
+          <include src="../footer.wxml" />
+     </block>
+     <!--页尾-end-->
+
+</view>
+<view class="loading_box" wx:if="{{!isLoaded}}">
+     <view class="pulse pulse_1"></view>
+     <view class="pulse pulse_2"></view>
+     <view class="pulse pulse_3"></view>
+     <view class="pulse pulse_4"></view>
 </view>

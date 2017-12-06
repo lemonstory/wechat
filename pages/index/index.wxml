@@ -12,8 +12,7 @@
   </navigator>
   <!--播放浮框  -->
 
-
-  <!--焦点图-start-->
+<!--焦点图-start-->
   <view class="page__bd ">
     <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" circular="true">
       <block wx:for="{{data.focus.items}}" wx:key="data.focus.items" wx:for-index="idx">

@@ -238,7 +238,6 @@ Page({
 
 //监听音乐播放
 backgroundAudioManager.onPlay(function () {
-
   console.log("######## backgroundAudioManager.onPlay ######");
   var pages = getCurrentPages();
   var currentPage = pages[pages.length - 1];

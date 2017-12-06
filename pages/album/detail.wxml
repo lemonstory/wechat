@@ -67,7 +67,7 @@
       </view>
 
       <view class="weui-tab__panel" style="background-color:#FFFFFF;">
-        <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">  
+        <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:auto;overflow:hidden" bindchange="bindChange">  
         <!--专辑简介-start-->
         <swiper-item> 
         <view class="album-detail-hd">

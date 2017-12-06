@@ -34,7 +34,7 @@
                     "selectedIconPath": "icon/discover-selected.png"
                },
                {
-                    "pagePath": "pages/my/my",
+                    "pagePath": "pages/bar/xscroll_top_bar",
                     "text": "我的",
                     "iconPath": "icon/my.png",
                     "selectedIconPath": "icon/my-selected.png"
