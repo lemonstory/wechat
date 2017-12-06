@@ -23,10 +23,8 @@
 }
 
 .user_name {
-     font-family: '苹方';
-     font-size: 34rpx;
-     font-weight: bold;
-   
+     color:#494949;
+     font-size: 30rpx;
 }
 
 .nav_box {
@@ -42,33 +40,38 @@
      display: flex;
      justify-content: space-between;
      padding: 0 30rpx;
-     margin-bottom: 2rpx;
      align-items: center;
-     line-height: 140rpx;
+     line-height: 110rpx;
 }
 
 .nav_info {
-     font-family: '苹方';
-     font-size: 34rpx;
-     font-weight: bold;
+     color:#494949;
+     font-size: 30rpx;
     
+}
+.nav_all{
+     display: flex;
+     flex-direction: column;
+     width:100%;
+     height:auto;
+     margin-bottom: 2rpx;
 }
 
 .scroll-box {
   width: 750rpx;
   background: #fff;
-  padding-top:20rpx;
   height: auto;
   white-space: nowrap; 
   display: flex;
   box-sizing: border-box;
   padding-left: 30rpx;
   overflow: scroll;
+  padding-bottom: 20rpx;
 } 
 
  .scroll-box .li {
   width: 270rpx;
-  height: 140rpx;
+  height: 150rpx;
   margin-right: 20rpx;
   position: relative; 
   display: inline-block;
@@ -81,6 +84,6 @@
  }
 .text{
      text-align: center;
-     font-size: 28rpx;
-     color:#494949;
+     font-size: 26rpx;
+     color:#9B9B9B;
 }

@@ -12,33 +12,60 @@
 
      <!--我的收藏开始  -->
      <view class="nav_box">
-          <navigator url="../collect/collect">
-               <view class="weui-flex nav_list" style="background-color: #FFFFFF;">
-                    <view class="nav_info">我的收藏</view>
-                    <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
-               </view>
-          </navigator>
-          
-          <!--我的收藏选项卡开始 -->
-          <scroll-view class="scroll-box" scroll-x="true">
+
+          <view class="nav_all">
+               <navigator url="../collect/collect">
+                    <view class="weui-flex nav_list" style="background-color: #FFFFFF;">
+                         <view class="nav_info">我的收藏</view>
+                         <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
+                    </view>
+               </navigator>
+               <!--我的收藏选项卡开始 -->
+               <scroll-view class="scroll-box" scroll-x="true">
+                    <view class="li" wx:for="{{list}}">
+                         <image src="{{item.pic}}" mode="aspectFill"></image>
+                         <view class="text">{{item.text}}</view>
+                    </view>
+               </scroll-view>
+               <!--我的收藏选项卡结束 -->
+
+          </view>
+          <!--我的收藏结束  -->
+
+
+
+
+
+          <!--收听历史开始  -->
+          <view class="nav_all">
+               <navigator url="../history/history">
+                    <view class="weui-flex nav_list" style="background-color: #FFFFFF;">
+                         <view class="nav_info">收听历史</view>
+                         <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
+                    </view>
+               </navigator>
+               <!--收听历史选项卡开始 -->
+               <!-- <scroll-view class="scroll-box" scroll-x="true">
                <view class="li" wx:for="{{list}}">
                     <image src="{{item.pic}}" mode="aspectFill"></image>
                     <view class="text">{{item.text}}</view>
                </view>
-          </scroll-view>
-          <!--我的收藏选项卡结束 -->
+          </scroll-view>  -->
+               <!--收听历史选项卡结束 -->
 
-
-
-
-          <view class="weui-flex nav_list" style="background-color: #FFFFFF;">
-               <view class="nav_info">收听历史</view>
-               <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
           </view>
-          <view class="weui-flex nav_list" style="background-color: #FFFFFF;">
+          <!--收听历史结束  -->
+
+
+
+
+          <!--在线客服开始  -->
+          <view class="weui-flex nav_list" style="background-color: #FFFFFF;" style='margin-top:30rpx'>
                <view class="nav_info">在线客服</view>
                <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
           </view>
+<!--在线客服结束  -->
+
 
      </view>
 

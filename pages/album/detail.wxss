@@ -160,8 +160,8 @@ background: #F7F7F7 100%;
  
 }
 .weui-bar__item_on {
-  border-bottom:6rpx solid #FFBE4C;
-  
+   border-bottom:6rpx solid #FFBE4C; 
+
 }
 
 .weui-tab__panel {
