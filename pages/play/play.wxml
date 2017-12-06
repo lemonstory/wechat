@@ -1,0 +1,82 @@
+<!--pages/play/play.wxml-->
+<view class="page">
+     <view class="page__bd page__bd_spacing" style='margin-top:1rpx;background:#F7F7F7;height:100vh;border-top:1rpx solid #F7F7F7'>
+          <!--图片旋转开始  -->
+          <view class="play_image">
+               <image src="http://p.xiaoningmeng.net/album/2016/12/24/201d546992726352471cfea6b0df0a48.jpg@!460x460?v=1482569558" style='width:440rpx;height:440rpx;border-radius:50%;border:8rpx solid #fff; margin-top:60rpx'></image>
+          </view>
+
+          <!--图片旋转结束  -->
+
+          <!--icon图标开始  -->
+          <view class="weui-flex paly_icon" style="width:70%;padding-bottom:20rpx; padding-top:20rpx;padding-left:50rpx; padding-right:50rpx">
+               <view class="weui-flex__item" style="width:100rpx">
+                    <block wx:if="{{data.albumInfo.fav == 1}}">
+                         <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_album_fav_selected.png" style='width:38rpx;height:38rpx;'></image>
+                    </block>
+                    <block wx:else>
+                         <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_fav.png" style='width:38rpx;height:38rpx;'></image>
+                    </block>
+               </view>
+
+               <view class="weui-flex__item">
+                    <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_commit.png" style='width:38rpx;height:38rpx;'></image>
+               </view>
+
+               <view class="weui-flex__item" bindtap="handleShareAlbumTap">
+                    <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_player_share_normal.png" style='width:38rpx;height:38rpx;'></image>
+
+               </view>
+          </view>
+
+          <!--icon图标结束  -->
+
+          <!--进度条开始  -->
+          <view class="process">
+               <view class="start_time">00:00</view>
+               <view class="process_style">
+                    <view class="process_diot"></view>
+               </view>
+               <view class="end_time">03:36</view>
+          </view>
+
+          <!--进度条结束  -->
+
+          <!--底部提示图标开始  -->
+          <view class="weui-flex paly_icon" style="width:100%;padding-bottom:20rpx; padding-top:20rpx;">
+               <view class="weui-flex__item ">
+
+                    <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_fav.png" style='width:60rpx;height:60rpx;'></image>
+
+               </view>
+
+               <view class="weui-flex__item">
+                    <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_commit.png" style='width:45rpx;height:45rpx;'></image>
+               </view>
+
+               <view class="weui-flex__item" bindtap="handleShareAlbumTap">
+                    <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_player_share_normal.png" style='width:100rpx;height:100rpx;'></image>
+
+               </view>
+
+               <view class="weui-flex__item" bindtap="handleShareAlbumTap">
+                    <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_player_share_normal.png" style='width:45rpx;height:45rpx;'></image>
+
+               </view>
+
+               <view class="weui-flex__item" bindtap="handleShareAlbumTap">
+                    <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_player_share_normal.png" style='width:60rpx;height:60rpx;'></image>
+
+               </view>
+
+          </view>
+
+          <!--底部提示图标结束  -->
+
+
+
+
+
+
+     </view>
+</view>
