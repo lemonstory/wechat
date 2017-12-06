@@ -1,9 +1,13 @@
 <!--index.wxml-->
 <import src="../../template/sectionTitle.wxml" />
 <import src="../../template/tagItem.wxml" />
-<import src="../../template/albumItem.wxml"/>
+<import src="../../template/albumItem.wxml" />
 
 <view class="page">
+<!--播放浮框  -->
+ <navigator url="../play/play"><view class="play"><image src="http://p.xiaoningmeng.net/album/2016/12/24/201d546992726352471cfea6b0df0a48.jpg@!460x460?v=1482569558"></image></view></navigator>
+<!--播放浮框  -->
+
 
      <!--焦点图-start-->
      <view class="page__bd ">
@@ -25,6 +29,7 @@
           </block>
      </view>
      <!--标签列表-end-->
+
 
      <!--专辑列表-start-->
      <block wx:for="{{data.section.items}}" wx:key="data.section.items" wx:for-item="sectionItem">
@@ -53,12 +58,12 @@
      </block>
      <!--专辑列表-end-->
 
-
-
      <!--页尾-start-->
      <block wx:if="{{isLoaded}}">
           <include src="../footer.wxml" />
      </block>
      <!--页尾-end-->
+
+
 
 </view>

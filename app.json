@@ -11,7 +11,8 @@
           "pages/album/album",
           "pages/play/play",
           "pages/my/my",
-          "pages/collect/collect"
+          "pages/collect/collect",
+          "pages/history/history"
      ],
      "window": {
           "backgroundTextStyle": "dark",
