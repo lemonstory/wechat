@@ -46,7 +46,7 @@ background: #F7F7F7 100%;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
-  margin: 14px 15px 10px;
+  margin: 0rpx 30rpx 10rpx;
 }
 
 .album-intro-bd-unfold {
@@ -56,7 +56,7 @@ background: #F7F7F7 100%;
   display: -webkit-box;
   -webkit-line-clamp: 0;
   -webkit-box-orient: vertical;
-  padding: 14px 15px 10px;
+  padding: 0rpx 30rpx 20rpx;
 }
 
 .album-intro-action-btn {
@@ -91,7 +91,7 @@ background: #F7F7F7 100%;
 
 .album-story-index {
   float:left; 
-  align: center; 
+  align:center; 
   width:20rpx; 
   color:#8B96A1;
   padding: 13px 15px; 
@@ -145,7 +145,6 @@ background: #F7F7F7 100%;
 }
 
 .album-detail-navbar {
-
   border-bottom:0rpx;
   margin-top: 16rpx;
   width:70%;
@@ -155,7 +154,10 @@ background: #F7F7F7 100%;
 }
 
 .weui-navbar__item.weui-bar__item_on {
-  color:#9B9B9B;
+   color:#9B9B9B;
+   padding-bottom:0; 
+   box-sizing: border-box;
+ 
 }
 .weui-bar__item_on {
   border-bottom:6rpx solid #FFBE4C;
