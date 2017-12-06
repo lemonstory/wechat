@@ -8,8 +8,8 @@
           "pages/author/wiki",
           "pages/album/detail",
           "pages/category/category",
-          "pages/album/album",
-          "pages/my/my"
+          "pages/album/album"
+         
      ],
      "window": {
           "backgroundTextStyle": "dark",
