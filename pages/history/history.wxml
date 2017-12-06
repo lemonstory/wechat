@@ -1,0 +1,42 @@
+<!--pages/history/history.wxml-->
+<!--pages/collect/collect.wxml-->
+<view class="page">
+
+     <view class="listen_date" style='padding-left:30rpx; color:#494949;font-size:26rpx;margin-top:20rpx'>今天</view>
+
+     <view class="history_ul" block wx:for="{{history_list}}" wx:key="history_list">
+          <view class="history_image">
+               <image src="http://p.xiaoningmeng.net/album/2016/12/24/201d546992726352471cfea6b0df0a48.jpg@!460x460?v=1482569558" style='width:270rpx;height:150rpx;border-radius:10rpx' mode="aspectFill"></image>
+          </view>
+          <view class="history_message">
+               <view class="history_title" style='color:#494949;font-size:30rpx;display:flex;'>{{item.title}}
+
+                    <view style='margin-left:10rpx'>{{item.num}}</view>
+               </view>
+               <view class="history_process" style='color:#9B9B9B;font-size:26rpx;'>播放完成{{item.per}}</view>
+          </view>
+     </view>
+
+
+
+
+
+<view class="listen_date" style='padding-left:30rpx; color:#494949;font-size:26rpx;margin-top:20rpx'>昨天</view>
+
+<view class="history_ul" block wx:for="{{history_list}}" wx:key="history_list">
+     <view class="history_image">
+          <image src="http://p.xiaoningmeng.net/album/2016/12/24/201d546992726352471cfea6b0df0a48.jpg@!460x460?v=1482569558" style='width:270rpx;height:150rpx;border-radius:10rpx' mode="aspectFill"></image>
+     </view>
+     <view class="history_message">
+          <view class="history_title" style='color:#494949;font-size:30rpx;display:flex;'>{{item.title}}
+
+               <view style='margin-left:10rpx'>{{item.num}}</view>
+          </view>
+          <view class="history_process" style='color:#9B9B9B;font-size:26rpx;'>播放完成{{item.per}}</view>
+     </view>
+</view>
+
+
+
+
+</view>
