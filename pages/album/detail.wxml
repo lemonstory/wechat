@@ -13,6 +13,7 @@
         <text class="weui-media-box__title" style="display:block;text-overflow: ellipsis;font-size: 32rpx; color:#494949">{{data.albumInfo.title}}</text>
         <text class="weui-media-box__desc" style="margin-top:10rpx; font-size: 26rpx; color:#9B9B9B">{{data.albumInfo.age_str}}</text>
         <view>
+          
           <block wx:for="{{[1, 2, 3, 4, 5]}}" wx:key="data.albumInfo.star_level" wx:for-index="idx" wx:for-item="i">
             <block wx:if="{{data.albumInfo.star_level > 0}}">
               <block wx:if="{{idx + 1 <= data.albumInfo.star_level}}">
@@ -20,7 +21,7 @@
               </block>
               <block wx:else>
                 <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_normal.png" class="album-star"></image>
-              </block>Ò
+              </block>
             </block>
             <block wx:else>
               <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_normal.png" class="album-star"></image>
@@ -67,7 +68,8 @@
       </view>
 
       <view class="weui-tab__panel" style="background-color:#FFFFFF;">
-        <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">  
+        <swiper current="{{currentTab}}"  class="swiper-box" duration="300" style="height:{{swiperItemHeight}}rpx;background:#ffe000" bindchange="bindChange">
+        
         <!--专辑简介-start-->
         <swiper-item> 
         <view class="album-detail-hd">
