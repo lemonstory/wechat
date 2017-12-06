@@ -1,65 +1,73 @@
 <!--index.wxml-->
 <import src="../../template/sectionTitle.wxml" />
 <import src="../../template/tagItem.wxml" />
-<import src="../../template/albumItem.wxml"/>
+<import src="../../template/albumItem.wxml" />
 
 <view class="page">
+  <!--播放浮框  -->
+  <navigator url="../play/play">
+    <view class="play">
+      <image src="http://p.xiaoningmeng.net/album/2016/12/24/201d546992726352471cfea6b0df0a48.jpg@!460x460?v=1482569558"></image>
+    </view>
+  </navigator>
+  <!--播放浮框  -->
 
-     <!--焦点图-start-->
-     <view class="page__bd ">
-          <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" circular="true">
-               <block wx:for="{{data.focus.items}}" wx:key="data.focus.items" wx:for-index="idx">
-                    <!--只显示故事专辑焦点图-->
-                    <swiper-item data-index="{{idx}}" data-id="{{item.id}}" bindtap="handleAlbumTap">
-                         <image src="{{item.cover}}" class="slide-image" width="375" height="150" />
-                    </swiper-item>
-               </block>
-          </swiper>
-     </view>
-     <!--焦点图-end-->
 
-     <!--标签列表-start-->
-     <view class="weui-flex row-container" style="background-color: #FFFFFF;padding-bottom:20rpx">
-          <block wx:for="{{data.category.items}}" wx:key="data.category.items" wx:for-item="item" wx:for-index="idx">
-               <template is="tagItem" data="{{index:idx,title: item.title,cover: item.cover}}" />
+  <!--焦点图-start-->
+  <view class="page__bd ">
+    <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" circular="true">
+      <block wx:for="{{data.focus.items}}" wx:key="data.focus.items" wx:for-index="idx">
+        <!--只显示故事专辑焦点图-->
+        <swiper-item data-index="{{idx}}" data-id="{{item.id}}" bindtap="handleAlbumTap">
+          <image src="{{item.cover}}" class="slide-image" width="375" height="150" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!--焦点图-end-->
+
+  <!--标签列表-start-->
+  <view class="weui-flex row-container" style="background-color: #FFFFFF;padding-bottom:20rpx">
+    <block wx:for="{{data.category.items}}" wx:key="data.category.items" wx:for-item="item" wx:for-index="idx">
+      <template is="tagItem" data="{{index:idx,title: item.title,cover: item.cover}}" />
+    </block>
+  </view>
+  <!--标签列表-end-->
+
+  <!--专辑列表-start-->
+  <block wx:for="{{data.section.items}}" wx:key="data.section.items" wx:for-item="sectionItem">
+    <view style="background-color: #FFFFFF;">
+      <template is="sectionTitle" data="{{title:sectionItem.title}}" />
+      <!--专辑-->
+      <block wx:if="{{sectionItem.type == constant.sectionTypeAlbum}}">
+        <view class="weui-flex row-container page__bd_spacing">
+          <block wx:for="{{sectionItem.items}}" wx:key="sectionItem.items" wx:for-index="idx" wx:for-item="albumItem">
+            <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:true,isTagNameVisible:false}}" />
           </block>
-     </view>
-     <!--标签列表-end-->
-
-     <!--专辑列表-start-->
-     <block wx:for="{{data.section.items}}" wx:key="data.section.items" wx:for-item="sectionItem">
-          <view style="background-color: #FFFFFF;">
-               <template is="sectionTitle" data="{{title:sectionItem.title}}" />
-               <!--专辑-->
-               <block wx:if="{{sectionItem.type == constant.sectionTypeAlbum}}">
-                    <view class="weui-flex row-container page__bd_spacing">
-                         <block wx:for="{{sectionItem.items}}" wx:key="sectionItem.items" wx:for-index="idx" wx:for-item="albumItem">
-                              <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:true,isTagNameVisible:false}}" />
-                         </block>
-                    </view>
-               </block>
-               <!--作者-->
-               <block wx:elif="{{sectionItem.type == constant.sectionTypeAuthor}}">
-                    <view class="weui-flex row-container page__bd_spacing">
-                         <block wx:for="{{sectionItem.items}}" wx:key="sectionItem.items" wx:for-index="idx" wx:for-item="authorItem">
-                              <view class="weui-flex__item tag-item" style="margin-bottom:20rpx" id="authorItem" data-index="{{idx}}" data-uid="{{authorItem.uid}}" bindtap="handleTapAuthor">
-                                   <image class="circular-squareP weui-media-box__title" style="width: 120rpx; height: 120rpx; background-color: #eeeeee;" mode="aspectFit" src="{{authorItem.avatar}}"></image>
-                                   <view class="weui-media-box__title" style="font-size: 26rpx; margin-top:10rpx; color:#494949;width:100rpx;height:auto; text-align:center">{{authorItem.nickname}}</view>
-                              </view>
-                         </block>
-                    </view>
-               </block>
-          </view>
-     </block>
-     <!--专辑列表-end-->
+        </view>
+      </block>
+      <!--作者-->
+      <block wx:elif="{{sectionItem.type == constant.sectionTypeAuthor}}">
+        <view class="weui-flex row-container page__bd_spacing">
+          <block wx:for="{{sectionItem.items}}" wx:key="sectionItem.items" wx:for-index="idx" wx:for-item="authorItem">
+            <view class="weui-flex__item tag-item" style="margin-bottom:20rpx" id="authorItem" data-index="{{idx}}" data-uid="{{authorItem.uid}}" bindtap="handleTapAuthor">
+              <image class="circular-squareP weui-media-box__title" style="width: 120rpx; height: 120rpx; background-color: #eeeeee;" mode="aspectFit" src="{{authorItem.avatar}}"></image>
+              <view class="weui-media-box__title" style="font-size: 26rpx; margin-top:10rpx; color:#494949;width:100rpx;height:auto; text-align:center">{{authorItem.nickname}}</view>
+            </view>
+          </block>
+        </view>
+      </block>
+    </view>
+  </block>
+  <!--专辑列表-end-->
 
 
 
-     <!--页尾-start-->
-     <block wx:if="{{isLoaded}}">
-          <include src="../footer.wxml" />
-     </block>
-     <!--页尾-end-->
+  <!--页尾-start-->
+  <block wx:if="{{isLoaded}}">
+    <include src="../footer.wxml" />
+  </block>
+  <!--页尾-end-->
 
 </view>
 <view class="loading_box" wx:if="{{!isLoaded}}">
