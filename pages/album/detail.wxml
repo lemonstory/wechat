@@ -2,10 +2,6 @@
 <import src="../../template/albumItem.wxml" />
 <view class="page flex" style="padding-top:1rpx;">
   <view class="page__bd">
-    
-    <view>
-      <audio hidden="true" poster="{{data.albumInfo.cover}}" name="{{data.storyList.items[0].title}}" author="小柠檬-听儿歌故事" src="{{data.storyList.items[0].mediapath}}" id="albumAudio"></audio>
-    </view>
 
     <!--专辑信息-start-->
     <view class="page__bd_spacing" style="width:100%; background-color:#FFFFFF;">
@@ -65,13 +61,16 @@
     <!--简介 声音 相似 -start-->
     <view class="weui-tab">
       <view class="weui-navbar album-detail-navbar" style='height:80rpx;'>
-        <view class="weui-navbar__item {{albumIntroNavBarOn}}" bindtap="handleAlbumIntroNavTap" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'> 简介</view>
-        <view class="weui-navbar__item {{albumStorysNavBarOn}}" bindtap="handleAlbumStorysNavTap" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>声音</view>
-        <view class="weui-navbar__item {{albumSimilarNavBarOn}}" bindtap="handleAlbumSimilarNavTap" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>相似</view>
+        <view class="weui-navbar__item {{currentTab==0 ? 'weui-bar__item_on' : ''}}" data-current="0" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'> 简介</view>
+        <view class="weui-navbar__item {{currentTab==1 ? 'weui-bar__item_on' : ''}}" data-current="1" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>声音</view>
+        <view class="weui-navbar__item {{currentTab==2 ? 'weui-bar__item_on' : ''}}" data-current="2" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>相似</view>
       </view>
+
       <view class="weui-tab__panel" style="background-color:#FFFFFF;">
+        <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">  
         <!--专辑简介-start-->
-        <view class="album-detail-hd" hidden="{{isAlbumIntroHidden}}">
+        <swiper-item> 
+        <view class="album-detail-hd">
           <text class="{{albumIntroBdClass}}" style='color:#494949;font-size:30rpx;line-height:48rpx;'>{{data.albumInfo.intro}}</text>
           <view class="album-intro-action-btn" bindtap="handleAlbumIntroActionBtn">{{albumIntroBdText}}</view>
           <view class="weui-grids album-tag-grids">
@@ -83,10 +82,12 @@
             </block>
           </view>
         </view>
+        </swiper-item>
         <!--专辑简介-end-->
 
         <!--故事列表 -start-->
-        <view class="weui-cells album-storys-container page__bd_spacing" hidden="{{isAlbumStorysHidden}}">
+       <swiper-item> 
+        <view class="weui-cells album-storys-container page__bd_spacing" >
           <block wx:for="{{data.storyList.items}}" wx:key="data.storyList" wx:for-index="idx" wx:for-item="storyItem">
             <view style="align: center;">
               <view class="album-story-index" style='color:#9B9B9B;font-size:30rpx;'>{{idx + 1}}</view>
@@ -101,19 +102,23 @@
           </view>
           <!--加载更多-end-->
         </view>
+        </swiper-item> 
         <!--故事列表-end-->
 
         <!--相关专辑-start-->
-        <view class="album-detail-hd page__bd_spacing" hidden="{{isAlbumSimilarHidden}}">
+        <swiper-item>
+        <view class="album-detail-hd page__bd_spacing">
           <view class="weui-flex row-container " style="background-color:#FFFFFF;">
             <block wx:for="{{data.recommendAlbumList}}" wx:key="data.recommendAlbumList" wx:for-index="idx" wx:for-item="albumItem">
               <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:true,isTagNameVisible:false}}" />
             </block>
           </view>
         </view>
+        </swiper-item>
         <!--相关专辑-end-->
+        </swiper>
       </view>
-      <!--简介 声音 相似 -start-->
+      <!--简介 声音 相似 -end-->
 
 
       <!--页尾-start-->

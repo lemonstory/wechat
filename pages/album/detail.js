@@ -24,12 +24,9 @@ Page({
       'albumIntroBdClass': 'album-intro-bd-fold',
       'albumIntroBdText': '展开简介',
 
-      'isAlbumIntroHidden': true,
-      'isAlbumStorysHidden': false,
-      'isAlbumSimilarHidden': true,
-      'albumIntroNavBarOn': '',
-      'albumStorysNavBarOn': 'weui-bar__item_on',
-      'albumSimilarNavBarOn': '',
+      //初始显示声音选项卡
+      'currentTab':1,
+
       'currentPosition': 0,
       'audioPlayBtnImageUrl': audioPlayImageUrl,
     });
@@ -71,28 +68,6 @@ Page({
     // 页面上拉触底事件的处理函数
   },
 
-  /**
-   * 音频播放按钮点击
-   * 
-   */
-  handleAudioPlayTap: function (event) {
-
-    console.log("##### handleAudioPlayTap #####");
-
-    
-    if (typeof (backgroundAudioManager.paused) == "undefined" || backgroundAudioManager.paused) {
-      console.log("😀 开始播放");
-      backgroundAudioManager.title = event.currentTarget.dataset.title;
-      backgroundAudioManager.epname = "专辑名称";
-      backgroundAudioManager.singer = "主播名称";
-      backgroundAudioManager.coverImgUrl = event.currentTarget.dataset.cover_img_url;
-      backgroundAudioManager.src = event.currentTarget.dataset.url;
-    }else{
-      console.log("😀😀😀 暂停播放");
-      backgroundAudioManager.pause();
-    }
-  },
-
   //用户点击右上角分享
   onShareAppMessage: function () {
     return {
@@ -114,6 +89,30 @@ Page({
     })
   },
 
+  getData: function (albumId) {
+    var that = this;
+    var url = that.data.constant.domain + '/album/v2.6/info.php?album_id=' + albumId;
+    wx.request({
+      url: url,
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        // 'user-agent': 'api.xiaoningmeng.net/2.8.0/adr (M5 Note,864883030379469,460027404571654,6.0,1080*1920,4.589389937671455,480,wifi,_360,zh)',
+      },
+      success: function (res) {
+        res.data.isLoaded = true;
+        that.setData(res.data);
+        that.setDataCallBack();
+      }
+    })
+  },
+
+  /**
+   * 获取数据成功回调
+   * 修改: 焦点图数据
+   */
+  setDataCallBack: function () {
+  },
 
   handleBatchDownloadAlbum: function () {
     wx.showModal({
@@ -144,37 +143,6 @@ Page({
     }
   },
 
-  handleAlbumIntroNavTap: function () {
-    this.setData({
-      'isAlbumIntroHidden': false,
-      'isAlbumStorysHidden': true, 'isAlbumSimilarHidden': true,
-      'albumIntroNavBarOn': 'weui-bar__item_on',
-      'albumStorysNavBarOn': '',
-      'albumSimilarNavBarOn': '',
-    });
-  },
-
-  handleAlbumStorysNavTap: function () {
-    this.setData({
-      'isAlbumIntroHidden': true,
-      'isAlbumStorysHidden': false,
-      'isAlbumSimilarHidden': true,
-      'albumIntroNavBarOn': '',
-      'albumStorysNavBarOn': 'weui-bar__item_on',
-      'albumSimilarNavBarOn': '',
-    });
-  },
-
-  handleAlbumSimilarNavTap: function () {
-    this.setData({
-      'isAlbumIntroHidden': true,
-      'isAlbumStorysHidden': true,
-      'isAlbumSimilarHidden': false,
-      'albumIntroNavBarOn': '',
-      'albumStorysNavBarOn': '',
-      'albumSimilarNavBarOn': 'weui-bar__item_on',
-    });
-  },
 
   /**
  * 处理专辑点击
@@ -198,30 +166,71 @@ Page({
     })
   },
 
+  /** 
+  * 点击切换简介,声音,相似tab
+  */
+  handleSwichNav: function (e) {
 
-  getData: function (albumId) {
     var that = this;
-    var url = that.data.constant.domain + '/album/v2.6/info.php?album_id=' + albumId;
-    wx.request({
-      url: url,
-      data: {},
-      header: {
-        'content-type': 'application/json', // 默认值
-        // 'user-agent': 'api.xiaoningmeng.net/2.8.0/adr (M5 Note,864883030379469,460027404571654,6.0,1080*1920,4.589389937671455,480,wifi,_360,zh)',
-      },
-      success: function (res) {
-        res.data.isLoaded = true;
-        that.setData(res.data);
-        that.setDataCallBack();
-      }
-    })
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
   },
 
   /**
-   * 获取数据成功回调
-   * 修改: 焦点图数据
+   * 音频播放按钮点击
+   * 
    */
-  setDataCallBack: function () {
+  handleAudioPlayTap: function (event) {
+
+    console.log("##### handleAudioPlayTap #####");
+
+
+    if (typeof (backgroundAudioManager.paused) == "undefined") {
+
+      console.log("😀 开始播放");
+      backgroundAudioManager.title = event.currentTarget.dataset.title;
+      backgroundAudioManager.epname = event.currentTarget.dataset.epname;
+      backgroundAudioManager.singer = event.currentTarget.dataset.singer;
+      backgroundAudioManager.coverImgUrl = event.currentTarget.dataset.cover_img_url;
+      backgroundAudioManager.src = event.currentTarget.dataset.url;
+
+    }else if( backgroundAudioManager.paused) {
+
+      console.log("😀😀 恢复播放");
+      backgroundAudioManager.play();
+
+    } else {
+
+      //如果是不同专辑
+      if (backgroundAudioManager.epname != event.currentTarget.dataset.epname) {
+        console.log("😀😀😀 播放新专辑");
+        backgroundAudioManager.title = event.currentTarget.dataset.title;
+        backgroundAudioManager.epname = event.currentTarget.dataset.epname;
+        backgroundAudioManager.singer = event.currentTarget.dataset.singer;
+        backgroundAudioManager.coverImgUrl = event.currentTarget.dataset.cover_img_url;
+        backgroundAudioManager.src = event.currentTarget.dataset.url;
+      }else {
+        //如果是同一专辑
+        console.log("😀😀😀😀 暂停播放");
+        backgroundAudioManager.pause();
+      }
+    }
+  },
+
+  /** 
+  * 滑动切换tab 
+  */
+  bindChange: function (e) {
+    var that = this;
+    that.setData({
+      currentTab: e.detail.current
+    });
+
   },
 
 
