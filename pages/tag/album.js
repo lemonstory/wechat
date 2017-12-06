@@ -840,7 +840,35 @@ Page({
                 "name": "好评榜",
                 "paramkey": "goodcomment",
                 "paramvalue": 1
+            },
+            {
+                 "name": "睡前故事",
+                 "paramkey": "goodcomment",
+                 "paramvalue": 1
+            },
+            {
+                 "name": "童话寓言",
+                 "paramkey": "goodcomment",
+                 "paramvalue": 1
+            },
+            {
+                 "name": "女孩故事",
+                 "paramkey": "goodcomment",
+                 "paramvalue": 1
+            },
+            {
+                 "name": "动物故事",
+                 "paramkey": "goodcomment",
+                 "paramvalue": 1
+            },
+            {
+                 "name": "成语故事",
+                 "paramkey": "goodcomment",
+                 "paramvalue": 1
             }
+
+
+
         ]
     }
   },

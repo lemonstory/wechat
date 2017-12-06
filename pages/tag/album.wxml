@@ -2,7 +2,7 @@
      <view class="page__bd page__bd_spacing" style='padding-top:0'>
 
           <!--导航-->
-          <view class="weui-navbar" style='width:auto;height:40rpx;line-height:40rpx;padding:0'>
+          <view class="weui-navbar" style='width:auto;;line-height:60rpx;padding:0'>
                <!--推荐..好评榜-->
                <block wx:for="{{data.specialtaglist}}" wx:key="data.specialtaglist" wx:for-index="idx" wx:for-item="specialTagItem">
                     <view class="weui-navbar__item" style='margin-top:1rpx;padding:0;height:40rpx;'>
@@ -12,13 +12,13 @@
                </block>
 
                <!--二级标签-->
-               <block wx:for="{{data.secondtaglist}}" wx:key="data.secondtaglist" wx:for-index="idx" wx:for-item="secondTagItem">
+               <!-- <block wx:for="{{data.secondtaglist}}" wx:key="data.secondtaglist" wx:for-index="idx" wx:for-item="secondTagItem">
                     <view class="weui-navbar__item">
                          <view class="weui-navbar__title weui-bar__item_on">{{secondTagItem.name}}</view>
                     </view>
 
                </block>
-               <view class="weui-navbar__slider" style='background:red;width:110rpx;height:4rpx;background:#f60;'></view>
+               <view class="weui-navbar__slider" style='background:red;width:110rpx;height:4rpx;background:#f60;'></view> -->
           </view>
           <!--专辑-->
 
