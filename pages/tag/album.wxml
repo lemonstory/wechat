@@ -1,39 +1,37 @@
 <view class="page flex">
+     <view class="page__bd page__bd_spacing" style='padding-top:0'>
 
-  <view class="page__bd page__bd_spacing" >
+          <!--导航-->
+          <view class="weui-navbar" style='width:auto;height:40rpx;line-height:40rpx;padding:0'>
+               <!--推荐..好评榜-->
+               <block wx:for="{{data.specialtaglist}}" wx:key="data.specialtaglist" wx:for-index="idx" wx:for-item="specialTagItem">
+                    <view class="weui-navbar__item" style='margin-top:1rpx;padding:0;height:40rpx;'>
+                         <view class="weui-navbar__title weui-bar__item_on" style='width:auto;;padding:0 20rpx;'>{{specialTagItem.name}}</view>
+                    </view>
 
-    <!--导航-->
-    <view class="weui-navbar">
-      <!--推荐..好评榜-->
-      <block wx:for="{{data.specialtaglist}}" wx:key="data.specialtaglist" wx:for-index="idx" wx:for-item="specialTagItem" >
-      <view class="weui-navbar__item" style='margin-top:1rpx'>
-            <view class="weui-navbar__title weui-bar__item_on" style='width:auto;height:40rpx;padding:0 20rpx;'>{{specialTagItem.name}}</view>
+               </block>
+
+               <!--二级标签-->
+               <block wx:for="{{data.secondtaglist}}" wx:key="data.secondtaglist" wx:for-index="idx" wx:for-item="secondTagItem">
+                    <view class="weui-navbar__item">
+                         <view class="weui-navbar__title weui-bar__item_on">{{secondTagItem.name}}</view>
+                    </view>
+
+               </block>
+               <view class="weui-navbar__slider" style='background:red;width:110rpx;height:4rpx;background:#f60;'></view>
           </view>
+          <!--专辑-->
 
-   </block>
-
-      <!--二级标签-->
-     <block wx:for="{{data.secondtaglist}}" wx:key="data.secondtaglist" wx:for-index="idx" wx:for-item="secondTagItem">
-        <view class="weui-navbar__item">
-            <view class="weui-navbar__title weui-bar__item_on">{{secondTagItem.name}}</view>
+          <view class="weui-tab__panel weui-flex row-flex">
+               <block wx:for="{{data.tagalbumlist}}" wx:key="data.tagalbumlist" wx:for-index="idx" wx:for-item="tagAlbumItem">
+                    <view class="weui-flex__item row-2" style='margin:0;width:50%;margin-top:10rpx;'>
+                         <image style="width:345rpx; margin-left:10rpx; height: 215rpx; border-radius:6rpx;" mode="aspectFill" src="{{tagAlbumItem.albuminfo.cover}}"></image>
+                         <view style='margin-left:10rpx;width:340rpx;text-overflow: ellipsis;font-size: 26rpx; color:#494949'>{{tagAlbumItem.albuminfo.title}}</view>
+                         <view class="text_ellipsis">{{tagAlbumItem.albuminfo.recommenddesc}}</view>
+                         <view class="text_ellipsis" style='margin-left:10rpx;margin-top:6rpx;font-size:22rpx;width:340rpx;color:#9B9B9B; background:#fff;text-overflow: ellipsis; overflow:hidden'>{{tagAlbumItem.albuminfo.intro}}</view>
+                         <view style="text-overflow: ellipsis;margin-left:10rpx;margin-top:11rpx; font-size: 22rpx; color:#9B9B9B">播放量：{{tagAlbumItem.albuminfo.listennum}}</view>
+                    </view>
+               </block>
           </view>
-
-      </block>
-      <view class="weui-navbar__slider"></view>
-    </view>
-    <!--专辑-->
-
-    <view class="weui-tab__panel weui-flex row-flex" >
-      <block wx:for="{{data.tagalbumlist}}" wx:key="data.tagalbumlist" wx:for-index="idx" wx:for-item="tagAlbumItem">
-        <view class="weui-flex__item row-2">
-          <image style="width: 200px; height: 200px; background-color: #eeeeee;" mode="aspectFill" src="{{tagAlbumItem.albuminfo.cover}}"></image>
-          <view>{{tagAlbumItem.albuminfo.title}}</view>
-          <view class="text_ellipsis">{{tagAlbumItem.albuminfo.recommenddesc}}</view>
-          <view class="text_ellipsis">{{tagAlbumItem.albuminfo.intro}}</view>
-          <view>{{tagAlbumItem.albuminfo.listennum}}</view>
-        </view>
-      </block>
-    </view>
-
-  </view>
+     </view>
 </view>

@@ -8,8 +8,11 @@
           "pages/author/wiki",
           "pages/album/detail",
           "pages/category/category",
-          "pages/album/album"
-         ],
+          "pages/album/album",
+          "pages/play/play",
+          "pages/my/my",
+          "pages/collect/collect"
+     ],
      "window": {
           "backgroundTextStyle": "dark",
           "navigationBarBackgroundColor": "#fff",
@@ -30,7 +33,7 @@
                     "selectedIconPath": "icon/discover-selected.png"
                },
                {
-                    "pagePath": "pages/index/index",
+                    "pagePath": "pages/my/my",
                     "text": "我的",
                     "iconPath": "icon/my.png",
                     "selectedIconPath": "icon/my-selected.png"

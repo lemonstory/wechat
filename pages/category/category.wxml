@@ -31,7 +31,7 @@
      </view>
 
 
-       <!--页尾-start-->
+     <!--页尾-start-->
      <block wx:if="{{isLoaded}}">
           <include src="../footer.wxml" />
      </block>

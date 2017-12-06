@@ -104,13 +104,13 @@
         <!--故事列表-end-->
 
         <!--相关专辑-start-->
-        <view class="album-detail-hd page__bd_spacing" hidden="{{isAlbumSimilarHidden}}">
+         <view class="album-detail-hd page__bd_spacing" hidden="{{isAlbumSimilarHidden}}">
           <view class="weui-flex row-container " style="background-color:#FFFFFF;">
             <block wx:for="{{data.recommendAlbumList}}" wx:key="data.recommendAlbumList" wx:for-index="idx" wx:for-item="albumItem">
               <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:true,isTagNameVisible:false}}"/>
             </block>
           </view>
-        </view>
+        </view> 
         <!--相关专辑-end-->
       </view>
 

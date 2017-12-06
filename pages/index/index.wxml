@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <import src="../../template/sectionTitle.wxml" />
 <import src="../../template/tagItem.wxml" />
-<import src="../../template/albumItem.wxml" />
+<import src="../../template/albumItem.wxml"/>
 
 <view class="page">
 
