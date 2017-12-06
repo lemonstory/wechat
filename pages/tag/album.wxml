@@ -5,9 +5,9 @@
     <!--导航-->
     <view class="weui-navbar">
       <!--推荐..好评榜-->
-      <block wx:for="{{data.specialtaglist}}" wx:key="data.specialtaglist" wx:for-index="idx" wx:for-item="specialTagItem">
-      <view class="weui-navbar__item">
-            <view class="weui-navbar__title weui-bar__item_on">{{specialTagItem.name}}</view>
+      <block wx:for="{{data.specialtaglist}}" wx:key="data.specialtaglist" wx:for-index="idx" wx:for-item="specialTagItem" >
+      <view class="weui-navbar__item" style='margin-top:1rpx'>
+            <view class="weui-navbar__title weui-bar__item_on" style='width:auto;height:40rpx;padding:0 20rpx;'>{{specialTagItem.name}}</view>
           </view>
 
    </block>
