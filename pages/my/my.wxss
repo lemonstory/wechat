@@ -1,0 +1,86 @@
+/* pages/my/my.wxss */
+
+.page {
+     width: 100%;
+     height: 100vh;
+     background: #f7f7f7 100%;
+     padding: 0;
+     margin: 0;
+}
+
+.user_message {
+     width: 100%;
+     height: 280rpx;
+     background: #fff;
+     display: flex;
+     flex-direction: column;
+     padding-top: 30rpx;
+     padding-bottom: 30rpx;
+     align-items: center;
+     justify-content: space-between;
+     box-sizing: border-box;
+     border-top:1rpx solid #f7f7f7;
+}
+
+.user_name {
+     font-family: '苹方';
+     font-size: 34rpx;
+     font-weight: bold;
+   
+}
+
+.nav_box {
+     margin-top: 30rpx;
+     width: 100%;
+     height: auto;
+     box-sizing: border-box;
+}
+
+.nav_list {
+     height: auto;
+     background: white;
+     display: flex;
+     justify-content: space-between;
+     padding: 0 30rpx;
+     margin-bottom: 2rpx;
+     align-items: center;
+     line-height: 140rpx;
+}
+
+.nav_info {
+     font-family: '苹方';
+     font-size: 34rpx;
+     font-weight: bold;
+    
+}
+
+.scroll-box {
+  width: 750rpx;
+  background: #fff;
+  padding-top:20rpx;
+  height: auto;
+  white-space: nowrap; 
+  display: flex;
+  box-sizing: border-box;
+  padding-left: 30rpx;
+  overflow: scroll;
+} 
+
+ .scroll-box .li {
+  width: 270rpx;
+  height: 140rpx;
+  margin-right: 20rpx;
+  position: relative; 
+  display: inline-block;
+
+ } 
+ .scroll-box .li image{
+      width: 100%;
+      height:100%;
+     border-radius:10rpx;
+ }
+.text{
+     text-align: center;
+     font-size: 28rpx;
+     color:#494949;
+}

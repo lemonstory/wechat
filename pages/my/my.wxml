@@ -1,0 +1,46 @@
+<!--pages/my/my.wxml-->
+<view class="page">
+
+     <!--头像设置开始  -->
+     <view class="user_message">
+          <image src="http://p.xiaoningmeng.net/album/2016/12/24/201d546992726352471cfea6b0df0a48.jpg@!460x460?v=1482569558" style='width:140rpx;height:140rpx;border-radius:50%'></image>
+
+          <view class="user_name">某某某</view>
+     </view>
+
+     <!--头像设置结束  -->
+
+     <!--我的收藏开始  -->
+     <view class="nav_box">
+          <navigator url="../collect/collect">
+               <view class="weui-flex nav_list" style="background-color: #FFFFFF;">
+                    <view class="nav_info">我的收藏</view>
+                    <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
+               </view>
+          </navigator>
+          
+          <!--我的收藏选项卡开始 -->
+          <scroll-view class="scroll-box" scroll-x="true">
+               <view class="li" wx:for="{{list}}">
+                    <image src="{{item.pic}}" mode="aspectFill"></image>
+                    <view class="text">{{item.text}}</view>
+               </view>
+          </scroll-view>
+          <!--我的收藏选项卡结束 -->
+
+
+
+
+          <view class="weui-flex nav_list" style="background-color: #FFFFFF;">
+               <view class="nav_info">收听历史</view>
+               <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
+          </view>
+          <view class="weui-flex nav_list" style="background-color: #FFFFFF;">
+               <view class="nav_info">在线客服</view>
+               <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
+          </view>
+
+     </view>
+
+
+</view>

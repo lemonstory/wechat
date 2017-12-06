@@ -1,0 +1,29 @@
+/* pages/collect/collect.wxss */
+
+.page {
+     width: 100%;
+     height: 100vh;
+     /* background: #f7f7f7 100%; */
+     margin: 0;
+}
+
+.collect_ul {
+     padding: 30rpx;
+     box-sizing: border-box;
+     display: flex;
+     width: 100%;
+     height: auto;
+     background: #fff;
+     border-top:1rpx solid #f7f7f7;
+}
+.collect_message {
+     width: 345rpx;
+     height: 140rpx;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+     padding-left: 30rpx;
+     padding-top: 30rpx;
+     padding-bottom: 30rpx;
+     box-sizing: border-box;
+}
