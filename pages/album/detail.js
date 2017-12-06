@@ -6,6 +6,7 @@
 var app = getApp()
 var audioPauseImageUrl = "http://p.xiaoningmeng.net/static/www/btn_album_pause.png";
 var audioPlayImageUrl = "http://p.xiaoningmeng.net/static/www/btn_album_play.png";
+const backgroundAudioManager = wx.getBackgroundAudioManager();
 
 Page({
   data: {
@@ -47,9 +48,6 @@ Page({
     //   globalData:app.globalData
     // })
 
-    // 使用 wx.createAudioContext 获取 audio 上下文 context
-    this.audioCtx = wx.createAudioContext('albumAudio');
-
   },
 
   onShow: function () {
@@ -80,71 +78,19 @@ Page({
   handleAudioPlayTap: function (event) {
 
     console.log("##### handleAudioPlayTap #####");
-    var that = this;
-    wx.getBackgroundAudioPlayerState({
-      success: function (res) {
-        //播放状态（2：没有音乐在播放，1：播放中，0：暂停中）
-        var status = res.status;
-        console.log("status = " + status);
 
-        switch (status) {
-
-          //没有音乐在播放: 则开始播放
-          case 2:
-            wx.playBackgroundAudio({
-              dataUrl: event.currentTarget.dataset.url,
-              title: event.currentTarget.dataset.title,
-              coverImgUrl: event.currentTarget.dataset.cover_img_url,
-              fail: function () {
-                wx.showToast({
-                  title: '播放出现故障',
-                  icon: 'info',
-                  duration: 2000
-                })
-              },
-            });
-            break;
-
-          //播放中: 则暂停播放
-          case 1:
-            wx.pauseBackgroundAudio();
-            break;
-
-          //暂停中:则控制播放进度至position后继续播放
-          case 0:
-            console.log("that.data.currentPosition = " + that.data.currentPosition);
-            wx.seekBackgroundAudio({
-              position: that.data.currentPosition
-            });
-            wx.playBackgroundAudio({
-              dataUrl: event.currentTarget.dataset.url,
-              title: event.currentTarget.dataset.title,
-              coverImgUrl: event.currentTarget.dataset.cover_img_url,
-              fail: function () {
-                wx.showToast({
-                  title: '播放出现故障',
-                  icon: 'info',
-                  duration: 2000
-                })
-              },
-            });
-            break;
-        }
-
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-
-      },
-    })
-
-  },
-
-
-  audioPause: function () {
-    this.audioCtx.pause()
+    
+    if (typeof (backgroundAudioManager.paused) == "undefined" || backgroundAudioManager.paused) {
+      console.log("😀 开始播放");
+      backgroundAudioManager.title = event.currentTarget.dataset.title;
+      backgroundAudioManager.epname = "专辑名称";
+      backgroundAudioManager.singer = "主播名称";
+      backgroundAudioManager.coverImgUrl = event.currentTarget.dataset.cover_img_url;
+      backgroundAudioManager.src = event.currentTarget.dataset.url;
+    }else{
+      console.log("😀😀😀 暂停播放");
+      backgroundAudioManager.pause();
+    }
   },
 
   //用户点击右上角分享
@@ -281,10 +227,27 @@ Page({
 
 })
 
-//监听音乐暂停
-wx.onBackgroundAudioPause(function () {
+//监听音乐播放
+backgroundAudioManager.onPlay(function () {
 
-  console.log("######## wx.onBackgroundAudioPause ######");
+  console.log("######## backgroundAudioManager.onPlay ######");
+  var pages = getCurrentPages();
+  var currentPage = pages[pages.length - 1];
+  wx.getBackgroundAudioPlayerState({
+    success: function (res) {
+      if (1 === res.status)
+        console.log("status = " + res.status);
+      currentPage.setData({
+        'audioPlayBtnImageUrl': audioPauseImageUrl,
+      })
+    }
+  })
+})
+
+//监听音乐暂停
+backgroundAudioManager.onPause(function () {
+
+  console.log("######## backgroundAudioManager.onPause ######");
   var pages = getCurrentPages();
   var currentPage = pages[pages.length - 1];
   wx.getBackgroundAudioPlayerState({
@@ -298,27 +261,6 @@ wx.onBackgroundAudioPause(function () {
   })
 }
 
-
-
-
-
-
-
 );
 
-//监听音乐播放
-wx.onBackgroundAudioPlay(function () {
 
-  console.log("######## wx.onBackgroundAudioPlay ######");
-  var pages = getCurrentPages();
-  var currentPage = pages[pages.length - 1];
-  wx.getBackgroundAudioPlayerState({
-    success: function (res) {
-      if (1 === res.status)
-        console.log("status = " + res.status);
-      currentPage.setData({
-        'audioPlayBtnImageUrl': audioPauseImageUrl,
-      })
-    }
-  })
-})

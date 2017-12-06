@@ -1,10 +1,12 @@
-<!--参考文档：https://mp.weixin.qq.com/debug/wxadoc/dev/component/audio.html-->
+<!--参考文档：https://mp.weixin.qq.com/debug/wxadoc/dev/api/getBackgroundAudioManager.html-->
 <import src="../../template/albumItem.wxml" />
 <view class="page flex" style="padding-top:1rpx;">
   <view class="page__bd">
+    
     <view>
       <audio hidden="true" poster="{{data.albumInfo.cover}}" name="{{data.storyList.items[0].title}}" author="小柠檬-听儿歌故事" src="{{data.storyList.items[0].mediapath}}" id="albumAudio"></audio>
     </view>
+
     <!--专辑信息-start-->
     <view class="page__bd_spacing" style="width:100%; background-color:#FFFFFF;">
       <view style="float:left; background-color:#FFFFFF;">
@@ -22,7 +24,7 @@
               </block>
               <block wx:else>
                 <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_normal.png" class="album-star"></image>
-              </block>
+              </block>Ò
             </block>
             <block wx:else>
               <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_normal.png" class="album-star"></image>
@@ -30,12 +32,13 @@
 
           </block>
         </view>
-        <image bindtap="handleAudioPlayTap" src="{{audioPlayBtnImageUrl}}" style="width: 130rpx; height: 130rpx;position:relative;left:250rpx;" data-url="http://mf.xiaoningmeng.net/2016/09/14/fe1e85cb628223111bd0bfe3a5135afb.mp3" data-title="标题" data-cover_img_url="http://p.xiaoningmeng.net/tag/2016/01/28/c81e728d9d4c2f636f067f89cc14862c.png?v=1453911544">
+        <image bindtap="handleAudioPlayTap" src="{{audioPlayBtnImageUrl}}" style="width: 130rpx; height: 130rpx;position:relative;left:250rpx;" data-url="{{data.storyList.items[0].mediapath}}" data-title="{{data.storyList.items[0].title}}" data-epname="{{data.albumInfo.cover}}" data-singer="{{data.albumInfo.title}}" data-cover_img_url="{{data.storyList.items[0].playcover}}">
         </image>
       </view>
     </view>
     <!--专辑信息-end-->
-    <!--收藏...批量下载功能区-start-->
+    
+    <!--收藏...分享下载功能区-start-->
     <view class="weui-flex" style="width:100%; background-color:#FFFFFF; border-bottom:1rpx solid #eee;padding-bottom:20rpx; padding-top:20rpx;">
       <view class="weui-flex__item">
         <block wx:if="{{data.albumInfo.fav == 1}}">
@@ -56,13 +59,10 @@
         <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_player_share_normal.png" style='width:38rpx;height:38rpx;'></image>
         <text class="weui-grid__label album-action-label">分享</text>
       </view>
-
-      <!-- <!-- <view class="weui-flex__item" bindtap="handleBatchDownloadAlbum">
-        <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_download.png"></image>
-        <text class="weui-grid__label album-action-label">批量下载</text>
-      </view> -->
     </view>
-    <!--收藏...批量下载功能区-end-->
+    <!--收藏...分享下载功能区-end-->
+
+    <!--简介 声音 相似 -start-->
     <view class="weui-tab">
       <view class="weui-navbar album-detail-navbar" style='height:80rpx;'>
         <view class="weui-navbar__item {{albumIntroNavBarOn}}" bindtap="handleAlbumIntroNavTap" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'> 简介</view>
@@ -78,7 +78,7 @@
             <block wx:for="{{data.tagList}}" wx:key="data.tagList" wx:for-index="idx" wx:for-item="tagItem">
               <view class="weui-grid album-tag-grid" data-id="{{tagItem.id}}" bindtap="handleTagTap">
                 <image class="weui-grid__icon album-tag-icon circular-squareP" mode="aspectFit" src="{{tagItem.cover}}"></image>
-                < text class="weui-grid__label" style="font-size:26rpx;color:#494949" >{{tagItem.name}}</text>
+                < text class="weui-grid__label" style="font-size:26rpx;color:#494949">{{tagItem.name}}</text>
               </view>
             </block>
           </view>
@@ -104,19 +104,22 @@
         <!--故事列表-end-->
 
         <!--相关专辑-start-->
-         <view class="album-detail-hd page__bd_spacing" hidden="{{isAlbumSimilarHidden}}">
+        <view class="album-detail-hd page__bd_spacing" hidden="{{isAlbumSimilarHidden}}">
           <view class="weui-flex row-container " style="background-color:#FFFFFF;">
             <block wx:for="{{data.recommendAlbumList}}" wx:key="data.recommendAlbumList" wx:for-index="idx" wx:for-item="albumItem">
-              <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:true,isTagNameVisible:false}}"/>
+              <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:true,isTagNameVisible:false}}" />
             </block>
           </view>
-        </view> 
+        </view>
         <!--相关专辑-end-->
       </view>
+      <!--简介 声音 相似 -start-->
+
 
       <!--页尾-start-->
-      <include src="../footer.wxml"/>
+      <include src="../footer.wxml" />
       <!--页尾-end-->
+
     </view>
   </view>
 </view>

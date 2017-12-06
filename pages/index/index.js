@@ -11,16 +11,17 @@ Page({
 
   onLoad: function (options) {
 
-    wx.showToast({
-      title: '加载中...',
-      icon: 'loading'
-    });
-    this.getData();
+    // wx.showToast({
+    //   title: '加载中...',
+    //   icon: 'loading'
+    // });
+    
   },
 
   // 生命周期函数--监听页面初次渲染完成
   onReady: function () {
 
+    this.getData();
     //动态设置当前页面的标题。
     wx.setNavigationBarTitle({
       title: app.constant.appName,
