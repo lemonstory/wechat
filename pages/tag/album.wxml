@@ -4,7 +4,7 @@
 
 
      <!--简介 声音 相似 -start-->
-     <view class="weui-tab">
+     <view class="weui-tab">    
           <view class="weui-navbar album-detail-navbar" style='height:80rpx;'>
 
           <view class="weui-navbar__item {{currentTab==0 ? 'weui-bar__item_on' : ''}}" data-current="0" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'> 简介</view>
