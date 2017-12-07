@@ -2,7 +2,7 @@
  * swiperItemHeight:说明
  *  1）简介里面的高度是固定的：722rpm
  *  2) 相似里面的高度是固定的: 2180rpm
- *  2) 声音里面的高度是计算的: 计算方法 每行高度(x) * 行数(y) = 高度(z) z赋值给swiperItemHeight
+ *  2) 声音里面的高度是计算的: 计算方法 每行高度(104) * 行数(y) = 高度(z) z赋值给swiperItemHeight
  */
 
 //获取应用实例
@@ -10,12 +10,17 @@ var app = getApp()
 var audioPauseImageUrl = "http://p.xiaoningmeng.net/static/www/btn_album_pause.png";
 var audioPlayImageUrl = "http://p.xiaoningmeng.net/static/www/btn_album_play.png";
 const backgroundAudioManager = wx.getBackgroundAudioManager();
+const swiperIntroItemHeight = 722;
+const swiperRecommendAlbumItemHeight = 2180;
+const soundLineHeight = 104;
+
 
 Page({
   data: {
     'isLoaded': false,
     'constant': app.constant,
     'swiperItemHeight': 0,
+    'swiperSoundItemHeight': 0,
   },
   onLoad: function (options) {
 
@@ -29,8 +34,6 @@ Page({
 
       //初始显示声音选项卡
       'currentTab': 1,
-      'swiperItemHeight': 2180,
-
 
       'currentPosition': 0,
       'audioPlayBtnImageUrl': audioPlayImageUrl,
@@ -107,6 +110,10 @@ Page({
       success: function (res) {
         res.data.isLoaded = true;
         that.setData(res.data);
+        that.setData({
+          'swiperSoundItemHeight': soundLineHeight * res.data.data.storyList.items.length,
+          'swiperItemHeight': soundLineHeight * res.data.data.storyList.items.length,
+        })
         that.setDataCallBack();
       }
     })
@@ -117,6 +124,7 @@ Page({
    * 修改: 焦点图数据
    */
   setDataCallBack: function () {
+
   },
 
   handleBatchDownloadAlbum: function () {
@@ -188,19 +196,19 @@ Page({
       switch (e.detail.current) {
         case 0:
           that.setData({
-            swiperItemHeight: 722
+            swiperItemHeight: swiperIntroItemHeight
           });
           break;
 
         case 1:
           that.setData({
-            swiperItemHeight: 2180
+            swiperItemHeight: that.data.swiperSoundItemHeight
           });
           break;
 
         case 2:
           that.setData({
-            swiperItemHeight: 2180
+            swiperItemHeight: swiperRecommendAlbumItemHeight
           });
           break;
       }
@@ -262,25 +270,23 @@ Page({
     switch (e.detail.current) {
       case 0:
         that.setData({
-          swiperItemHeight: 722
+          swiperItemHeight: swiperIntroItemHeight
         });
         break;
 
       case 1:
         that.setData({
-          swiperItemHeight: 2180
+          swiperItemHeight: that.data.swiperSoundItemHeight
         });
         break;
       
       case 2:
         that.setData({
-          swiperItemHeight: 2180
+          swiperItemHeight: swiperRecommendAlbumItemHeight
         });
         break;
     }
   },
-
-
 })
 
 //监听音乐播放

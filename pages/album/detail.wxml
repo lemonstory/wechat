@@ -67,7 +67,7 @@
       </view>
 
       <view class="weui-tab__panel" style="background-color:#FFFFFF;">
-        <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:auto;overflow:hidden" bindchange="bindChange">  
+        <swiper current="{{currentTab}}" class="swiper-box"  duration="300"  style="height:{{swiperItemHeight}}rpx;background:#ffe000" bindchange="bindChange">  
         <!--专辑简介-start-->
         <swiper-item> 
         <view class="album-detail-hd">
@@ -87,19 +87,20 @@
 
         <!--故事列表 -start-->
        <swiper-item> 
-        <view class="weui-cells album-storys-container page__bd_spacing" >
+        <view class="weui-cells album-storys-container" >
           <block wx:for="{{data.storyList.items}}" wx:key="data.storyList" wx:for-index="idx" wx:for-item="storyItem">
             <view style="align: center;">
               <view class="album-story-index" style='color:#9B9B9B;font-size:30rpx;'>{{idx + 1}}</view>
               <view class="weui-cell album-story-title" style='color:#494949;font-size:30rpx;'>{{storyItem.title}}</view>
             </view>
           </block>
-          <view class="album-story-action-btn">查看更多</view>
+
+          <!-- <view class="album-story-action-btn">查看更多</view> -->
           <!--加载更多-start-->
-          <view class="weui-loadmore album-story-action-btn">
+          <!-- <view class="weui-loadmore album-story-action-btn">
             <view class="weui-loading"></view>
             <view class="weui-loadmore__tips">正在加载</view>
-          </view>
+          </view> -->
           <!--加载更多-end-->
         </view>
         </swiper-item> 
