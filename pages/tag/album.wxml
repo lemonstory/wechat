@@ -12,7 +12,7 @@
   <view style="background-color: #FFFFFF;">
     <view class="weui-flex row-container page__bd_spacing">
         <block wx:for="{{data.tagalbumlist}}" wx:key="data.tagalbumlist" wx:for-index="idx" wx:for-item="tagAlbumItem">  
-         <template is="albumItem" data="{{index:idx, id: tagAlbumItem.albuminfo.id, title: tagAlbumItem.albuminfo.title,cover: tagAlbumItem.albuminfo.cover,desc:tagAlbumItem.albuminfo.recommenddesc,listenNum:tagAlbumItem.albuminfo.listennum,isDescVisible:true,isTagNameVisible:false}}" /> 
+         <template is="albumItem" data="{{index:idx, id: tagAlbumItem.albuminfo.id, title: tagAlbumItem.albuminfo.title,cover: tagAlbumItem.albuminfo.cover,recommendDesc:tagAlbumItem.albuminfo.recommenddesc,intro:tagAlbumItem.albuminfo.intro,listenNum:tagAlbumItem.albuminfo.listennum,isDescVisible:true,isTagNameVisible:false}}" /> 
        </block> 
     </view>
   </view>
