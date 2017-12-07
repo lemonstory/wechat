@@ -8,8 +8,6 @@ Page({
   },
 
   onLoad: function (options) {
-
-    wx.startPullDownRefresh();
     this.getData();
   },
 
