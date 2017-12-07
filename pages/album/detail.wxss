@@ -44,7 +44,7 @@ background: #F7F7F7 100%;
   overflow : hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   margin: 0rpx 30rpx 10rpx;
 }

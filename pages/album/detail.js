@@ -1,5 +1,8 @@
 /**
- * 
+ * swiperItemHeight:说明
+ *  1）简介里面的高度是固定的：722rpm
+ *  2) 相似里面的高度是固定的: 2180rpm
+ *  2) 声音里面的高度是计算的: 计算方法 每行高度(x) * 行数(y) = 高度(z) z赋值给swiperItemHeight
  */
 
 //获取应用实例
@@ -11,21 +14,23 @@ const backgroundAudioManager = wx.getBackgroundAudioManager();
 Page({
   data: {
     'isLoaded': false,
-    'constant': app.constant
+    'constant': app.constant,
+    'swiperItemHeight': 0,
   },
   onLoad: function (options) {
-    
+
     //接收页面参数
     var albumId = options.albumId;
     this.getData(albumId);
-
     this.setData({
       'albumIntroBdIsFold': true,
       'albumIntroBdClass': 'album-intro-bd-fold',
       'albumIntroBdText': '展开简介',
 
       //初始显示声音选项卡
-      'currentTab':1,
+      'currentTab': 1,
+      'swiperItemHeight': 2180,
+
 
       'currentPosition': 0,
       'audioPlayBtnImageUrl': audioPlayImageUrl,
@@ -175,9 +180,31 @@ Page({
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
+
       that.setData({
         currentTab: e.target.dataset.current
       })
+
+      switch (e.detail.current) {
+        case 0:
+          that.setData({
+            swiperItemHeight: 722
+          });
+          break;
+
+        case 1:
+          that.setData({
+            swiperItemHeight: 2180
+          });
+          break;
+
+        case 2:
+          that.setData({
+            swiperItemHeight: 2180
+          });
+          break;
+      }
+
     }
   },
 
@@ -199,7 +226,7 @@ Page({
       backgroundAudioManager.coverImgUrl = event.currentTarget.dataset.cover_img_url;
       backgroundAudioManager.src = event.currentTarget.dataset.url;
 
-    }else if( backgroundAudioManager.paused) {
+    } else if (backgroundAudioManager.paused) {
 
       console.log("😀😀 恢复播放");
       backgroundAudioManager.play();
@@ -214,7 +241,7 @@ Page({
         backgroundAudioManager.singer = event.currentTarget.dataset.singer;
         backgroundAudioManager.coverImgUrl = event.currentTarget.dataset.cover_img_url;
         backgroundAudioManager.src = event.currentTarget.dataset.url;
-      }else {
+      } else {
         //如果是同一专辑
         console.log("😀😀😀😀 暂停播放");
         backgroundAudioManager.pause();
@@ -226,11 +253,31 @@ Page({
   * 滑动切换tab 
   */
   bindChange: function (e) {
+    
     var that = this;
     that.setData({
       currentTab: e.detail.current
     });
 
+    switch (e.detail.current) {
+      case 0:
+        that.setData({
+          swiperItemHeight: 722
+        });
+        break;
+
+      case 1:
+        that.setData({
+          swiperItemHeight: 2180
+        });
+        break;
+      
+      case 2:
+        that.setData({
+          swiperItemHeight: 2180
+        });
+        break;
+    }
   },
 
 
