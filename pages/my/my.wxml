@@ -1,73 +1,84 @@
 <!--pages/my/my.wxml-->
 <view class="page">
 
-     <!--头像设置开始  -->
-     <view class="user_message">
-          <image src="http://p.xiaoningmeng.net/album/2016/12/24/201d546992726352471cfea6b0df0a48.jpg@!460x460?v=1482569558" style='width:140rpx;height:140rpx;border-radius:50%'></image>
+  <!--头像设置开始  -->
+  <view class="user_message">
+    <image src="http://p.xiaoningmeng.net/album/2016/12/24/201d546992726352471cfea6b0df0a48.jpg@!460x460?v=1482569558" style='width:140rpx;height:140rpx;border-radius:50%'></image>
 
-          <view class="user_name">某某某</view>
-     </view>
+    <view class="user_name">某某某</view>
+  </view>
 
-     <!--头像设置结束  -->
+  <!--头像设置结束  -->
 
-     <!--我的收藏开始  -->
-     <view class="nav_box">
+  <!--我的收藏开始  -->
+  <view class="nav_box">
 
-          <view class="nav_all">
-               <navigator url="../collect/collect">
-                    <view class="weui-flex nav_list" style="background-color: #FFFFFF;">
-                         <view class="nav_info">我的收藏</view>
-                         <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
-                    </view>
-               </navigator>
-               <!--我的收藏选项卡开始 -->
-               <scroll-view class="scroll-box" scroll-x="true">
-                    <view class="li" wx:for="{{list}}">
-                         <image src="{{item.pic}}" mode="aspectFill"></image>
-                         <view class="text">{{item.text}}</view>
-                    </view>
-               </scroll-view>
-               <!--我的收藏选项卡结束 -->
+    <view class="nav_all">
+      <navigator url="../collect/collect">
+        <view class="weui-flex nav_list" style="background-color: #FFFFFF;">
+          <view class="nav_info">我的收藏</view>
+          <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
+        </view>
+      </navigator>
+      <!--我的收藏选项卡开始 -->
+      <scroll-view class="scroll-box" scroll-x="true">
+        <view class="li" wx:for="{{list}}" wx:key="my-collect">
+          <image src="{{item.pic}}" mode="aspectFill"></image>
+          <view class="text">{{item.text}}</view>
+        </view>
+      </scroll-view>
+      <!--我的收藏选项卡结束 -->
 
-          </view>
-          <!--我的收藏结束  -->
-
-
+    </view>
+    <!--我的收藏结束  -->
 
 
 
-          <!--收听历史开始  -->
-          <view class="nav_all">
-               <navigator url="../history/history">
-                    <view class="weui-flex nav_list" style="background-color: #FFFFFF;">
-                         <view class="nav_info">收听历史</view>
-                         <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
-                    </view>
-               </navigator>
-               <!--收听历史选项卡开始 -->
-               <!-- <scroll-view class="scroll-box" scroll-x="true">
+
+
+    <!--收听历史开始  -->
+    <view class="nav_all">
+      <navigator url="../history/history">
+        <view class="weui-flex nav_list" style="background-color: #FFFFFF;">
+          <view class="nav_info">收听历史</view>
+          <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
+        </view>
+      </navigator>
+      <!--收听历史选项卡开始 -->
+      <!-- <scroll-view class="scroll-box" scroll-x="true">
                <view class="li" wx:for="{{list}}">
                     <image src="{{item.pic}}" mode="aspectFill"></image>
                     <view class="text">{{item.text}}</view>
                </view>
           </scroll-view>  -->
-               <!--收听历史选项卡结束 -->
+      <!--收听历史选项卡结束 -->
 
-          </view>
-          <!--收听历史结束  -->
-
-
+    </view>
+    <!--收听历史结束  -->
 
 
-          <!--在线客服开始  -->
-          <view class="weui-flex nav_list" style="background-color: #FFFFFF;" style='margin-top:30rpx'>
-               <view class="nav_info">在线客服</view>
-               <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
-          </view>
-<!--在线客服结束  -->
 
 
-     </view>
+    <!--在线客服开始  -->
+    <!-- 参考文档：http://www.cnblogs.com/wxapp/p/6485762.html -->
+    <view class="weui-flex nav_list" style="background-color: #FFFFFF;" style='margin-top:30rpx'>
+      <view class="nav_info">在线客服</view>
+      <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+      <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+      <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+      <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+      <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+      <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+      <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+      <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+      <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+      <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+      <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx;'></image>
+    </view>
+    <!--在线客服结束  -->
+
+
+  </view>
 
 
 </view>

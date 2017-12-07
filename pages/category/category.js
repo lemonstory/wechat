@@ -92,5 +92,43 @@ Page({
       complete: function (res) {
       }
     });
-  }
+  },
+
+    /**
+   * 处理标签(全部分类)点击
+   * 通过linkurl字符串判断页面跳转方向
+   *    1) 含有字符串tag_id={2}跳转至标签页
+   *    2) 含有字符串category.php跳转至全部分类
+   */
+  handleTagTap: function (event) {
+
+    var tagUrl
+    var linkUrl = event.currentTarget.dataset.linkurl;
+    var tagIdIndex = linkUrl.indexOf("tag_id");
+    var paramIndex = linkUrl.indexOf("&");
+    var tagIdSubStr;
+    if (tagIdIndex != -1) {
+      if (paramIndex != -1) {
+        tagIdSubStr = linkUrl.substring(tagIdIndex, paramIndex);
+      } else {
+        tagIdSubStr = linkUrl.substring(tagIdIndex);
+      }
+
+      var tagIdArr = tagIdSubStr.split("=");
+      var tagId = parseInt(tagIdArr[1]);
+      if (tagId > 0) {
+        tagUrl = "/pages/tag/album?selectSecondTagId=" + tagId;
+      }
+    }
+
+    var categoryIndex = linkUrl.indexOf("category.php");
+    if (categoryIndex > 0) {
+      tagUrl = "/pages/category/category";
+    }
+
+    wx.navigateTo({
+      url: tagUrl
+    })
+
+  },
 })

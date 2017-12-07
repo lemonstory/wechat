@@ -152,7 +152,7 @@ Page({
       var tagIdArr = tagIdSubStr.split("=");
       var tagId = parseInt(tagIdArr[1]);
       if (tagId > 0) {
-        tagUrl = "/pages/tag/album?tagId=" + tagId;
+        tagUrl = "/pages/tag/album?selectFirstTagId=" + tagId;
       }
     }
 
