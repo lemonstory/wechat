@@ -154,7 +154,6 @@ background: #F7F7F7 100%;
 }
 
 .weui-navbar__item.weui-bar__item_on {
-   color:#9B9B9B;
    padding-bottom:0; 
    box-sizing: border-box;
  

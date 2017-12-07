@@ -86,85 +86,24 @@ Page({
           })
      },
 
-     /**
-      * 获取数据成功回调
-      * 修改: 焦点图数据
-      */
-     setDataCallBack: function () {
+     /** 
+   * 点击切换简介,声音,相似tab
+   */
+     handleSwichNav: function (e) {
 
-          this.stopPullDownRefresh();
-          var focusArr = this.data.data.focus.items;
-          var albumFocusArr = new Array();
+          var that = this;
+          if (this.data.currentTab === e.target.dataset.current) {
+               return false;
+          } else {
 
-          for (var i = 0, len = focusArr.length; i < len; i++) {
-
-               var linkUrl = focusArr[i].linkurl;
-               if (0 == linkUrl.indexOf("xnm", 0)) {
-
-                    var albumIdIndex = linkUrl.indexOf("albumid");
-                    var paramIndex = linkUrl.indexOf("&");
-                    var albumIdSubStr;
-                    if (albumIdIndex != -1) {
-                         if (paramIndex != -1) {
-                              albumIdSubStr = linkUrl.substring(albumIdIndex, paramIndex);
-                         } else {
-                              albumIdSubStr = linkUrl.substring(albumIdIndex);
-                         }
-
-                         var albumIdArr = albumIdSubStr.split("=");
-                         var albumId = parseInt(albumIdArr[1]);
-                         if (albumId > 0) {
-                              focusArr[i].id = albumId;
-                              albumFocusArr.push(focusArr[i]);
-                         }
-                    }
-               }
+               that.setData({
+                    currentTab: e.target.dataset.current
+               })
           }
-
-          this.setData({
-               'data.focus.items': albumFocusArr,
-               'data.focus.total': albumFocusArr.length,
-          });
      },
 
-     /**
-      * 处理标签(全部分类)点击
-      * 通过linkurl字符串判断页面跳转方向
-      *    1) 含有字符串tag_id={2}跳转至标签页
-      *    2) 含有字符串category.php跳转至全部分类
-      */
-     handleTagTap: function (event) {
 
-          var tagUrl
-          var index = event.currentTarget.dataset.index;
-          var linkUrl = this.data.data.category.items[index].linkurl;
-          var tagIdIndex = linkUrl.indexOf("tag_id");
-          var paramIndex = linkUrl.indexOf("&");
-          var tagIdSubStr;
-          if (tagIdIndex != -1) {
-               if (paramIndex != -1) {
-                    tagIdSubStr = linkUrl.substring(tagIdIndex, paramIndex);
-               } else {
-                    tagIdSubStr = linkUrl.substring(tagIdIndex);
-               }
 
-               var tagIdArr = tagIdSubStr.split("=");
-               var tagId = parseInt(tagIdArr[1]);
-               if (tagId > 0) {
-                    tagUrl = "/pages/tag/album?tagId=" + tagId;
-               }
-          }
-
-          var categoryIndex = linkUrl.indexOf("category.php");
-          if (categoryIndex > 0) {
-               tagUrl = "/pages/category/category";
-          }
-
-          wx.navigateTo({
-               url: tagUrl
-          })
-
-     },
 
      /**
       * 处理今日精选,同龄在听,最新上架右侧{更多}点击

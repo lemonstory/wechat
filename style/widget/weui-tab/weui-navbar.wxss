@@ -6,7 +6,7 @@
   z-index: 500;
   top: 0;
   width: 100%;
-  border-bottom: 1rpx solid #eee;
+
 }
 .weui-navbar__item {
   position: relative;

@@ -4,75 +4,23 @@
 
 
      <!--简介 声音 相似 -start-->
-     <view class="weui-tab">    
-          <view class="weui-navbar album-detail-navbar" style='height:80rpx;'>
+     <view class="weui-tab">
+          <view class="weui-navbar">
+               <scroll-view class="scroll-box" scroll-x="true">
+                    <view class="weui-navbar__item {{currentTab==0 ? 'weui-bar__item_on' : ''}}" data-current="0" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'> 推荐</view>
+                    <view class="weui-navbar__item {{currentTab==1 ? 'weui-bar__item_on' : ''}}" data-current="1" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'>最热门</view>
+                    <view class="weui-navbar__item {{currentTab==2 ? 'weui-bar__item_on' : ''}}" data-current="2" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'>好评榜</view>
+                    <view class="weui-navbar__item {{currentTab==3 ? 'weui-bar__item_on' : ''}}" data-current="3" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'>睡前音乐</view>
+                    <view class="weui-navbar__item {{currentTab==4? 'weui-bar__item_on' : ''}}" data-current="4" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'>音乐启蒙</view>
+                    <view class="weui-navbar__item {{currentTab==5? 'weui-bar__item_on' : ''}}" data-current="5" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'>音乐启蒙</view>
+                    <view class="weui-navbar__item {{currentTab==6? 'weui-bar__item_on' : ''}}" data-current="6" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'>音乐启蒙</view>
+               </scroll-view>
 
-          <view class="weui-navbar__item {{currentTab==0 ? 'weui-bar__item_on' : ''}}" data-current="0" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'> 简介</view>
-               <view class="weui-navbar__item {{currentTab==1 ? 'weui-bar__item_on' : ''}}" data-current="1" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>声音</view>
-               <view class="weui-navbar__item {{currentTab==2 ? 'weui-bar__item_on' : ''}}" data-current="2" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>相似</view>
-         
           </view>
-          <view class="weui-tab__panel" style="background-color:#FFFFFF;">
-               <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:auto;overflow:hidden" bindchange="bindChange">
-                    <!--专辑简介-start-->
-                    <swiper-item>
-                         <view class="album-detail-hd">
-                              <text class="{{albumIntroBdClass}}" style='color:#494949;font-size:30rpx;line-height:48rpx;'>{{data.albumInfo.intro}}</text>
-                              <view class="album-intro-action-btn" bindtap="handleAlbumIntroActionBtn">{{albumIntroBdText}}</view>
-                              <view class="weui-grids album-tag-grids">
-                                   <block wx:for="{{data.tagList}}" wx:key="data.tagList" wx:for-index="idx" wx:for-item="tagItem">
-                                        <view class="weui-grid album-tag-grid" data-id="{{tagItem.id}}" bindtap="handleTagTap">
-                                             <image class="weui-grid__icon album-tag-icon circular-squareP" mode="aspectFit" src="{{tagItem.cover}}"></image>
-                                             < text class="weui-grid__label" style="font-size:26rpx;color:#494949">{{tagItem.name}}</text>
-                                        </view>
-                                   </block>
-                              </view>
-                         </view>
-                    </swiper-item>
-                    <!--专辑简介-end-->
+          <view class="weui-tab__panel" style="background-color:#FFFFFF; border:none">
 
-                    <!--故事列表 -start-->
-                    <swiper-item>
-                         <view class="weui-cells album-storys-container page__bd_spacing">
-                              <block wx:for="{{data.storyList.items}}" wx:key="data.storyList" wx:for-index="idx" wx:for-item="storyItem">
-                                   <view style="align: center;">
-                                        <view class="album-story-index" style='color:#9B9B9B;font-size:30rpx;'>{{idx + 1}}</view>
-                                        <view class="weui-cell album-story-title" style='color:#494949;font-size:30rpx;'>{{storyItem.title}}</view>
-                                   </view>
-                              </block>
-                              <view class="album-story-action-btn">查看更多</view>
-                              <!--加载更多-start-->
-                              <view class="weui-loadmore album-story-action-btn">
-                                   <view class="weui-loading"></view>
-                                   <view class="weui-loadmore__tips">正在加载</view>
-                              </view>
-                              <!--加载更多-end-->
-                         </view>
-                    </swiper-item>
-                    <!--故事列表-end-->
-
-                    <!--相关专辑-start-->
-                    <swiper-item>
-                         <view class="album-detail-hd page__bd_spacing">
-                              <view class="weui-flex row-container " style="background-color:#FFFFFF;">
-                                   <block wx:for="{{data.recommendAlbumList}}" wx:key="data.recommendAlbumList" wx:for-index="idx" wx:for-item="albumItem">
-                                        <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:true,isTagNameVisible:false}}" />
-                                   </block>
-                              </view>
-                         </view>
-                    </swiper-item>
-                    <!--相关专辑-end-->
-               </swiper>
           </view>
      </view>
-
-
-
-
-
-
-
-
 
 
      <!--专辑列表-start-->
