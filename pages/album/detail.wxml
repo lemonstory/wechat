@@ -20,7 +20,7 @@
               </block>
               <block wx:else>
                 <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_normal.png" class="album-star"></image>
-              </block>Ò
+              </block>
             </block>
             <block wx:else>
               <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_normal.png" class="album-star"></image>
@@ -67,7 +67,8 @@
       </view>
 
       <view class="weui-tab__panel" style="background-color:#FFFFFF;">
-        <swiper current="{{currentTab}}" class="swiper-box"  duration="300"  style="height:{{swiperItemHeight}}rpx;background:#ffe000" bindchange="bindChange">  
+      <!-- TODO:这里的高度计算还有问题 background:#ffe000 -->
+        <swiper current="{{currentTab}}" class="swiper-box"  duration="300" style="height:{{swiperItemHeight}}rpx;" bindchange="bindChange">  
         <!--专辑简介-start-->
         <swiper-item> 
         <view class="album-detail-hd">

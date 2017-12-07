@@ -39,6 +39,7 @@
   position: relative; 
   display: inline-block;
   height:80rpx;
+  
 } 
 .weui-navbar__item{
  color:#9B9B9B;

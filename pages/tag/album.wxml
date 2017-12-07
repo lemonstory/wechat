@@ -1,58 +1,34 @@
 <import src="../../template/tagItem.wxml" />
 <import src="../../template/albumItem.wxml" />
+<import src="../../zanui-weapp/dist/tab/index.wxml" />
+
 <view class="page">
 
+  <view style="margin: 20px 0">
+    <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
+  </view>
 
-     <!--简介 声音 相似 -start-->
-     <view class="weui-tab">
-          <view class="weui-navbar">
-               <scroll-view class="scroll-box" scroll-x="true">
-                    <view class="weui-navbar__item {{currentTab==0 ? 'weui-bar__item_on' : ''}}" data-current="0" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'> 推荐</view>
-                    <view class="weui-navbar__item {{currentTab==1 ? 'weui-bar__item_on' : ''}}" data-current="1" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'>最热门</view>
-                    <view class="weui-navbar__item {{currentTab==2 ? 'weui-bar__item_on' : ''}}" data-current="2" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'>好评榜</view>
-                    <view class="weui-navbar__item {{currentTab==3 ? 'weui-bar__item_on' : ''}}" data-current="3" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'>睡前音乐</view>
-                    <view class="weui-navbar__item {{currentTab==4? 'weui-bar__item_on' : ''}}" data-current="4" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'>音乐启蒙</view>
-                    <view class="weui-navbar__item {{currentTab==5? 'weui-bar__item_on' : ''}}" data-current="5" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'>音乐启蒙</view>
-                    <view class="weui-navbar__item {{currentTab==6? 'weui-bar__item_on' : ''}}" data-current="6" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:15rpx;'>音乐启蒙</view>
-               </scroll-view>
+  <!--专辑列表-start-->
+  <view style="background-color: #FFFFFF;">
+    <view class="weui-flex row-container page__bd_spacing">
+        <block wx:for="{{data.tagalbumlist}}" wx:key="data.tagalbumlist" wx:for-index="idx" wx:for-item="tagAlbumItem">  
+         <template is="albumItem" data="{{index:idx, id: tagAlbumItem.albuminfo.id, title: tagAlbumItem.albuminfo.title,cover: tagAlbumItem.albuminfo.cover,desc:tagAlbumItem.albuminfo.recommenddesc,listenNum:tagAlbumItem.albuminfo.listennum,isDescVisible:true,isTagNameVisible:false}}" /> 
+       </block> 
+    </view>
+  </view>
+  <!--专辑列表-end-->
 
-          </view>
-          <view class="weui-tab__panel" style="background-color:#FFFFFF; border:none">
-
-          </view>
-     </view>
-
-
-     <!--专辑列表-start-->
-     <block wx:for="{{data.section.items}}" wx:key="data.section.items" wx:for-item="sectionItem">
-          <view style="background-color: #FFFFFF;">
-               <template is="sectionTitle" data="{{title:sectionItem.title}}" />
-               <!--专辑-->
-               <block wx:if="{{sectionItem.type == constant.sectionTypeAlbum}}">
-                    <view class="weui-flex row-container page__bd_spacing">
-                         <block wx:for="{{sectionItem.items}}" wx:key="sectionItem.items" wx:for-index="idx" wx:for-item="albumItem">
-                              <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:true,isTagNameVisible:false}}" />
-                         </block>
-                    </view>
-               </block>
-               <!--作者-->
-
-          </view>
-     </block>
-     <!--专辑列表-end-->
-
-
-
-     <!--页尾-start-->
-     <block wx:if="{{isLoaded}}">
-          <include src="../footer.wxml" />
-     </block>
-     <!--页尾-end-->
+  <!--页尾-start-->
+  <block wx:if="{{isLoaded}}">
+    <include src="../footer.wxml" />
+  </block>
+  <!--页尾-end-->
 
 </view>
+
 <view class="loading_box" wx:if="{{!isLoaded}}">
-     <view class="pulse pulse_1"></view>
-     <view class="pulse pulse_2"></view>
-     <view class="pulse pulse_3"></view>
-     <view class="pulse pulse_4"></view>
+  <view class="pulse pulse_1"></view>
+  <view class="pulse pulse_2"></view>
+  <view class="pulse pulse_3"></view>
+  <view class="pulse pulse_4"></view>
 </view>

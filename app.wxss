@@ -1,5 +1,6 @@
 /**app.wxss**/
 @import 'style/weui.wxss';
+@import "zanui-weapp/dist/index.wxss";
 .page {
   background-color: #F5F5F5
 }
