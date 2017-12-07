@@ -191,7 +191,7 @@ Page({
    */
   handleTapAuthor: function (event) {
     var uid = event.currentTarget.dataset.uid;
-    var authorUrl = "/pages/author/album?uid=" + uid;
+    var authorUrl = "/pages/author/album?author_id=" + uid + "&start_album_id=0";
     wx.navigateTo({
       url: authorUrl
     })
