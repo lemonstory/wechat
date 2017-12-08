@@ -152,7 +152,7 @@ Page({
       var tagIdArr = tagIdSubStr.split("=");
       var tagId = parseInt(tagIdArr[1]);
       if (tagId > 0) {
-        tagUrl = "/pages/tag/album?tagId=" + tagId;
+        tagUrl = "/pages/tag/album?selectFirstTagId=" + tagId;
       }
     }
 
@@ -191,7 +191,7 @@ Page({
    */
   handleTapAuthor: function (event) {
     var uid = event.currentTarget.dataset.uid;
-    var authorUrl = "/pages/author/album?uid=" + uid;
+    var authorUrl = "/pages/author/album?author_id=" + uid + "&start_album_id=0";
     wx.navigateTo({
       url: authorUrl
     })

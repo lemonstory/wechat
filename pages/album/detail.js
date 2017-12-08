@@ -17,6 +17,7 @@ const soundLineHeight = 104;
 
 Page({
   data: {
+    'albumId': '',
     'isLoaded': false,
     'constant': app.constant,
     'swiperItemHeight': 0,
@@ -28,6 +29,7 @@ Page({
     var albumId = options.albumId;
     this.getData(albumId);
     this.setData({
+      'albumId': albumId,
       'albumIntroBdIsFold': true,
       'albumIntroBdClass': 'album-intro-bd-fold',
       'albumIntroBdText': '展开简介',
@@ -78,6 +80,7 @@ Page({
 
   //用户点击右上角分享
   onShareAppMessage: function () {
+
     return {
       title: app.constant.appName,
       desc: app.constant.appDesc,
@@ -85,16 +88,48 @@ Page({
     }
   },
 
-  handleShareAlbumTap: function () {
-    wx.showModal({
-      title: '提示',
-      content: '这是一个模态弹窗',
+  onShareAppMessage: function (options) {
+    if (options.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(options.target)
+    }
+    return {
+      title: this.data.data.albumInfo.title,
+      path: '/pages/album/detail?albumId=' + this.data.albumId,
+      imageUrl: this.data.data.albumInfo.cover,
       success: function (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        }
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
       }
-    })
+    }
+  },
+
+  handleShareAlbumTap: function () {
+    // wx.showActionSheet({
+    //   itemList: ['发送给朋友', '生成卡片分享至朋友圈'],
+    //   success: function (res) {
+    //     switch (res.tapIndex) {
+    //       case 0:
+    //         wx.showShareMenu({
+    //           withShareTicket: true
+    //         })
+    //         break;
+    //       case 1:
+    //         console.log("生成卡片分享至朋友圈");
+    //         break;
+    //       default:
+    //         console.log(res.tapIndex);
+    //     }
+    //     console.log(res.tapIndex)
+    //   },
+    //   fail: function (res) {
+    //     console.log(res.errMsg)
+    //   }
+    // })
+
+    
   },
 
   getData: function (albumId) {
@@ -261,7 +296,7 @@ Page({
   * 滑动切换tab 
   */
   bindChange: function (e) {
-    
+
     var that = this;
     that.setData({
       currentTab: e.detail.current
@@ -279,7 +314,7 @@ Page({
           swiperItemHeight: that.data.swiperSoundItemHeight
         });
         break;
-      
+
       case 2:
         that.setData({
           swiperItemHeight: swiperRecommendAlbumItemHeight

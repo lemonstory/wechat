@@ -7,23 +7,25 @@
 专辑模板
     title: String 专辑名称
     cover: String 专辑图标
-    desc:  String 推荐语
+    recommendDesc:  String 推荐语
+    intro:String 简介
     listenNum: String 收听量
     tagName: String 标签名称
     isDescVisible: Boolean 是否显示推荐语
-    isTagNameVisible: Boolean 是否显示标题名称
+    isTagNameVisible: Boolean 是否显示标签名称
 -->
 <template name="albumItem" style="display:flex; justify-content: space-between;">
-    <view class="weui-flex__item album-item" style="margin-bottom:10px;width:350rpx;" data-index="{{index}}"  data-id="{{id}}" bindtap="handleAlbumTap">
-        <image style="width:345rpx; margin-left:10rpx; height: 215rpx; border-radius:6rpx;" mode="aspectFill" src="{{cover}}"></image>
-        <view class="weui-media-box__title" style="margin-left:10rpx;width:340rpx;text-overflow: ellipsis;font-size: 26rpx;">{{title}}</view>
- <block wx:if="{{isDescVisible}}">
-            <view class="weui-media-box__desc" style="margin-left:10rpx;margin-top:6rpx;font-size:22rpx;width:340rpx; height:26rpx;text-overflow: ellipsis; overflow:hidden">{{desc}}</view>
-        </block>
-                <image style="width:22rpx;height:22rpx;margin-top:10rpx;margin-left:10rpx;margin-right:10rpx;float:left;" src="http://jic.xiaoningmeng.net/www/img/ic_player.png"></image>
-        <view class="weui-media-box__desc" style="text-overflow: ellipsis;margin-top:11rpx; font-size: 22rpx;">{{listenNum}}</view>
-        <block wx:if="{{isTagNameVisible}}">
-            <view>{{tagName}}</view>
-        </block>
-    </view>
+  <view class="weui-flex__item album-item" style="margin-bottom:10px;width:350rpx;" data-index="{{index}}" data-id="{{id}}" bindtap="handleAlbumTap">
+    <image style="width:345rpx; margin-left:10rpx; height: 215rpx; border-radius:6rpx;" mode="aspectFill" src="{{cover}}"></image>
+    <view class="weui-media-box__title" style="margin-left:10rpx;width:340rpx;text-overflow: ellipsis;font-size: 26rpx;">{{title}}</view>
+    <block wx:if="{{isDescVisible}}">
+      <view wx:if="{{recommendDesc}}" class="weui-media-box__desc" style="margin-left:10rpx;margin-top:6rpx;font-size:22rpx;width:340rpx; height:26rpx;text-overflow: ellipsis; overflow:hidden">{{recommendDesc}}</view>
+      <view wx:else class="weui-media-box__desc" style="margin-left:10rpx;margin-top:6rpx;font-size:22rpx;width:340rpx; height:26rpx;text-overflow: ellipsis; overflow:hidden">{{intro}}</view>
+    </block>
+    <image style="width:22rpx;height:22rpx;margin-top:10rpx;margin-left:10rpx;margin-right:10rpx;float:left;" src="http://jic.xiaoningmeng.net/www/img/ic_player.png"></image>
+    <view class="weui-media-box__desc" style="text-overflow: ellipsis;margin-top:11rpx; font-size: 22rpx;">{{listenNum}}</view>
+    <block wx:if="{{isTagNameVisible}}">
+      <view>{{tagName}}</view>
+    </block>
+  </view>
 </template>

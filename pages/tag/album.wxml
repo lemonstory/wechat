@@ -1,6 +1,7 @@
 <import src="../../template/tagItem.wxml" />
 <import src="../../template/albumItem.wxml" />
 <import src="../../zanui-weapp/dist/tab/index.wxml" />
+<import src="../../zanui-weapp/dist/loadmore/index.wxml" />
 
 <view class="page">
 
@@ -11,24 +12,30 @@
   <!--专辑列表-start-->
   <view style="background-color: #FFFFFF;">
     <view class="weui-flex row-container page__bd_spacing">
-        <block wx:for="{{data.tagalbumlist}}" wx:key="data.tagalbumlist" wx:for-index="idx" wx:for-item="tagAlbumItem">  
-         <template is="albumItem" data="{{index:idx, id: tagAlbumItem.albuminfo.id, title: tagAlbumItem.albuminfo.title,cover: tagAlbumItem.albuminfo.cover,desc:tagAlbumItem.albuminfo.recommenddesc,listenNum:tagAlbumItem.albuminfo.listennum,isDescVisible:true,isTagNameVisible:false}}" /> 
-       </block> 
+      <block wx:for="{{tagalbumlist}}" wx:key="tagalbumlist" wx:for-index="idx" wx:for-item="tagAlbumItem">
+        <template is="albumItem" data="{{index:idx, id: tagAlbumItem.albuminfo.id, title: tagAlbumItem.albuminfo.title,cover: tagAlbumItem.albuminfo.cover,recommendDesc:tagAlbumItem.albuminfo.recommenddesc,intro:tagAlbumItem.albuminfo.intro,listenNum:tagAlbumItem.albuminfo.listennum,isDescVisible:true,isTagNameVisible:false}}"
+        />
+      </block>
     </view>
   </view>
   <!--专辑列表-end-->
 
+  <!--加载更多-start-->
+  <template is="zan-loadmore" wx:if="{{isLoading}}" data="{{loading: true}}" />
+  <template is="zan-loadmore" wx:if="{{isNoMore}}" data="{{nodata: true,nodata_str:'更多内容, 敬请期待'}}" /> 
+  <!--加载更多-end-->
+
   <!--页尾-start-->
-  <block wx:if="{{isLoaded}}">
+  <!-- <block wx:if="{{isLoaded}}">
     <include src="../footer.wxml" />
-  </block>
+  </block> -->
   <!--页尾-end-->
 
 </view>
 
-<view class="loading_box" wx:if="{{!isLoaded}}">
+<!-- <view class="loading_box" wx:if="{{!isLoaded}}">
   <view class="pulse pulse_1"></view>
   <view class="pulse pulse_2"></view>
   <view class="pulse pulse_3"></view>
   <view class="pulse pulse_4"></view>
-</view>
+</view> -->
