@@ -13,14 +13,19 @@ Page(Object.assign({}, Tab, {
       scroll: true,
       height: 45
     },
+    tagalbumlist: [],
 
     //页面的初始数据
-    'isLoaded': false,
     'constant': app.constant,
     'currentTagId': '',
     'selectFirstTagId': '',
     'selectSecondTagId': '',
     'selectedId': '',
+    //分页使用
+    'startrelationid': 0,
+    'len': 36,
+    'isNoMore': false,
+    'isLoading':false,
   },
 
   handleZanTabChange(e) {
@@ -31,6 +36,9 @@ Page(Object.assign({}, Tab, {
       [`${componentId}.selectedId`]: selectedId,
       selectSecondTagId: selectedId,
       selectedId: selectedId,
+      tagalbumlist: [],
+      startrelationid:0,
+      isNoMore:false,
     });
 
     switch (selectedId) {
@@ -58,7 +66,7 @@ Page(Object.assign({}, Tab, {
         goodcomment = 0;
     }
 
-    this.getData(selectedId, this.data.selectFirstTagId, selectedId, recommend, hot, goodcomment);
+    this.getData(selectedId, this.data.selectFirstTagId, selectedId, recommend, hot, goodcomment, this.data.startrelationid, this.data.len);
   },
 
   onLoad: function (options) {
@@ -88,7 +96,7 @@ Page(Object.assign({}, Tab, {
       });
     }
 
-    this.getData(this.data.selectedId, this.data.selectFirstTagId, this.data.selectSecondTagId, recommend, hot, goodcomment);
+    this.getData(this.data.selectedId, this.data.selectFirstTagId, this.data.selectSecondTagId, recommend, hot, goodcomment, this.data.startrelationid, this.data.len);
   },
 
   onShow: function () {
@@ -119,75 +127,108 @@ Page(Object.assign({}, Tab, {
    * 下拉刷新
    */
   onPullDownRefresh: function () {
-
-    this.getData(this.data.selectedId, this.data.selectFirstTagId, this.data.selectSecondTagId, recommend, hot, goodcomment);
+    this.getData(this.data.selectedId, this.data.selectFirstTagId, this.data.selectSecondTagId, recommend, hot, goodcomment, this.data.startrelationid, this.data.len);
   },
 
-  getData: function (selectedId, selectFirstTagId, selectSecondTagId, recommend, hot, goodcomment) {
+  getData: function (selectedId, selectFirstTagId, selectSecondTagId, recommend, hot, goodcomment, startrelationid, len) {
 
-    // console.log("😀 😀 😀 selectedId= " + selectedId + ", selectFirstTagId=" + selectFirstTagId + ", selectSecondTagId=" + selectSecondTagId + ", recommend=" + recommend + ", hot=" + hot + ", goodcomment=" + goodcomment);
+    // console.log("😀 😀 😀 selectedId= " + selectedId
+    //   + ", selectFirstTagId=" + selectFirstTagId
+    //   + ", selectSecondTagId=" + selectSecondTagId
+    //   + ", recommend=" + recommend
+    //   + ", hot=" + hot
+    //   + ", goodcomment=" + goodcomment
+    //   + ", startrelationid=" + startrelationid
+    //   + ", len=" + len);
+
     var that = this;
     var currentTagId;
-    console.log(selectSecondTagId);
-    console.log(typeof (selectSecondTagId));
+
     if (isNaN(selectSecondTagId) || selectSecondTagId.length == 0) {
       currentTagId = selectFirstTagId;
 
     } else {
       currentTagId = selectSecondTagId;
     }
-    var url = that.data.constant.domain + '/tag/v2.6/gettagalbumlist.php?currenttagid=' + currentTagId + "&recommend=" + recommend + "&hot=" + hot + "&goodcomment=" + goodcomment;
-    console.log("😀 url = " + url);
-    wx.request({
-      url: url,
-      data: {},
-      header: {
-        'content-type': 'application/json', // 默认值
-        // 'user-agent': 'api.xiaoningmeng.net/2.8.0/adr (M5 Note,864883030379469,460027404571654,6.0,1080*1920,4.589389937671455,480,wifi,_360,zh)',
-      },
-      success: function (res) {
-        wx.hideLoading();
-        res.data.isLoaded = true;
-        that.setData(res.data);
+    var url = that.data.constant.domain
+      + '/tag/v2.6/gettagalbumlist.php?direction=down&currenttagid=' + currentTagId
+      + "&recommend=" + recommend
+      + "&hot=" + hot
+      + "&goodcomment=" + goodcomment
+      + "&startrelationid="+ startrelationid
+      + "&len=" + len;
 
-        //设置tab页签数据
-        var tabList = [];
-        var tagItem = {};
-        if (typeof (res.data.data.specialtaglist) != "undefined" && res.data.data.specialtaglist.length > 0) {
-          var i;
 
-          for (i = 0; i < res.data.data.specialtaglist.length; i++) {
-            tagItem = {};
-            tagItem.id = res.data.data.specialtaglist[i].paramkey;
-            tagItem.title = res.data.data.specialtaglist[i].name;
-            tabList.push(tagItem);
+    // console.log("😀 url = " + url);
+
+    if (!that.data.isNoMore) {
+      wx.request({
+        url: url,
+        data: {},
+        header: {
+          'content-type': 'application/json', // 默认值
+          // 'user-agent': 'api.xiaoningmeng.net/2.8.0/adr (M5 Note,864883030379469,460027404571654,6.0,1080*1920,4.589389937671455,480,wifi,_360,zh)',
+        },
+        success: function (res) {
+          wx.hideLoading();
+          var tagAlbumListLen = res.data.data.tagalbumlist.length;
+          if (tagAlbumListLen > 0) {
+            var tagAlbumList = that.data.tagalbumlist;
+            Array.prototype.push.apply(tagAlbumList, res.data.data.tagalbumlist);
+            var startRelationId = res.data.data.tagalbumlist[tagAlbumListLen - 1].id;
+                        
+            that.setData({
+              'tagalbumlist': tagAlbumList,
+              'startrelationid': startRelationId,
+              'isNoMore': false,
+              'isLoading':false,
+            });
+          } else {
+
+            that.setData({
+              'isNoMore': true,
+              'isLoading': false,
+            });
           }
-        }
 
-        if (typeof (res.data.data.secondtaglist) != "undefined" && res.data.data.secondtaglist.length > 0) {
-          var i;
-          for (i = 0; i < res.data.data.secondtaglist.length; i++) {
-            tagItem = {};
-            tagItem.id = res.data.data.secondtaglist[i].id;
-            tagItem.title = res.data.data.secondtaglist[i].name;
-            tabList.push(tagItem);
+          //设置tab页签数据
+          var tabList = [];
+          var tagItem = {};
+          if (typeof (res.data.data.specialtaglist) != "undefined" && res.data.data.specialtaglist.length > 0) {
+            var i;
+
+            for (i = 0; i < res.data.data.specialtaglist.length; i++) {
+              tagItem = {};
+              tagItem.id = res.data.data.specialtaglist[i].paramkey;
+              tagItem.title = res.data.data.specialtaglist[i].name;
+              tabList.push(tagItem);
+            }
           }
+
+          if (typeof (res.data.data.secondtaglist) != "undefined" && res.data.data.secondtaglist.length > 0) {
+            var i;
+            for (i = 0; i < res.data.data.secondtaglist.length; i++) {
+              tagItem = {};
+              tagItem.id = res.data.data.secondtaglist[i].id;
+              tagItem.title = res.data.data.secondtaglist[i].name;
+              tabList.push(tagItem);
+            }
+          }
+
+          that.setData({
+            tab: {
+              list: tabList,
+              selectedId: selectedId,
+              scroll: true,
+              height: 45
+            },
+            selectFirstTagId: res.data.data.selectfirsttagid
+          });
+
+          that.setDataCallBack();
         }
-
-        that.setData({
-          tab: {
-            list: tabList,
-            selectedId: selectedId,
-            scroll: true,
-            height: 45
-          },
-          selectFirstTagId: res.data.data.selectfirsttagid
-        });
-
-        that.setDataCallBack();
-      }
-
-    })
+      })
+    }
   },
 
 
@@ -213,12 +254,26 @@ Page(Object.assign({}, Tab, {
   },
 
   /**
- * 获取数据成功回调
- * 修改: 焦点图数据
- */
+  * 获取数据成功回调
+  */
   setDataCallBack: function () {
 
   },
 
+  onReachBottom: function () {
+    
+    if (!this.data.isNoMore) {
+      this.setData({
+        'isLoading': true,
+      });
+      setTimeout(() => {
+        this.getData(this.data.selectedId, this.data.selectFirstTagId, this.data.selectSecondTagId, recommend, hot, goodcomment, this.data.startrelationid, this.data.len);
+      }, 500);
+    }else{
+      this.setData({
+        'isLoading': false,
+      });
+    }
+  },
 
 }));
