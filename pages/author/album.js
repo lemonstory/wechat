@@ -1,4 +1,6 @@
 //获取应用实例
+//
+
 var Base64 = require('../../utils/base64.modified.js');
 var app = getApp()
 Page({
@@ -9,6 +11,7 @@ Page({
     'start_album_id':'0',
     'len':50,
     'author_id':'',
+    'intro': '',
   },
   onLoad: function (options) {
 
@@ -78,7 +81,11 @@ Page({
       success: function (res) {
         wx.hideLoading();
         res.data.isLoaded = true;
+        var intro = res.data.data.info.intro.replace(/<(?:.|\n)*?>|&nbsp;/gm, '');
         that.setData(res.data);
+        that.setData({
+          'intro': intro,
+        })
         that.setDataCallBack();
         console.log(res.data);
       }

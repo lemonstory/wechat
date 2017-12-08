@@ -1,0 +1,28 @@
+<!--
+水平专辑模板
+    用于左侧为专辑图片，右侧描述信息的展示
+    title: String 专辑名称
+    cover: String 专辑封面
+    ageStr: String 专辑适用年龄段
+    recommendDesc:  String 推荐语
+    intro:String 简介
+    listenNum: String 收听量
+    isDescVisible: Boolean 是否显示推荐语
+-->
+<template name="horizontalAlbumItem">
+  <view class="weui-cell" data-id="{{id}}" bindtap="handleAlbumTap">
+    <view class="weui-media-box__hd">
+      <image class="weui-media-box__thumb" style="width: 320rpx; height: 212rpx;   border-radius: 6rpx;" mode="aspectFill" src="{{cover}}"></image>
+    </view>
+    <view class="weui-media-box__bd" style='height: 212rpx;width:auto;margin-left:20rpx;'>
+      <view class="weui-media-box__title" style="font-size:28rpx;color:#494949;margin-top:0">{{title}}</view>
+      <view class="weui-media-box__desc" style="font-size:24rpx;color:#9B9B9B;margin-top:10rpx">{{ageStr}}</view>
+      <image style="width:22rpx;height:22rpx;margin-top:10rpx;margin-left:10rpx;margin-right:10rpx;float:left;" src="http://jic.xiaoningmeng.net/www/img/ic_player.png"></image>
+      <view class="weui-media-box__desc" style="text-overflow: ellipsis;margin-top:11rpx; font-size: 22rpx;">{{listenNum}}</view>
+      <block wx:if="{{isDescVisible}}">
+        <view wx:if="{{recommendDesc}}" class="weui-media-box__desc" style="margin-left:10rpx;margin-top:6rpx;font-size:22rpx;width:340rpx; height:26rpx;text-overflow: ellipsis; overflow:hidden">{{recommendDesc}}</view>
+        <view wx:else class="weui-media-box__desc" style="margin-left:10rpx;margin-top:6rpx;font-size:22rpx;width:340rpx; height:26rpx;text-overflow: ellipsis; overflow:hidden">{{intro}}</view>
+      </block>
+    </view>
+  </view>
+</template>
