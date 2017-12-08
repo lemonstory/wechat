@@ -4,7 +4,7 @@
 
 <view class="page">
 
-  <view style="margin: 20px 0">
+  <view style="border-top:1rpx solid #eee;margin-bottom:15rpx;">
     <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
   </view>
 

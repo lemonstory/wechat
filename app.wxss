@@ -75,6 +75,8 @@
     background:#FFFFFF;
     padding-top: 10px;
     margin-top: 10px;
+
+   
 }
 
 .row-container {
