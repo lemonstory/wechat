@@ -1,0 +1,2 @@
+<canvas canvas-id="myCanvas" bindtap="handlePreviewImage"/>
+<button type="primary" size="default"  bindtap="handleSaveImageToPhotosAlbum"> 保存图片 </button>
