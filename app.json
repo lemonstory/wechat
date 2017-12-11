@@ -1,6 +1,5 @@
 {
-     "pages": [
-          "pages/canvas/canvas",
+     "pages": [  
           "pages/index/index",
           "pages/author/index",
           "pages/tag/album",
@@ -14,7 +13,8 @@
           "pages/my/my",
           "pages/collect/collect",
           "pages/history/history",
-          "pages/mask/mask"
+          "pages/mask/mask",
+          "pages/canvas/canvas"
      ],
      "window": {
           "backgroundTextStyle": "dark",

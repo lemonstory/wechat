@@ -14,14 +14,18 @@ const swiperIntroItemHeight = 722;
 const swiperRecommendAlbumItemHeight = 2180;
 const soundLineHeight = 104;
 
+const Toast = require('../../zanui-weapp/dist/toast/index');
 
-Page({
+
+Page(Object.assign({}, Toast, {
   data: {
     'albumId': '',
     'isLoaded': false,
     'constant': app.constant,
     'swiperItemHeight': 0,
     'swiperSoundItemHeight': 0,
+
+    'showBottomPopup': false,
   },
   onLoad: function (options) {
 
@@ -89,9 +93,13 @@ Page({
   },
 
   onShareAppMessage: function (options) {
+
+    var that = this;
     if (options.from === 'button') {
       // 来自页面内转发按钮
       console.log(options.target)
+    } else {
+
     }
     return {
       title: this.data.data.albumInfo.title,
@@ -99,37 +107,16 @@ Page({
       imageUrl: this.data.data.albumInfo.cover,
       success: function (res) {
         // 转发成功
+        console.log(res);
       },
       fail: function (res) {
         // 转发失败
+        console.log(res);
+        if (res.errMsg == "shareAppMessage:fail cancel") {
+          that.showToast("被取消了,不高兴 😭 ");
+        }
       }
     }
-  },
-
-  handleShareAlbumTap: function () {
-    // wx.showActionSheet({
-    //   itemList: ['发送给朋友', '生成卡片分享至朋友圈'],
-    //   success: function (res) {
-    //     switch (res.tapIndex) {
-    //       case 0:
-    //         wx.showShareMenu({
-    //           withShareTicket: true
-    //         })
-    //         break;
-    //       case 1:
-    //         console.log("生成卡片分享至朋友圈");
-    //         break;
-    //       default:
-    //         console.log(res.tapIndex);
-    //     }
-    //     console.log(res.tapIndex)
-    //   },
-    //   fail: function (res) {
-    //     console.log(res.errMsg)
-    //   }
-    // })
-
-    
   },
 
   getData: function (albumId) {
@@ -170,8 +157,17 @@ Page({
         if (res.confirm) {
           console.log('用户点击确定')
         }
-      }
+      },
     })
+  },
+
+  /**
+   * 生成分享卡片
+   */
+  generateShareCard: function () {
+    console.log("generateShareCard RUN");
+    this.toggleBottomPopup();
+
   },
 
   handleAlbumIntroActionBtn: function () {
@@ -192,7 +188,7 @@ Page({
   },
 
 
-  /**
+ /**
  * 处理专辑点击
  */
   handleAlbumTap: function (event) {
@@ -249,6 +245,12 @@ Page({
       }
 
     }
+  },
+
+  toggleBottomPopup() {
+    this.setData({
+      showBottomPopup: !this.data.showBottomPopup
+    });
   },
 
   /**
@@ -322,7 +324,12 @@ Page({
         break;
     }
   },
-})
+
+  showToast(message) {
+    this.showZanToast(message);
+  }
+
+}));
 
 //监听音乐播放
 backgroundAudioManager.onPlay(function () {
