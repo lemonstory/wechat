@@ -13,7 +13,8 @@
           "pages/play/play",
           "pages/my/my",
           "pages/collect/collect",
-          "pages/history/history"
+          "pages/history/history",
+          "pages/mask/mask"
      ],
      "window": {
           "backgroundTextStyle": "dark",

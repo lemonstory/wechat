@@ -10,6 +10,7 @@
 .page{
      width:100%;
      height:100%;
+     background: #fff;
 }
 .textStyle {
   display: flex;
@@ -41,10 +42,36 @@
   height:80rpx;
   
 } 
-.weui-navbar__item{
- color:#9B9B9B;
+
+.zan-tab__item--selected .zan-tab__title {
+     color: #494949;
+     border-bottom: 4rpx solid #f60;
 }
-.weui-navbar__item.weui-bar__item_on{
-   border-bottom:4rpx solid #FFBE4C; 
-   color:#494949;
+
+.zan-tab__title {
+     font-size: 26rpx;
+     display: inline-block;
+     color: #9b9b9b;
+     height: 80rpx;
+     line-height: 80rpx;
+     box-sizing: border-box;
+     padding: 0 20rpx;
+     word-break: keep-all;
+     border:  none;
+ 
 }
+
+
+.zan-tab__bd--scroll {
+     display: block;
+     white-space: nowrap;
+}
+
+.zan-tab__bd--scroll .zan-tab__item {
+    margin: 0;
+}
+
+.zan-tab__bd--scroll .zan-tab__text {
+      margin:0;
+}
+
