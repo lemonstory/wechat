@@ -1,0 +1,15 @@
+<!--pages/my1/my1.wxml-->
+<!-- 在需要展示时，增加 zan-popup--show 类即可 -->
+ <!-- <view class="zan-popup zan-popup--show">  -->
+<!-- 遮罩层，有需要可以在遮罩层上增加点击事件 -->
+<view class="zan-popup__mask" style='background:#000;width:100%;height:100vh; opacity:0.4'></view>
+<!-- 弹出层的内容放在此元素内 -->
+
+<view class="zan-popup__container popup-example--center" style="position: absolute;bottom:0;width:100%;z-index:999;background:#eee;">
+     <button open-type="share" style='width:100%;height:90rpx;line-height:90rpx;border-radius:none;padding:0;background:#fff;font-size:34rpx;color:#494949'>发送给朋友</button>
+     <button  style='width:100%;height:90rpx;line-height:90rpx;border-radius:0;margin-bottom:15rpx;font-size:34rpx;color:#494949'>生成卡片分享至朋友圈</button>
+     <button style='width:100%;height:90rpx;border-radius:0;line-height:90rpx;font-size:34rpx;color:#494949'>取消</button>
+</view>
+<!-- </view> -->
+
+
