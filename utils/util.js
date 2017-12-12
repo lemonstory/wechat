@@ -16,6 +16,16 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-module.exports = {
-  formatTime: formatTime
+function isEmpty(n) {
+
+  var ret = false;
+  if (typeof (n) != "undefined" && n != null) {
+    ret = false;
+  } else {
+    ret = true;
+  }
+  return ret;
 }
+
+module.exports.formatTime = formatTime;
+module.exports.isEmpty = isEmpty;

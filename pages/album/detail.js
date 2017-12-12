@@ -14,6 +14,7 @@ const swiperIntroItemHeight = 722;
 const swiperRecommendAlbumItemHeight = 2180;
 const soundLineHeight = 104;
 const Toast = require('../../zanui-weapp/dist/toast/index');
+var util = require('../../utils/util.js')
 
 
 //页面二维码地址
@@ -32,7 +33,20 @@ Page(Object.assign({}, Toast, {
     'swiperItemHeight': 0,
     'swiperSoundItemHeight': 0,
 
-    'showBottomPopup': false,
+    //
+    'currentPlayAlbumId': '',
+    'currentPlayStoryId': '',
+    'currentPlayStoryIndex': '0',
+    //play:播放中
+    //pause:暂停
+    //stop:停止
+    //ended:结束
+    //waiting:加载中
+    //error:播放错误
+    'playerState': '',
+
+    //显示底部弹窗
+    'isShowBottomPopup': false,
 
     //生成分享卡片相关 -start
     'isImageDownloadComplete': false,
@@ -268,7 +282,7 @@ Page(Object.assign({}, Toast, {
 
   toggleBottomPopup() {
     this.setData({
-      showBottomPopup: !this.data.showBottomPopup
+      isShowBottomPopup: !this.data.isShowBottomPopup
     });
   },
 
@@ -279,36 +293,74 @@ Page(Object.assign({}, Toast, {
   handleAudioPlayTap: function (event) {
 
     console.log("##### handleAudioPlayTap #####");
+    console.log(event);
+    var that = this;
+    that.audioPlay(event.currentTarget.dataset.album_id, event.currentTarget.dataset.story_id, event.currentTarget.dataset.story_idx)
+
+  },
+
+  audioPlay: function (albumId, storyId, storyIdx) {
+
+    console.log("🎵 🎵 🎵  audioPlay START");
+    console.log("albumId = " + albumId + ", storyId = " + storyId + ", storyIdx = " + storyIdx);
+
+    var that = this;
+    var currentAlbumId = util.isEmpty(albumId) ? that.data.currentPlayAlbumId : albumId;
+    var currentStoryId = util.isEmpty(storyId) ? that.data.currentPlayStoryId : storyId;
+    var currentStoryIdx = util.isEmpty(storyIdx) ? that.data.currentPlayStoryIndex : storyIdx;
+
+    if (currentStoryId.length == 0 && currentStoryIdx.length > 0) {
+      currentStoryId = that.data.data.storyList.items[that.data.currentPlayStoryIndex].id;
+    }
+
+    console.log("currentAlbumId = " + currentAlbumId + ", currentStoryId = " + currentStoryId + ", currentStoryIdx = " + currentStoryIdx);
+    if (!util.isEmpty(currentAlbumId)) {
+
+      if (typeof (backgroundAudioManager.paused) == "undefined") {
+
+        console.log("😀 开始播放");
+
+        that.setData({
+          'currentPlayAlbumId': currentAlbumId,
+          'currentPlayStoryId': currentStoryId,
+          'currentPlayStoryIndex': currentStoryIdx,
+        });
+
+        backgroundAudioManager.title = that.data.data.storyList.items[that.data.currentPlayStoryIndex].title;
+        backgroundAudioManager.epname = that.data.data.albumInfo.title;
+        backgroundAudioManager.singer = app.constant.appName;
+        backgroundAudioManager.coverImgUrl = that.data.data.storyList.items[that.data.currentPlayStoryIndex].playcover;
+        backgroundAudioManager.src = that.data.data.storyList.items[that.data.currentPlayStoryIndex].mediapath;
 
 
-    if (typeof (backgroundAudioManager.paused) == "undefined") {
+      } else if (backgroundAudioManager.paused) {
 
-      console.log("😀 开始播放");
-      backgroundAudioManager.title = event.currentTarget.dataset.title;
-      backgroundAudioManager.epname = event.currentTarget.dataset.epname;
-      backgroundAudioManager.singer = event.currentTarget.dataset.singer;
-      backgroundAudioManager.coverImgUrl = event.currentTarget.dataset.cover_img_url;
-      backgroundAudioManager.src = event.currentTarget.dataset.url;
+        console.log("😀😀 恢复播放");
+        backgroundAudioManager.play();
 
-    } else if (backgroundAudioManager.paused) {
-
-      console.log("😀😀 恢复播放");
-      backgroundAudioManager.play();
-
-    } else {
-
-      //如果是不同专辑
-      if (backgroundAudioManager.epname != event.currentTarget.dataset.epname) {
-        console.log("😀😀😀 播放新专辑");
-        backgroundAudioManager.title = event.currentTarget.dataset.title;
-        backgroundAudioManager.epname = event.currentTarget.dataset.epname;
-        backgroundAudioManager.singer = event.currentTarget.dataset.singer;
-        backgroundAudioManager.coverImgUrl = event.currentTarget.dataset.cover_img_url;
-        backgroundAudioManager.src = event.currentTarget.dataset.url;
       } else {
-        //如果是同一专辑
-        console.log("😀😀😀😀 暂停播放");
-        backgroundAudioManager.pause();
+
+        //如果是不同专辑,或播放同一专辑的不同歌曲
+        if (that.data.currentPlayAlbumId != currentAlbumId || that.data.currentPlayAlbumId == currentAlbumId && that.data.currentPlayStoryId != currentStoryId) {
+          console.log("😀😀😀 如果是不同专辑,或播放同一专辑的不同歌曲");
+
+          that.setData({
+            'currentPlayAlbumId': currentAlbumId,
+            'currentPlayStoryId': currentStoryId,
+            'currentPlayStoryIndex': currentStoryIdx,
+          });
+
+          backgroundAudioManager.title = that.data.data.storyList.items[that.data.currentPlayStoryIndex].title;
+          backgroundAudioManager.epname = app.constant.appName;
+          backgroundAudioManager.singer = that.data.data.albumInfo.title;
+          backgroundAudioManager.coverImgUrl = that.data.data.storyList.items[that.data.currentPlayStoryIndex].playcover;
+          backgroundAudioManager.src = that.data.data.storyList.items[that.data.currentPlayStoryIndex].mediapath;
+
+        } else {
+          //如果是同一专辑
+          console.log("😀😀😀😀 暂停播放");
+          backgroundAudioManager.pause();
+        }
       }
     }
   },
@@ -348,7 +400,7 @@ Page(Object.assign({}, Toast, {
     this.showZanToast(message);
   },
 
-  downloadImageFile: function (imageUrl, qrCodeUrl, avatarUrl,name,title) {
+  downloadImageFile: function (imageUrl, qrCodeUrl, avatarUrl, name, title) {
     var that = this;
     //下载封面图地址
     wx.downloadFile({
@@ -445,7 +497,7 @@ Page(Object.assign({}, Toast, {
   * @param name String 用户姓名
   * @param title String 专辑标题
   */
-  startCanvasDraw: function (name,title) {
+  startCanvasDraw: function (name, title) {
 
     var rectWidth;
     var rectHeight;
@@ -658,17 +710,15 @@ Page(Object.assign({}, Toast, {
 
 //监听音乐播放
 backgroundAudioManager.onPlay(function () {
+
+  var that = this;
   console.log("######## backgroundAudioManager.onPlay ######");
   var pages = getCurrentPages();
   var currentPage = pages[pages.length - 1];
-  wx.getBackgroundAudioPlayerState({
-    success: function (res) {
-      if (1 === res.status)
-        console.log("status = " + res.status);
-      currentPage.setData({
-        'audioPlayBtnImageUrl': audioPauseImageUrl,
-      })
-    }
+
+  currentPage.setData({
+    'audioPlayBtnImageUrl': audioPauseImageUrl,
+    'playerState': 'play',
   })
 })
 
@@ -678,14 +728,9 @@ backgroundAudioManager.onPause(function () {
   console.log("######## backgroundAudioManager.onPause ######");
   var pages = getCurrentPages();
   var currentPage = pages[pages.length - 1];
-  wx.getBackgroundAudioPlayerState({
-    success: function (res) {
-      console.log("currentPosition = " + res.currentPosition);
-      currentPage.setData({
-        'currentPosition': res.currentPosition,
-        'audioPlayBtnImageUrl': audioPlayImageUrl,
-      })
-    }
+  currentPage.setData({
+    'audioPlayBtnImageUrl': audioPlayImageUrl,
+    'playerState': 'pause',
   })
 }
 

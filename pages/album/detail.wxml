@@ -29,8 +29,7 @@
 
           </block>
         </view>
-        <image bindtap="handleAudioPlayTap" src="{{audioPlayBtnImageUrl}}" style="width: 130rpx; height: 130rpx;position:relative;left:250rpx;" data-url="{{data.storyList.items[0].mediapath}}" data-title="{{data.storyList.items[0].title}}" data-epname="{{data.albumInfo.cover}}"
-          data-singer="{{data.albumInfo.title}}" data-cover_img_url="{{data.storyList.items[0].playcover}}">
+        <image bindtap="handleAudioPlayTap" src="{{audioPlayBtnImageUrl}}" style="width: 130rpx; height: 130rpx;position:relative;left:250rpx;"  data-album_id="{{data.albumInfo.id}}">
         </image>
       </view>
     </view>
@@ -92,7 +91,9 @@
           <swiper-item>
             <view class="weui-cells album-storys-container">
               <block wx:for="{{data.storyList.items}}" wx:key="data.storyList" wx:for-index="idx" wx:for-item="storyItem">
-                <view style="align: center;">
+                <view style="align: center;" bindtap='handleAudioPlayTap'data-album_id="{{data.albumInfo.id}}" data-story_id="{{storyItem.id}}" data-story_idx="{{idx}}">
+                  <view wx:if="{{currentPlayStoryId == storyItem.id && playerState == 'play'}}">播放中</view>
+                  <view wx:if="{{currentPlayStoryId == storyItem.id && playerState == 'pause'}}">暂停</view>
                   <view class="album-story-index" style='color:#9B9B9B;font-size:30rpx;'>{{idx + 1}}</view>
                   <view class="weui-cell album-story-title" style='color:#494949;font-size:30rpx;'>{{storyItem.title}}</view>
                 </view>
@@ -126,7 +127,7 @@
 
 
       <!--分享popup 开始-->
-      <view class="popup-example--bottom zan-popup zan-popup--bottom {{ showBottomPopup ? 'zan-popup--show' : ''}}">
+      <view class="popup-example--bottom zan-popup zan-popup--bottom {{ isShowBottomPopup ? 'zan-popup--show' : ''}}">
         <view class="zan-popup__mask" catchtap="toggleBottomPopup"></view>
         <view class="zan-popup__container">
           <view class="zan-btns">
@@ -147,7 +148,7 @@
       <!-- 直接使用 zan-toast 模板，并且直接传入 zanToast -->
       <template is="zan-toast" data="{{ zanToast }}"></template>
 
-      <canvas canvas-id="myCanvas" hidden='true'/>
+      <canvas canvas-id="myCanvas" hidden='true' />
 
       <!--页尾-start-->
       <include src="../footer.wxml" />
