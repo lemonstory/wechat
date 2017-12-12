@@ -147,6 +147,8 @@
       <!-- 直接使用 zan-toast 模板，并且直接传入 zanToast -->
       <template is="zan-toast" data="{{ zanToast }}"></template>
 
+      <canvas canvas-id="myCanvas" hidden='true'/>
+
       <!--页尾-start-->
       <include src="../footer.wxml" />
       <!--页尾-end-->
