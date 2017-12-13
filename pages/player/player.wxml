@@ -1,0 +1,77 @@
+<import src="../../zanui-weapp/dist/toast/index.wxml" />
+<!--pages/play/play.wxml-->
+<view class="page">
+  <view class="page__bd page__bd_spacing" style='margin-top:1rpx;background:#F7F7F7;height:100vh;border-top:1rpx solid #F7F7F7'>
+    <!--图片旋转开始  -->
+    <view class="play_image">
+      <image animation="{{animationData}}" src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}" style='width:440rpx;height:440rpx;border-radius:50%;border:8rpx solid #fff; margin-top:60rpx'></image>
+    </view>
+
+    <!--图片旋转结束  -->
+
+    <!--icon图标开始  -->
+    <view class="weui-flex paly_icon" style="width:70%;padding-bottom:20rpx; padding-top:20rpx;padding-left:50rpx; padding-right:50rpx">
+      <view class="weui-flex__item" style="width:100rpx">
+        <block wx:if="{{data.albumInfo.fav == 1}}">
+          <image class="weui-grid__icon album-action-icon" src="btn_player_fav_normal.png" style='width:38rpx;height:38rpx;'></image>
+        </block>
+        <block wx:else>
+          <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_fav_pressed.png" style='width:38rpx;height:38rpx;'></image>
+        </block>
+      </view>
+
+      <view class="weui-flex__item">
+        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_comment_normal.png" style='width:38rpx;height:38rpx;'></image>
+      </view>
+
+      <view class="weui-flex__item" bindtap="handleShareAlbumTap">
+        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_album_share.png" style='width:38rpx;height:38rpx;'></image>
+      </view>
+    </view>
+
+    <!--icon图标结束  -->
+
+    <!--进度条开始  -->
+    <view class="start_time">{{startTime}}</view>
+    <progress percent="{{progressPercent}}" color="#10AEFF" stroke-width="3" />
+    <view class="end_time">{{endTime}}</view>
+    <!--进度条结束  -->
+
+    <!--底部提示图标开始  -->
+    <view class="weui-flex paly_icon" style="width:100%;padding-bottom:20rpx; padding-top:20rpx;">
+      <view class="weui-flex__item " bindtap='handleListTap'>
+        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_playlist_normal.png" style='width:60rpx;height:60rpx;'></image>
+      </view>
+
+      <view class="weui-flex__item" bindtap='handlePlayPrev'>
+        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_previous_normal.png" style='width:45rpx;height:45rpx;'></image>
+      </view>
+
+      <view class="weui-flex__item" bindtap="handleAudioPlayTap" data-album_id="{{constant.currentPlayAlbumId}}" data-story_id="{{constant.currentPlayStoryId}}" data-story_idx="{{constant.currentPlayStoryIdx}}">
+
+        <block wx:if="{{constant.playerStatus == 'play'}}">
+          <image class="weui-grid__icon album-action-icon" bindtap='stopRotateAnimation' src="../../icon/btn_player_pause_normal.png" style='width:100rpx;height:100rpx;'></image>
+        </block>
+        <block wx:elif="{{constant.playerStatus == 'pause'}}">
+          <image class="weui-grid__icon album-action-icon" bindtap='stopRotateAnimation' src="../../icon/btn_player_play_normal.png" style='width:100rpx;height:100rpx;'></image>
+        </block>
+        <block wx:else>
+          <image class="weui-grid__icon album-action-icon" bindtap='stopRotateAnimation' src="../../icon/btn_player_play_normal.png" style='width:100rpx;height:100rpx;'></image>
+        </block>
+      </view>
+
+      <view class="weui-flex__item" bindtap="handlePlayNext">
+        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_next_normal.png" style='width:45rpx;height:45rpx;'></image>
+      </view>
+
+      <view class="weui-flex__item" bindtap="handleShareAlbumTap">
+        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_repeat_normal.png" style='width:60rpx;height:60rpx;'></image>
+      </view>
+    </view>
+
+    <!--底部提示图标结束  -->
+  </view>
+
+  <!-- 直接使用 zan-toast 模板，并且直接传入 zanToast -->
+  <template is="zan-toast" data="{{ zanToast }}"></template>
+</view>

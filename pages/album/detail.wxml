@@ -92,8 +92,8 @@
             <view class="weui-cells album-storys-container">
               <block wx:for="{{data.storyList.items}}" wx:key="data.storyList" wx:for-index="idx" wx:for-item="storyItem">
                 <view style="align: center;" bindtap='handleAudioPlayTap'data-album_id="{{data.albumInfo.id}}" data-story_id="{{storyItem.id}}" data-story_idx="{{idx}}">
-                  <view wx:if="{{constant.currentPlayStoryId == storyItem.id && constant.playerState == 'play'}}">播放中</view>
-                  <view wx:if="{{constant.currentPlayStoryId == storyItem.id && constant.playerState == 'pause'}}">暂停</view>
+                  <view wx:if="{{constant.currentPlayStoryId == storyItem.id && constant.playerStatus == 'play'}}">播放中</view>
+                  <view wx:if="{{constant.currentPlayStoryId == storyItem.id && constant.playerStatus == 'pause'}}">暂停</view>
                   <view class="album-story-index" style='color:#9B9B9B;font-size:30rpx;'>{{idx + 1}}</view>
                   <view class="weui-cell album-story-title" style='color:#494949;font-size:30rpx;'>{{storyItem.title}}</view>
                 </view>

@@ -15,6 +15,7 @@ const swiperRecommendAlbumItemHeight = 2180;
 const soundLineHeight = 104;
 const Toast = require('../../zanui-weapp/dist/toast/index');
 var util = require('../../utils/util.js')
+var play = require('../../utils/play.js')
 
 
 //页面二维码地址
@@ -77,17 +78,100 @@ Page(Object.assign({}, Toast, {
   },
 
   onReady: function () {
-    // 生命周期函数--监听页面初次渲染完成
-    //     app.getUserInfo(function(userInfo){
-    //   //更新数据
-    //   this.setData({
-    //     userInfo:userInfo
-    //   })
-    //   this.update()
-    // })
-    // this.setData({
-    //   globalData:app.globalData
-    // })
+
+    var that = this;
+    backgroundAudioManager.onCanplay(function () {
+      console.log("######## backgroundAudioManager.onCanplay ######");
+    })
+
+    //监听音频播放
+    backgroundAudioManager.onPlay(function () {
+
+      console.log("【detail】backgroundAudioManager.onPlay")
+      app.constant.playerStatus = 'play';
+      that.setData({
+        'audioPlayBtnImageUrl': audioPauseImageUrl,
+        'constant': app.constant,
+      })
+
+    })
+
+    //监听音频暂停
+    backgroundAudioManager.onPause(function () {
+
+      console.log("【detail】backgroundAudioManager.onPause")
+      app.constant.playerStatus = 'pause';
+      that.setData({
+        'audioPlayBtnImageUrl': audioPlayImageUrl,
+        'constant': app.constant,
+      })
+    })
+
+    backgroundAudioManager.onStop(function () {
+      app.constant.playerStatus = 'stop';
+      that.setData({
+        'constant': app.constant,
+      })
+
+    })
+
+    //监听音频自然播放结束
+    backgroundAudioManager.onEnded(function () {
+
+      console.log("######## detail backgroundAudioManager.onEnded ######");
+      app.constant.playerStatus = 'end';
+      that.setData({
+        'constant': app.constant,
+      })
+
+      //播放下一首,或者从头开始继续播放
+      var index = app.constant.currentPlayStoryIndex + 1;
+      var total = app.constant.currentPlayAlbumDetail.storyList.total;
+      if (index >= total) {
+        index = 0;
+      }
+      var storyId = app.constant.currentPlayAlbumDetail.storyList.items[index].id;
+      play.audioPlaySwitch(
+        that.data.data,
+        app.constant.currentPlayAlbumId,
+        app.constant.appName,
+        storyId,
+        index,
+        function () {
+          console.log("play.audioPlay callback Run");
+          that.setData({
+            'constant': app.constant,
+          });
+        })
+    })
+
+    backgroundAudioManager.onTimeUpdate(function () {
+
+      // console.log("######## backgroundAudioManager.onTimeUpdate ######");
+      // console.log("backgroundAudioManager.currentTime = " + backgroundAudioManager.currentTime);
+    })
+
+    backgroundAudioManager.onPrev(function () {
+
+      // console.log("######## backgroundAudioManager.onPrev ######");
+    })
+
+    backgroundAudioManager.onNext(function () {
+
+      // console.log("######## backgroundAudioManager.onNext ######");
+    })
+
+    backgroundAudioManager.onError(function () {
+
+      // console.log("######## backgroundAudioManager.onError ######");
+
+    })
+
+    backgroundAudioManager.onWaiting(function () {
+
+      // console.log("######## backgroundAudioManager.onWaiting ######");
+
+    })
 
   },
 
@@ -102,7 +186,7 @@ Page(Object.assign({}, Toast, {
     console.log(that.data.constant);
 
     if (app.constant.currentPlayAlbumId == that.data.albumId) {
-      if (app.constant.playerState == "play") {
+      if (app.constant.playerStatus == "play") {
         that.setData({
           'audioPlayBtnImageUrl': audioPauseImageUrl,
         })
@@ -301,90 +385,19 @@ Page(Object.assign({}, Toast, {
     console.log("##### handleAudioPlayTap #####");
     console.log(event);
     var that = this;
-    that.audioPlay(event.currentTarget.dataset.album_id, event.currentTarget.dataset.story_id, event.currentTarget.dataset.story_idx)
-
-  },
-
-  /**
-   * 音频播放
-   */
-  audioPlay: function (albumId, storyId, storyIdx) {
-
-    console.log("🎵 🎵 🎵  audioPlay START");
-    console.log("albumId = " + albumId + ", storyId = " + storyId + ", storyIdx = " + storyIdx);
-
-    var that = this;
-    if (!util.isEmpty(albumId)) {
-
-      var currentPagePlayAlbumId = albumId;
-      var currentPagePlayStoryId = storyId;
-      var currentPagePlayStoryIdx = storyIdx;
-
-      if (currentPagePlayStoryId.length == 0 && currentPagePlayStoryIdx.length == 0) {
-        currentPagePlayStoryIdx = 0;
-        currentPagePlayStoryId = that.data.data.storyList.items[currentPagePlayStoryIdx].id;
-      }
-      console.log("currentPagePlayAlbumId = " + currentPagePlayAlbumId + ", currentPagePlayStoryId = " + currentPagePlayStoryId + ", currentPagePlayStoryIdx = " + currentPagePlayStoryIdx);
-      that.setData({
-        'currentPagePlayAlbumId': currentPagePlayAlbumId,
-        'currentPagePlayStoryId': currentPagePlayStoryId,
-        'currentPagePlayStoryIdx': currentPagePlayStoryIdx,
-      });
-
-      if (typeof (backgroundAudioManager.paused) == "undefined") {
-
-        console.log("😀 开始播放");
-        that.setPlayerData(currentPagePlayAlbumId, currentPagePlayStoryId, currentPagePlayStoryIdx);
-
-
-      } else if (backgroundAudioManager.paused) {
-
-        //如果是不同专辑,或播放同一专辑的不同歌曲
-        if ((app.constant.currentPlayAlbumId != currentPagePlayAlbumId) || (app.constant.currentPlayAlbumId == currentPagePlayAlbumId && app.constant.currentPlayStoryId != currentPagePlayStoryId)) {
-
-          console.log("😀😀😀 【目前暂停状态】如果是不同专辑,或播放同一专辑的不同歌曲, 重新播放");
-          that.setPlayerData(currentPagePlayAlbumId, currentPagePlayStoryId, currentPagePlayStoryIdx);
-
-        } else {
-          console.log("😀😀 恢复播放");
-          backgroundAudioManager.play();
-        }
-      } else {
-
-        //如果是不同专辑,或播放同一专辑的不同歌曲
-        if ((app.constant.currentPlayAlbumId != currentPagePlayAlbumId) || (app.constant.currentPlayAlbumId == currentPagePlayAlbumId && app.constant.currentPlayStoryId != currentPagePlayStoryId)) {
-
-          console.log("😀😀😀 【目前播放状态】如果是不同专辑,或播放同一专辑的不同歌曲, 重新播放");
-          that.setPlayerData(currentPagePlayAlbumId, currentPagePlayStoryId, currentPagePlayStoryIdx);
-
-        } else {
-          //如果是同一专辑
-          console.log("😀😀😀😀 暂停播放");
-          backgroundAudioManager.pause();
-        }
-      }
-    }
-  },
-
-  /**
-   * 设置播放数据
-   */
-  setPlayerData: function (albumId, storyId, storyIdx) {
-
-    var that = this;
-    app.constant.currentPlayAlbumDetail = that.data.data;
-    app.constant.currentPlayAlbumId = albumId;
-    app.constant.currentPlayStoryId = storyId;
-    app.constant.currentPlayStoryIndex = storyIdx;
-    that.setData({
-      'constant': app.constant,
-    });
-
-    backgroundAudioManager.title = that.data.data.storyList.items[storyIdx].title;
-    backgroundAudioManager.epname = that.data.data.albumInfo.title;
-    backgroundAudioManager.singer = app.constant.appName;
-    backgroundAudioManager.coverImgUrl = that.data.data.storyList.items[storyIdx].playcover;
-    backgroundAudioManager.src = that.data.data.storyList.items[storyIdx].mediapath;
+    
+    play.audioPlaySwitch(
+      that.data.data,
+      event.currentTarget.dataset.album_id, 
+      app.constant.appName, 
+      event.currentTarget.dataset.story_id, 
+      event.currentTarget.dataset.story_idx,
+      function() {
+        console.log("play.audioPlay callback Run");
+        that.setData({
+          'constant': app.constant,
+        });
+      })
   },
 
 
@@ -730,92 +743,4 @@ Page(Object.assign({}, Toast, {
   },
 
 }));
-
-backgroundAudioManager.onCanplay(function () {
-  console.log("######## backgroundAudioManager.onCanplay ######");
-})
-
-//监听音频播放
-backgroundAudioManager.onPlay(function () {
-
-  app.constant.playerState = 'play';
-  var pages = getCurrentPages();
-  var currentPage = pages[pages.length - 1];
-
-  currentPage.setData({
-    'audioPlayBtnImageUrl': audioPauseImageUrl,
-    'constant': app.constant,
-  })
-
-})
-
-//监听音频暂停
-backgroundAudioManager.onPause(function () {
-
-  app.constant.playerState = 'pause';
-  var pages = getCurrentPages();
-  var currentPage = pages[pages.length - 1];
-  currentPage.setData({
-    'audioPlayBtnImageUrl': audioPlayImageUrl,
-    'constant': app.constant,
-  })
-})
-
-backgroundAudioManager.onStop(function () {
-  app.constant.playerState = 'stop';
-  var pages = getCurrentPages();
-  var currentPage = pages[pages.length - 1];
-  currentPage.setData({
-    'constant': app.constant,
-  })
-
-})
-
-//监听音频自然播放结束
-backgroundAudioManager.onEnded(function () {
-
-  app.constant.playerState = 'end';
-  var pages = getCurrentPages();
-  var currentPage = pages[pages.length - 1];
-  currentPage.setData({
-    'constant': app.constant,
-  })
-
-  //播放下一首,或者从头开始继续播放
-  var index = app.constant.currentPlayStoryIndex + 1;
-  var total = app.constant.currentPlayAlbumDetail.storyList.total;
-  if (index >= total) {
-    index = 0;
-  }
-  var storyId = app.constant.currentPlayAlbumDetail.storyList.items[index].id;
-  currentPage.audioPlay(app.constant.currentPlayAlbumId, storyId, index);
-})
-
-backgroundAudioManager.onTimeUpdate(function () {
-
-  // console.log("######## backgroundAudioManager.onTimeUpdate ######");
-  // console.log("backgroundAudioManager.currentTime = " + backgroundAudioManager.currentTime);
-})
-
-backgroundAudioManager.onPrev(function () {
-
-  // console.log("######## backgroundAudioManager.onPrev ######");
-})
-
-backgroundAudioManager.onNext(function () {
-
-  // console.log("######## backgroundAudioManager.onNext ######");
-})
-
-backgroundAudioManager.onError(function () {
-
-  // console.log("######## backgroundAudioManager.onError ######");
-
-})
-
-backgroundAudioManager.onWaiting(function () {
-
-  // console.log("######## backgroundAudioManager.onWaiting ######");
-
-})
 

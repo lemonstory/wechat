@@ -9,7 +9,7 @@
           "pages/album/detail",
           "pages/category/category",
           "pages/album/album",
-          "pages/play/play",
+          "pages/player/player",
           "pages/my/my",
           "pages/collect/collect",
           "pages/history/history",

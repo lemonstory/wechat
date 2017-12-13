@@ -17,7 +17,7 @@ var constant = {
     //pause:暂停
     //stop:停止
     //ended:结束
-    'playerState': '',
+    'playerStatus': '',
     //当前播放的专辑信息 -end
 }
 

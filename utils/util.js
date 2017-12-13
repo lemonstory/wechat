@@ -27,5 +27,25 @@ function isEmpty(n) {
   return ret;
 }
 
+//给数字字符串补零，不支持负数
+function padNumber(num, fill) {
+  //改自：http://blog.csdn.net/aimingoo/article/details/4492592
+  var len = ('' + num).length;
+  return (Array(
+    fill > len ? fill - len + 1 || 0 : 0
+  ).join(0) + num);
+}
+
+//秒转化成 分秒 00:00
+function secondToDate(result) {
+  // var h = Math.floor(result / 3600);
+  var m = Math.floor((result / 60 % 60));
+  var s = Math.floor((result % 60));
+  var ret = padNumber(m, 2) + ":" + padNumber(s, 2);
+  return ret;
+}
+
 module.exports.formatTime = formatTime;
 module.exports.isEmpty = isEmpty;
+module.exports.padNumber = padNumber;
+module.exports.secondToDate = secondToDate;
