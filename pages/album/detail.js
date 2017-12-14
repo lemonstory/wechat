@@ -54,9 +54,8 @@ Page(Object.assign({}, Toast, {
     'isCanvasFilePreview': false,
     'isCanvasFileSavePhone': false,
 
-    'currentPagePlayAlbumId': '',
-    'currentPagePlayStoryId': '',
-    'currentPagePlayStoryIdx': '',
+    'albumPlayStoryId': '',
+    'albumPlayStoryIdx': '',
   },
   onLoad: function (options) {
 
@@ -183,7 +182,9 @@ Page(Object.assign({}, Toast, {
     }
 
     console.log("🐝 🐝 🐝 🐝 🐝 🐝 🐝");
-    console.log(that.data.constant);
+    console.log(that.data);
+    console.log(that.data.currentTab);
+    console.log(that.data.data);
 
     if (app.constant.currentPlayAlbumId == that.data.albumId) {
       if (app.constant.playerStatus == "play") {
@@ -253,6 +254,7 @@ Page(Object.assign({}, Toast, {
   },
 
   getData: function (albumId) {
+    console.log("🚀 🚀 🚀 getData run");
     var that = this;
     var url = that.data.constant.domain + '/album/v2.6/info.php?album_id=' + albumId;
     wx.request({
@@ -280,6 +282,21 @@ Page(Object.assign({}, Toast, {
    */
   setDataCallBack: function () {
 
+    console.log("🐱 🐱 🐱 ");
+    var that = this;
+    for (var i = 0; i < that.data.data.storyList.items.length; i++) {
+      console.log("for i = " + i);
+      console.log(typeof (app.constant.currentPlayStoryId));
+      console.log(typeof (that.data.data.storyList.items[i]));
+      if (app.constant.currentPlayStoryId == that.data.data.storyList.items[i].id) {
+        that.setData({
+          'albumPlayStoryId': app.constant.currentPlayStoryId,
+          'albumPlayStoryIdx': i,
+        })
+        break;
+      }
+    }
+    console.log(that.data);
   },
 
   /**

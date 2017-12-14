@@ -20,99 +20,25 @@ Page(Object.assign({}, Toast, {
     'setIntervalRet': '',
 
     //播放进度
-    'startTime':'00:00',
-    'endTime':'00:00',
-    'endTimeSecond':'0',
-    'progressPercent':'0',
+    'startTime': '00:00',
+    'endTime': '00:00',
+    'endTimeSecond': '0',
+    'progressPercent': '0',
+  },
+
+  onLoad: function () {
+
+    console.log("🤡 🤡 🤡 🤡 🤡  detail 【onLoad】");
+    var that = this;
+    that.setPageTitle();
+    that.setStoryEndTime();
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onReady: function () {
-
-    console.log("🤡 🤡 🤡 🤡 🤡  detail onReady");
-    
-    var that = this;
-    that.setPageTitle();
-    that.setStoryEndTime();
-
-    backgroundAudioManager.onCanplay(function () {
-      console.log("######## backgroundAudioManager.onCanplay ######");
-    })
-
-    //监听音频播放
-    backgroundAudioManager.onPlay(function () {
-
-      console.log("【player】backgroundAudioManager.onPlay")
-      app.constant.playerStatus = 'play';
-      that.setData({
-        'constant': app.constant,
-      })
-      that.startRotateAnimation();
-    })
-
-    //监听音频暂停
-    backgroundAudioManager.onPause(function () {
-
-      console.log("【player】backgroundAudioManager.onPause")
-      app.constant.playerStatus = 'pause';
-      that.setData({
-        'constant': app.constant,
-      })
-      that.stopRotateAnimation();
-    })
-
-    backgroundAudioManager.onStop(function () {
-      app.constant.playerStatus = 'stop';
-      that.setData({
-        'constant': app.constant,
-      })
-      that.stopRotateAnimation();
-    })
-
-    //监听音频自然播放结束
-    backgroundAudioManager.onEnded(function () {
-
-      console.log("######## player backgroundAudioManager.onEnded ######");
-      app.constant.playerStatus = 'end';
-      that.setData({
-        'constant': app.constant,
-      })
-    })
-
-    backgroundAudioManager.onTimeUpdate(function () {
-
-      //播放时间及进度条处理
-      var currentTimeSecond = backgroundAudioManager.currentTime;
-      var progressPercent = Math.floor((currentTimeSecond / that.data.endTimeSecond) * 100);
-      that.setData({
-        'startTime': util.secondToDate(currentTimeSecond),
-        'progressPercent': progressPercent
-      })
-    })
-
-    backgroundAudioManager.onPrev(function () {
-
-      // console.log("######## backgroundAudioManager.onPrev ######");
-    })
-
-    backgroundAudioManager.onNext(function () {
-
-      // console.log("######## backgroundAudioManager.onNext ######");
-    })
-
-    backgroundAudioManager.onError(function () {
-
-      // console.log("######## backgroundAudioManager.onError ######");
-
-    })
-
-    backgroundAudioManager.onWaiting(function () {
-
-      // console.log("######## backgroundAudioManager.onWaiting ######");
-
-    })
+    console.log("🤡 🤡 🤡 🤡 🤡  detail 【onReady】");
   },
 
   /**
@@ -120,8 +46,13 @@ Page(Object.assign({}, Toast, {
    */
   onShow: function () {
 
+    console.log("🤡 🤡 🤡 🤡   detail 【onShow】");
     var that = this;
+    that.setPageTitle();
+    that.setStoryEndTime();
+    that.playerStatusMonitor();
     if (that.data.constant.playerStatus == 'play') {
+      // n = 0;
       that.startRotateAnimation();
     } else {
       that.stopRotateAnimation();
@@ -133,6 +64,12 @@ Page(Object.assign({}, Toast, {
    */
   onHide: function () {
 
+    console.log("🤡 🤡 🤡 🤡   detail 【onHide】");
+    var that = this;
+    console.log(that.data.constant.playerStatus);
+    if (that.data.constant.playerStatus == 'play') {
+      that.stopRotateAnimation();
+    }
   },
 
   /**
@@ -140,6 +77,13 @@ Page(Object.assign({}, Toast, {
    */
   onUnload: function () {
 
+    console.log("🤡 🤡 🤡 🤡   detail 【onUnload】");
+    var that = this;
+    console.log(that.data.constant.playerStatus);
+    if (that.data.constant.playerStatus == 'play') {
+      n = 0;
+      that.stopRotateAnimation();
+    }
   },
 
   /**
@@ -170,7 +114,7 @@ Page(Object.assign({}, Toast, {
   /**
    * 设置故事结束时间
    */
-  setStoryEndTime:function() {
+  setStoryEndTime: function () {
 
     var that = this;
     var storyList = app.constant.currentPlayAlbumDetail.storyList;
@@ -188,7 +132,7 @@ Page(Object.assign({}, Toast, {
   /**
    * 设置页面标题 
    */
-  setPageTitle:function() {
+  setPageTitle: function () {
 
     var that = this;
     var storyList = app.constant.currentPlayAlbumDetail.storyList;
@@ -257,7 +201,6 @@ Page(Object.assign({}, Toast, {
       that.setPageTitle();
       that.setStoryEndTime();
     } else {
-      console.log("已经是第一首~\(≧▽≦)/~啦啦啦");
       that.showToast("已经是第一首~\(≧▽≦)/~啦啦啦");
     }
 
@@ -278,7 +221,6 @@ Page(Object.assign({}, Toast, {
       that.setPageTitle();
       that.setStoryEndTime();
     } else {
-      console.log("已经是最后一首~\(≧▽≦)/~啦啦啦");
       that.showToast("已经是最后一首~\(≧▽≦)/~啦啦啦");
     }
   },
@@ -286,17 +228,17 @@ Page(Object.assign({}, Toast, {
   /**
    * 更换播放模式
    */
-  handleChangePlayerMode:function(event) {
+  handleChangePlayerMode: function (event) {
 
     var that = this;
-    var playerModeAll = ['order', 'repeat','shuffle'];
+    var playerModeAll = ['order', 'repeat', 'shuffle'];
     var currentPlayerMode = event.currentTarget.dataset.player_mode;
     var currentPlayerModeIndex = playerModeAll.indexOf(currentPlayerMode);
-    
+
     console.log(event);
     console.log("currentPlayerMode = " + currentPlayerMode);
     console.log("currentPlayerModeIndex = " + currentPlayerModeIndex);
-    
+
     var index = 0;
     if (currentPlayerModeIndex != -1) {
       if (currentPlayerModeIndex + 1 < playerModeAll.length) {
@@ -318,7 +260,10 @@ Page(Object.assign({}, Toast, {
    * 停止旋转动画
    */
   stopRotateAnimation: function () {
+
+    console.log(this.data.setIntervalRet);
     clearInterval(this.data.setIntervalRet);
+    console.log("clearInterval run");
   },
 
   /**
@@ -337,7 +282,7 @@ Page(Object.assign({}, Toast, {
     //连续动画需要添加定时器,所传参数每次+1就行
     var ret = setInterval(function () {
       n = n + 1;
-      // console.log(n);
+      console.log("n = " + n);
       animation.rotate(15 * (n)).step()
       that.setData({
         animationData: animation.export()
@@ -349,6 +294,106 @@ Page(Object.assign({}, Toast, {
     })
   },
 
+  playerStatusMonitor: function () {
 
+    var that = this;
+    //监听音频播放
+    backgroundAudioManager.onPlay(function () {
 
+      console.log("【player】backgroundAudioManager.onPlay")
+      app.constant.playerStatus = 'play';
+      that.setData({
+        'constant': app.constant,
+      })
+      that.startRotateAnimation();
+    })
+
+    //监听音频暂停
+    backgroundAudioManager.onPause(function () {
+
+      console.log("【player】backgroundAudioManager.onPause")
+      app.constant.playerStatus = 'pause';
+      that.setData({
+        'constant': app.constant,
+      })
+      that.stopRotateAnimation();
+    })
+
+    backgroundAudioManager.onStop(function () {
+      app.constant.playerStatus = 'stop';
+      that.setData({
+        'constant': app.constant,
+      })
+      that.stopRotateAnimation();
+    })
+
+    //监听音频自然播放结束
+    backgroundAudioManager.onEnded(function () {
+
+      console.log("######## player backgroundAudioManager.onEnded ######");
+      app.constant.playerStatus = 'end';
+      that.setData({
+        'constant': app.constant,
+      })
+
+      //播放下一首,或者从头开始继续播放
+      //播放模式
+      console.log("播放模式：" + app.constant.playerMode);
+      var index = 0;
+      if (app.constant.playerMode == 'repeat') {
+        play.repeat(function () {
+          console.log("play.audioPlay callback Run");
+          that.setData({
+            'constant': app.constant,
+          }
+          )
+        });
+      } else {
+        play.next(function () {
+          console.log("play.audioPlay callback Run");
+          that.setData({
+            'constant': app.constant,
+          });
+        })
+      }
+    })
+
+    backgroundAudioManager.onTimeUpdate(function () {
+
+      //播放时间及进度条处理
+      var currentTimeSecond = backgroundAudioManager.currentTime;
+      var startTime = util.secondToDate(currentTimeSecond);
+      var progressPercent = Math.floor((currentTimeSecond / that.data.endTimeSecond) * 100);
+      that.setData({
+        'startTime': startTime,
+        'progressPercent': progressPercent
+      })
+    })
+
+    backgroundAudioManager.onPrev(function () {
+
+      // console.log("######## backgroundAudioManager.onPrev ######");
+    })
+
+    backgroundAudioManager.onNext(function () {
+
+      // console.log("######## backgroundAudioManager.onNext ######");
+    })
+
+    backgroundAudioManager.onError(function () {
+
+      // console.log("######## backgroundAudioManager.onError ######");
+
+    })
+
+    backgroundAudioManager.onWaiting(function () {
+
+      // console.log("######## backgroundAudioManager.onWaiting ######");
+
+    })
+
+    backgroundAudioManager.onCanplay(function () {
+      console.log("######## backgroundAudioManager.onCanplay ######");
+    })
+  }
 }));

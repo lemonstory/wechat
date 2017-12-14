@@ -196,3 +196,4 @@ module.exports.audioPlaySwitch = audioPlaySwitch;
 module.exports.prev = prev;
 module.exports.next = next;
 module.exports.play = play;
+module.exports.repeat = repeat;
