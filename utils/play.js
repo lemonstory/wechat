@@ -76,6 +76,7 @@ function setPlayerData(albumDetailData, albumId, singer, storyId, storyIdx) {
   app.constant.currentPlayAlbumId = albumId;
   app.constant.currentPlayStoryId = storyId;
   app.constant.currentPlayStoryIndex = storyIdx;
+  app.constant.currentPlayStorySinger = singer
 
   backgroundAudioManager.title = albumDetailData.storyList.items[storyIdx].title;
   backgroundAudioManager.epname = albumDetailData.albumInfo.title;
@@ -85,16 +86,70 @@ function setPlayerData(albumDetailData, albumId, singer, storyId, storyIdx) {
 
 }
 
+/**
+ * 播放
+ */
+function play(albumDetailData, albumId, singer, storyId, storyIdx, callback) {
+
+  console.log("🎵 🎵 🎵  audioPlay START");
+  console.log("albumId = " + albumId + ", storyId = " + storyId + ", storyIdx = " + storyIdx);
+
+  if (!util.isEmpty(albumId)) {
+
+    var currentPagePlayAlbumId = albumId;
+    var currentPagePlayStoryId = storyId;
+    var currentPagePlayStoryIdx = storyIdx;
+
+    if (currentPagePlayStoryId.length == 0 && currentPagePlayStoryIdx.length == 0) {
+      currentPagePlayStoryIdx = 0;
+      currentPagePlayStoryId = albumDetailData.storyList.items[currentPagePlayStoryIdx].id;
+    }
+
+    console.log("😀 开始播放");
+    setPlayerData(albumDetailData, currentPagePlayAlbumId, singer, currentPagePlayStoryId, currentPagePlayStoryIdx);
+    backgroundAudioManager.play();
+  }
+
+  if (typeof (callback) === 'function') {
+    callback(albumDetailData, albumId, singer, storyId, storyIdx);
+  }
+}
+
+/**
+ * 单曲循环
+ */
+function repeat(callback) {
+
+  setPlayerData(
+    app.constant.currentPlayAlbumDetail, 
+    app.constant.currentPlayAlbumId, 
+    app.constant.currentPlayStorySinger, 
+    app.constant.currentPlayStoryId, 
+    app.constant.currentPlayStoryIndex
+  );
+  if (typeof (callback) === 'function') {
+    callback(
+      app.constant.currentPlayAlbumDetail,
+      app.constant.currentPlayAlbumId,
+      app.constant.currentPlayStorySinger,
+      app.constant.currentPlayStoryId,
+      app.constant.currentPlayStoryIndex
+    );
+  }
+
+}
+
+
 //播放上一首,或者从头开始继续播放
 function prev(callback) {
-  
+
   if (app.constant.currentPlayStoryIndex > 0) {
     var index = app.constant.currentPlayStoryIndex - 1;
     if (index < 0) {
       index = 0;
     }
     var storyId = app.constant.currentPlayAlbumDetail.storyList.items[index].id;
-    audioPlaySwitch(
+    play(
       app.constant.currentPlayAlbumDetail,
       app.constant.currentPlayAlbumId,
       app.constant.appName,
@@ -108,12 +163,26 @@ function next(callback) {
 
   var total = app.constant.currentPlayAlbumDetail.storyList.total;
   if (app.constant.currentPlayStoryIndex < total - 1) {
-    var index = app.constant.currentPlayStoryIndex + 1;
-    if (index >= total) {
-      index = 0;
+
+    //播放模式
+    //顺便播放 及 随机播放处理
+    var index = 0;
+    if (app.constant.playerMode == 'order') {
+      index = app.constant.currentPlayStoryIndex + 1;
+      if (index >= total) {
+        index = 0;
+      }
+    }else if (app.constant.playerMode == 'shuffle') {
+      index = util.randomFrom(0, total - 1);
+    } else {
+      index = app.constant.currentPlayStoryIndex + 1;
+      if (index >= total) {
+        index = 0;
+      }
     }
+
     var storyId = app.constant.currentPlayAlbumDetail.storyList.items[index].id;
-    audioPlaySwitch(
+    play(
       app.constant.currentPlayAlbumDetail,
       app.constant.currentPlayAlbumId,
       app.constant.appName,
@@ -126,3 +195,4 @@ function next(callback) {
 module.exports.audioPlaySwitch = audioPlaySwitch;
 module.exports.prev = prev;
 module.exports.next = next;
+module.exports.play = play;

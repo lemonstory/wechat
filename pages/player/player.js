@@ -26,24 +26,16 @@ Page(Object.assign({}, Toast, {
     'progressPercent':'0',
   },
 
-
-
   /**
    * 生命周期函数--监听页面加载
    */
   onReady: function () {
 
     console.log("🤡 🤡 🤡 🤡 🤡  detail onReady");
+    
     var that = this;
-    var storyList = app.constant.currentPlayAlbumDetail.storyList;
-    var storyIdx = app.constant.currentPlayStoryIndex;    
-    var storyDetail = storyList.items[storyIdx];
-    var endTimeSecond = storyDetail.times;
-
-    that.setData({
-      'endTimeSecond': endTimeSecond,
-      'endTime': util.secondToDate(endTimeSecond)
-    })
+    that.setPageTitle();
+    that.setStoryEndTime();
 
     backgroundAudioManager.onCanplay(function () {
       console.log("######## backgroundAudioManager.onCanplay ######");
@@ -91,15 +83,11 @@ Page(Object.assign({}, Toast, {
 
     backgroundAudioManager.onTimeUpdate(function () {
 
-      //播放时间
+      //播放时间及进度条处理
       var currentTimeSecond = backgroundAudioManager.currentTime;
-      that.setData({
-        'startTime': util.secondToDate(currentTimeSecond)
-      })
-
-      //进度条
       var progressPercent = Math.floor((currentTimeSecond / that.data.endTimeSecond) * 100);
       that.setData({
+        'startTime': util.secondToDate(currentTimeSecond),
         'progressPercent': progressPercent
       })
     })
@@ -180,6 +168,47 @@ Page(Object.assign({}, Toast, {
   },
 
   /**
+   * 设置故事结束时间
+   */
+  setStoryEndTime:function() {
+
+    var that = this;
+    var storyList = app.constant.currentPlayAlbumDetail.storyList;
+    var storyIdx = app.constant.currentPlayStoryIndex;
+    var storyDetail = storyList.items[storyIdx];
+    var endTimeSecond = storyDetail.times;
+
+
+    that.setData({
+      'endTimeSecond': endTimeSecond,
+      'endTime': util.secondToDate(endTimeSecond)
+    })
+  },
+
+  /**
+   * 设置页面标题 
+   */
+  setPageTitle:function() {
+
+    var that = this;
+    var storyList = app.constant.currentPlayAlbumDetail.storyList;
+    var storyIdx = app.constant.currentPlayStoryIndex;
+    var storyDetail = storyList.items[storyIdx];
+    wx.setNavigationBarTitle({
+      title: storyDetail.title,
+      success: function () {
+      },
+
+      fail: function () {
+
+      },
+      complete: function () {
+
+      },
+    });
+  },
+
+  /**
    * 列表点击
    */
   handleListTap: function (event) {
@@ -225,10 +254,13 @@ Page(Object.assign({}, Toast, {
           'constant': app.constant,
         });
       });
+      that.setPageTitle();
+      that.setStoryEndTime();
     } else {
       console.log("已经是第一首~\(≧▽≦)/~啦啦啦");
       that.showToast("已经是第一首~\(≧▽≦)/~啦啦啦");
     }
+
   },
 
   //播放下一首,或者从头开始继续播放
@@ -243,10 +275,42 @@ Page(Object.assign({}, Toast, {
           'constant': app.constant,
         });
       });
+      that.setPageTitle();
+      that.setStoryEndTime();
     } else {
       console.log("已经是最后一首~\(≧▽≦)/~啦啦啦");
       that.showToast("已经是最后一首~\(≧▽≦)/~啦啦啦");
     }
+  },
+
+  /**
+   * 更换播放模式
+   */
+  handleChangePlayerMode:function(event) {
+
+    var that = this;
+    var playerModeAll = ['order', 'repeat','shuffle'];
+    var currentPlayerMode = event.currentTarget.dataset.player_mode;
+    var currentPlayerModeIndex = playerModeAll.indexOf(currentPlayerMode);
+    
+    console.log(event);
+    console.log("currentPlayerMode = " + currentPlayerMode);
+    console.log("currentPlayerModeIndex = " + currentPlayerModeIndex);
+    
+    var index = 0;
+    if (currentPlayerModeIndex != -1) {
+      if (currentPlayerModeIndex + 1 < playerModeAll.length) {
+        index = currentPlayerModeIndex + 1;
+      }
+    }
+    console.log(index);
+    console.log(playerModeAll[index]);
+    app.constant.playerMode = playerModeAll[index];
+    that.setData({
+      'constant': app.constant,
+    });
+
+    console.log(app.constant);
   },
 
 

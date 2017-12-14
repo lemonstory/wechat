@@ -9,7 +9,6 @@ var constant = {
 
     //当前播放的专辑信息 -start
     "currentPlayAlbumDetail":{},
-    //
     'currentPlayAlbumId': '',
     'currentPlayStoryId': '',
     'currentPlayStoryIndex': '0',
@@ -18,6 +17,11 @@ var constant = {
     //stop:停止
     //ended:结束
     'playerStatus': '',
+
+    //order:顺序播放
+    //repeat:单曲循环
+    //shuffle:随机播放
+    'playerMode':'order',
     //当前播放的专辑信息 -end
 }
 

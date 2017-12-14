@@ -45,7 +45,27 @@ function secondToDate(result) {
   return ret;
 }
 
+/**
+ * 选取范围内随机值
+ * @param {Number} min - 下限（或上限）
+ * @param {Number} max - 上限（或下限）
+ * @returns {Number} - 上下限区间内的随机值
+ */
+function randomFrom(min, max) {
+  var temp;
+
+  if (min > max) {
+    temp = min;
+    min = max;
+    max = temp;
+  }
+
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 module.exports.formatTime = formatTime;
 module.exports.isEmpty = isEmpty;
 module.exports.padNumber = padNumber;
 module.exports.secondToDate = secondToDate;
+module.exports.randomFrom = randomFrom;
+

@@ -64,8 +64,8 @@
         <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_next_normal.png" style='width:45rpx;height:45rpx;'></image>
       </view>
 
-      <view class="weui-flex__item" bindtap="handleShareAlbumTap">
-        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_repeat_normal.png" style='width:60rpx;height:60rpx;'></image>
+      <view class="weui-flex__item" data-player_mode="{{constant.playerMode}}"  bindtap="handleChangePlayerMode">
+        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_{{constant.playerMode}}_normal.png" style='width:60rpx;height:60rpx;'></image>
       </view>
     </view>
 

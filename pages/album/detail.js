@@ -125,24 +125,24 @@ Page(Object.assign({}, Toast, {
       })
 
       //播放下一首,或者从头开始继续播放
-      var index = app.constant.currentPlayStoryIndex + 1;
-      var total = app.constant.currentPlayAlbumDetail.storyList.total;
-      if (index >= total) {
-        index = 0;
-      }
-      var storyId = app.constant.currentPlayAlbumDetail.storyList.items[index].id;
-      play.audioPlaySwitch(
-        that.data.data,
-        app.constant.currentPlayAlbumId,
-        app.constant.appName,
-        storyId,
-        index,
-        function () {
+      //播放模式
+      var index = 0;
+      if (app.constant.playerMode == 'repeat') {
+        play.repeat(function () {
+          console.log("play.audioPlay callback Run");
+          that.setData({
+            'constant': app.constant,
+          }
+          )
+        });
+      } else {
+        play.next(function () {
           console.log("play.audioPlay callback Run");
           that.setData({
             'constant': app.constant,
           });
         })
+      }
     })
 
     backgroundAudioManager.onTimeUpdate(function () {
@@ -385,14 +385,14 @@ Page(Object.assign({}, Toast, {
     console.log("##### handleAudioPlayTap #####");
     console.log(event);
     var that = this;
-    
+
     play.audioPlaySwitch(
       that.data.data,
-      event.currentTarget.dataset.album_id, 
-      app.constant.appName, 
-      event.currentTarget.dataset.story_id, 
+      event.currentTarget.dataset.album_id,
+      app.constant.appName,
+      event.currentTarget.dataset.story_id,
       event.currentTarget.dataset.story_idx,
-      function() {
+      function () {
         console.log("play.audioPlay callback Run");
         that.setData({
           'constant': app.constant,
