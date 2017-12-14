@@ -1,6 +1,7 @@
 <!--参考文档：https://mp.weixin.qq.com/debug/wxadoc/dev/api/getBackgroundAudioManager.html-->
 <import src="../../template/albumItem.wxml" />
 <import src="../../zanui-weapp/dist/toast/index.wxml" />
+<import src="../../zanui-weapp/dist/tab/index.wxml" />
 <view class="page flex" style="padding-top:1rpx;">
   <view class="page__bd">
 
@@ -61,18 +62,18 @@
 
     <!--简介 声音 相似 -start-->
     <view class="weui-tab">
-      <view class="weui-navbar album-detail-navbar" style='height:80rpx;'>
+      <!-- <view class="weui-navbar album-detail-navbar" style='height:80rpx;'>
         <view class="weui-navbar__item {{currentTab==0 ? 'weui-bar__item_on' : ''}}" data-current="0" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'> 简介</view>
         <view class="weui-navbar__item {{currentTab==1 ? 'weui-bar__item_on' : ''}}" data-current="1" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>声音</view>
         <view class="weui-navbar__item {{currentTab==2 ? 'weui-bar__item_on' : ''}}" data-current="2" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>相似</view>
-      </view>
 
+      </view> -->
+
+      <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
       <view class="weui-tab__panel" style="background-color:#FFFFFF;">
-        <!-- TODO:这里的高度计算还有问题 background:#ffe000 -->
-        <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{swiperItemHeight}}rpx;" bindchange="bindChange">
+
           <!--专辑简介-start-->
-          <swiper-item>
-            <view class="album-detail-hd">
+            <view class="album-detail-hd" wx:if="{{tab.selectedId == '0'}}">
               <text class="{{albumIntroBdClass}}" style='color:#494949;font-size:30rpx;line-height:48rpx;'>{{data.albumInfo.intro}}</text>
               <view class="album-intro-action-btn" bindtap="handleAlbumIntroActionBtn">{{albumIntroBdText}}</view>
               <view class="weui-grids album-tag-grids">
@@ -84,12 +85,10 @@
                 </block>
               </view>
             </view>
-          </swiper-item>
           <!--专辑简介-end-->
 
           <!--故事列表 -start-->
-          <swiper-item>
-            <view class="weui-cells album-storys-container">
+            <view class="weui-cells album-storys-container" wx:if="{{tab.selectedId == '1'}}">
               <block wx:for="{{data.storyList.items}}" wx:key="data.storyList" wx:for-index="idx" wx:for-item="storyItem">
                 <view style="align: center;" bindtap='handleAudioPlayTap'data-album_id="{{data.albumInfo.id}}" data-story_id="{{storyItem.id}}" data-story_idx="{{idx}}">
                   <view wx:if="{{constant.currentPlayStoryId == storyItem.id && constant.playerStatus == 'play'}}">播放中</view>
@@ -107,24 +106,20 @@
           </view> -->
               <!--加载更多-end-->
             </view>
-          </swiper-item>
           <!--故事列表-end-->
 
           <!--相关专辑-start-->
-          <swiper-item>
-            <view class="album-detail-hd page__bd_spacing">
+            <view class="album-detail-hd page__bd_spacing" wx:if="{{tab.selectedId == '2'}}">
               <view class="weui-flex row-container " style="background-color:#FFFFFF;">
                 <block wx:for="{{data.recommendAlbumList}}" wx:key="data.recommendAlbumList" wx:for-index="idx" wx:for-item="albumItem">
                   <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:false,isTagNameVisible:false}}" />
                 </block>
               </view>
             </view>
-          </swiper-item>
           <!--相关专辑-end-->
-        </swiper>
+
       </view>
       <!--简介 声音 相似 -end-->
-
 
       <!--分享popup 开始-->
       <view class="popup-example--bottom zan-popup zan-popup--bottom {{ isShowBottomPopup ? 'zan-popup--show' : ''}}">

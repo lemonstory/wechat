@@ -9,14 +9,15 @@
 var app = getApp()
 var audioPauseImageUrl = "http://p.xiaoningmeng.net/static/www/btn_album_pause.png";
 var audioPlayImageUrl = "http://p.xiaoningmeng.net/static/www/btn_album_play.png";
+var util = require('../../utils/util.js')
+var play = require('../../utils/play.js')
+
+const Tab = require('../../zanui-weapp/dist/tab/index');
+const Toast = require('../../zanui-weapp/dist/toast/index');
 const backgroundAudioManager = wx.getBackgroundAudioManager();
 const swiperIntroItemHeight = 722;
 const swiperRecommendAlbumItemHeight = 2180;
 const soundLineHeight = 104;
-const Toast = require('../../zanui-weapp/dist/toast/index');
-var util = require('../../utils/util.js')
-var play = require('../../utils/play.js')
-
 
 //页面二维码地址
 var qrCodeUrl = "https://wx1.sinaimg.cn/mw690/00019562gy1fmae3hw25tj20sn0trjxp.jpg";
@@ -26,13 +27,31 @@ var name = "帅帅";
 
 const ctx = wx.createCanvasContext('myCanvas');
 
-Page(Object.assign({}, Toast, {
+Page(Object.assign({}, Tab, Toast, {
   data: {
     'albumId': '',
     'isLoaded': false,
     'constant': app.constant,
     'swiperItemHeight': 0,
     'swiperSoundItemHeight': 0,
+
+    tab: {
+      list: [{
+        id: '0',
+        title: '简介'
+      }, {
+        id: '1',
+        title: '声音'
+      }, {
+        id: '2',
+        title: '相似'
+      }],
+
+      selectedId: '1',
+      scroll: true,
+      height: 45
+    },
+
 
     //显示底部弹窗
     'isShowBottomPopup': false,
@@ -253,6 +272,16 @@ Page(Object.assign({}, Toast, {
     }
   },
 
+  handleZanTabChange(e) {
+    var componentId = e.componentId;
+    var selectedId = e.selectedId;
+
+    this.setData({
+      [`${componentId}.selectedId`]: selectedId
+    });
+    console.log(this.data);
+  },
+
   getData: function (albumId) {
     console.log("🚀 🚀 🚀 getData run");
     var that = this;
@@ -282,12 +311,8 @@ Page(Object.assign({}, Toast, {
    */
   setDataCallBack: function () {
 
-    console.log("🐱 🐱 🐱 ");
     var that = this;
     for (var i = 0; i < that.data.data.storyList.items.length; i++) {
-      console.log("for i = " + i);
-      console.log(typeof (app.constant.currentPlayStoryId));
-      console.log(typeof (that.data.data.storyList.items[i]));
       if (app.constant.currentPlayStoryId == that.data.data.storyList.items[i].id) {
         that.setData({
           'albumPlayStoryId': app.constant.currentPlayStoryId,
@@ -351,42 +376,6 @@ Page(Object.assign({}, Toast, {
     })
   },
 
-  /** 
-  * 点击切换简介,声音,相似tab
-  */
-  handleSwichNav: function (e) {
-
-    var that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
-      return false;
-    } else {
-
-      that.setData({
-        currentTab: e.target.dataset.current
-      })
-
-      switch (e.detail.current) {
-        case 0:
-          that.setData({
-            swiperItemHeight: swiperIntroItemHeight
-          });
-          break;
-
-        case 1:
-          that.setData({
-            swiperItemHeight: that.data.swiperSoundItemHeight
-          });
-          break;
-
-        case 2:
-          that.setData({
-            swiperItemHeight: swiperRecommendAlbumItemHeight
-          });
-          break;
-      }
-    }
-  },
-
   toggleBottomPopup() {
     this.setData({
       isShowBottomPopup: !this.data.isShowBottomPopup
@@ -415,38 +404,6 @@ Page(Object.assign({}, Toast, {
           'constant': app.constant,
         });
       })
-  },
-
-
-  /** 
-  * 滑动切换tab 
-  */
-  bindChange: function (e) {
-
-    var that = this;
-    that.setData({
-      currentTab: e.detail.current
-    });
-
-    switch (e.detail.current) {
-      case 0:
-        that.setData({
-          swiperItemHeight: swiperIntroItemHeight
-        });
-        break;
-
-      case 1:
-        that.setData({
-          swiperItemHeight: that.data.swiperSoundItemHeight
-        });
-        break;
-
-      case 2:
-        that.setData({
-          swiperItemHeight: swiperRecommendAlbumItemHeight
-        });
-        break;
-    }
   },
 
   showToast(message) {
@@ -587,10 +544,7 @@ Page(Object.assign({}, Toast, {
 
     console.log("rectWidth = " + rectWidth + ", rectHeight = " + rectHeight + ", rectX = " + rectX + ", rectY = " + rectY);
 
-
-
     var that = this;
-
     //正方形容器,阴影
     //TODO:圆角矩形背景
     ctx.setFillStyle('#F5F6F5')
@@ -651,8 +605,6 @@ Page(Object.assign({}, Toast, {
     }
   },
 
-
-
   //canvas生成图片
   //TODO:偶发的会出现 canvasToTempFilePath fail canvas is empty 的错误
   handleCanvasToTempFilePath: function () {
@@ -699,7 +651,6 @@ Page(Object.assign({}, Toast, {
   },
 
   handleSaveImageToPhotosAlbum: function () {
-
     var that = this;
     //保存图片到系统相册
     if (that.data.isCanvasToFileOk) {
@@ -758,6 +709,5 @@ Page(Object.assign({}, Toast, {
       console.log("🐛 handlePreviewImage isCanvasToFileOk FALSE")
     }
   },
-
 }));
 
