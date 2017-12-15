@@ -1,10 +1,15 @@
 <!--
 分段标题模板
-    title: String 分段标题                               
+    title: String 分段标题
+    tagId: String 标签Id
+    type:  String 类型 (album:专辑, author:作者)                             
 -->
 <template name="sectionTitle">
-    <view class="weui-cells__title section-title">
-    <view style="float:left; font-size:30rpx;color:#494949"><view style="float:left;width:6rpx;height:26rpx;background:#fec45f;border-radius:20rpx; margin-right:18rpx; margin-top:8rpx;"></view>{{title}} </view>
-        <view style="text-align:right; font-size:30rpx;color:#494949">更多 ></view>
-    </view>
-</template>     
+  <view class="weui-cells__title section-title">
+    <view style="float:left; font-size:30rpx;color:#494949">
+      <view style="float:left;width:6rpx;height:26rpx;background:#fec45f;border-radius:20rpx; margin-right:18rpx; margin-top:8rpx;"></view>{{title}} </view>
+    <block wx:if="{{(type=='album' && tagId < 1000) || type == 'author' }}">
+      <view style="text-align:right; font-size:30rpx;color:#494949" bindtap='handleMoreTap' data-tag_id="{{tagId}}" data-type="{{type}}">更多 ></view>
+    </block>
+  </view>
+</template>
