@@ -5,9 +5,9 @@
 
 <view class="page">
   <!--播放浮框  -->
-  <navigator url="../play/play">
+  <navigator url="../player/player">
     <view class="play">
-      <image src="http://p.xiaoningmeng.net/album/2016/12/24/201d546992726352471cfea6b0df0a48.jpg@!460x460?v=1482569558"></image>
+      <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
     </view>
   </navigator>
   <!--播放浮框  -->

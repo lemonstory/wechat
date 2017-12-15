@@ -1,140 +1,154 @@
 <!--参考文档：https://mp.weixin.qq.com/debug/wxadoc/dev/api/getBackgroundAudioManager.html-->
 <import src="../../template/albumItem.wxml" />
+<import src="../../zanui-weapp/dist/toast/index.wxml" />
+<import src="../../zanui-weapp/dist/tab/index.wxml" />
 <view class="page flex" style="padding-top:1rpx;">
-     <view class="page__bd">
+  <view class="page__bd">
 
-          <!--专辑信息-start-->
-          <view class="page__bd_spacing" style="width:100%; background-color:#FFFFFF;">
-               <view style="float:left; background-color:#FFFFFF;">
-                    <image style="width: 280rpx; height: 280rpx; border-radius:6rpx; margin-top:20rpx" mode="aspectFill" src="{{data.albumInfo.cover}}"></image>
-                    <!--<text>{{data.albumInfo.listennum}}</text>-->
-               </view>
-               <view class="main" style="background-color:#fff; height:100%;">
-                    <text class="weui-media-box__title" style="display:block;text-overflow: ellipsis;font-size: 32rpx; color:#494949">{{data.albumInfo.title}}</text>
-                    <text class="weui-media-box__desc" style="margin-top:10rpx; font-size: 26rpx; color:#9B9B9B">{{data.albumInfo.age_str}}</text>
-                    <view>
-                         <block wx:for="{{[1, 2, 3, 4, 5]}}" wx:key="data.albumInfo.star_level" wx:for-index="idx" wx:for-item="i">
-                              <block wx:if="{{data.albumInfo.star_level > 0}}">
-                                   <block wx:if="{{idx + 1 <= data.albumInfo.star_level}}">
-                                        <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_selected.png" class="album-star"></image>
-                                   </block>
-                                   <block wx:else>
-                                        <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_normal.png" class="album-star"></image>
-                                   </block>
-                              </block>
-                              <block wx:else>
-                                   <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_normal.png" class="album-star"></image>
-                              </block>
+    <!--专辑信息-start-->
+    <view class="page__bd_spacing" style="width:100%; background-color:#FFFFFF;">
+      <view style="float:left; background-color:#FFFFFF;">
+        <image style="width: 280rpx; height: 280rpx; border-radius:6rpx; margin-top:20rpx" mode="aspectFill" src="{{data.albumInfo.cover}}"></image>
+        <!--<text>{{data.albumInfo.listennum}}</text>-->
+      </view>
+      <view class="main" style="background-color:#fff; height:100%;">
+        <text class="weui-media-box__title" style="display:block;text-overflow: ellipsis;font-size: 32rpx; color:#494949">{{data.albumInfo.title}}</text>
+        <text class="weui-media-box__desc" style="margin-top:10rpx; font-size: 26rpx; color:#9B9B9B">{{data.albumInfo.age_str}}</text>
+        <view>
+          <block wx:for="{{[1, 2, 3, 4, 5]}}" wx:key="data.albumInfo.star_level" wx:for-index="idx" wx:for-item="i">
+            <block wx:if="{{data.albumInfo.star_level > 0}}">
+              <block wx:if="{{idx + 1 <= data.albumInfo.star_level}}">
+                <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_selected.png" class="album-star"></image>
+              </block>
+              <block wx:else>
+                <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_normal.png" class="album-star"></image>
+              </block>
+            </block>
+            <block wx:else>
+              <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_normal.png" class="album-star"></image>
+            </block>
 
-                         </block>
-                    </view>
-                    <image bindtap="handleAudioPlayTap" src="{{audioPlayBtnImageUrl}}" style="width: 130rpx; height: 130rpx;position:relative;left:250rpx;" data-url="{{data.storyList.items[0].mediapath}}" data-title="{{data.storyList.items[0].title}}" data-epname="{{data.albumInfo.cover}}"
-                         data-singer="{{data.albumInfo.title}}" data-cover_img_url="{{data.storyList.items[0].playcover}}">
-                    </image>
-               </view>
-          </view>
-          <!--专辑信息-end-->
+          </block>
+        </view>
+        <image bindtap="handleAudioPlayTap" src="{{audioPlayBtnImageUrl}}" style="width: 130rpx; height: 130rpx;position:relative;left:250rpx;"  data-album_id="{{data.albumInfo.id}}" data-story_id="{{albumPlayStoryId}}" data-story_idx="{{albumPlayStoryIdx}}">
+        </image>
+      </view>
+    </view>
+    <!--专辑信息-end-->
 
-          <!--收藏...分享下载功能区-start-->
-          <view class="weui-flex" style="width:100%; background-color:#FFFFFF; border-bottom:1rpx solid #eee;padding-bottom:20rpx; padding-top:20rpx;">
-               <view class="weui-flex__item">
-                    <block wx:if="{{data.albumInfo.fav == 1}}">
-                         <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_album_fav_selected.png" style='width:38rpx;height:38rpx;'></image>
-                    </block>
-                    <block wx:else>
-                         <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_fav.png" style='width:38rpx;height:38rpx;'></image>
-                    </block>
-                    <text class="weui-grid__label album-action-label">{{data.albumInfo.favnum}}</text>
-               </view>
+    <!--收藏...分享下载功能区-start-->
+    <view class="weui-flex" style="width:100%; background-color:#FFFFFF; border-bottom:1rpx solid #eee;padding-bottom:20rpx; padding-top:20rpx;">
+      <view class="weui-flex__item">
+        <block wx:if="{{data.albumInfo.fav == 1}}">
+          <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_album_fav_selected.png" style='width:38rpx;height:38rpx;'></image>
+        </block>
+        <block wx:else>
+          <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_fav.png" style='width:38rpx;height:38rpx;'></image>
+        </block>
+        <text class="weui-grid__label album-action-label">{{data.albumInfo.favnum}}</text>
+      </view>
 
-               <view class="weui-flex__item">
-                    <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_commit.png" style='width:38rpx;height:38rpx;'></image>
-                    <text class="weui-grid__label album-action-label">{{data.albumInfo.commentnum}}</text>
-               </view>
+      <view class="weui-flex__item">
+        <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_commit.png" style='width:38rpx;height:38rpx;'></image>
+        <text class="weui-grid__label album-action-label">{{data.albumInfo.commentnum}}</text>
+      </view>
 
-               <view class="weui-flex__item" bindtap="handleShareAlbumTap">
-                    <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_player_share_normal.png" style='width:38rpx;height:38rpx;'></image>
-                    <text class="weui-grid__label album-action-label">分享</text>
-               </view>
-          </view>
-          <!--收藏...分享下载功能区-end-->
+      <view class="weui-flex__item" bindtap="toggleBottomPopup">
+        <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_player_share_normal.png" style='width:38rpx;height:38rpx;'></image>
+        <text class="weui-grid__label album-action-label">分享</text>
+      </view>
+    </view>
+    <!--收藏...分享下载功能区-end-->
 
-          <!--简介 声音 相似 -start-->
-          <view class="weui-tab">
-               <view class="weui-navbar album-detail-navbar" style='height:80rpx;'>
-                    <view class="weui-navbar__item {{currentTab==0 ? 'weui-bar__item_on' : ''}}" data-current="0" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'> 简介</view>
-                    <view class="weui-navbar__item {{currentTab==1 ? 'weui-bar__item_on' : ''}}" data-current="1" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>声音</view>
-                    <view class="weui-navbar__item {{currentTab==2 ? 'weui-bar__item_on' : ''}}" data-current="2" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>相似</view>
-               </view>
+    <!--简介 声音 相似 -start-->
+    <view class="weui-tab">
+      <!-- <view class="weui-navbar album-detail-navbar" style='height:80rpx;'>
+        <view class="weui-navbar__item {{currentTab==0 ? 'weui-bar__item_on' : ''}}" data-current="0" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'> 简介</view>
+        <view class="weui-navbar__item {{currentTab==1 ? 'weui-bar__item_on' : ''}}" data-current="1" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>声音</view>
+        <view class="weui-navbar__item {{currentTab==2 ? 'weui-bar__item_on' : ''}}" data-current="2" bindtap="handleSwichNav" style='font-size:30rpx;height:40rpx;padding-top:20rpx;padding-bottom:50rpx;'>相似</view>
 
-               <view class="weui-tab__panel" style="background-color:#FFFFFF;">
-                    <!-- TODO:这里的高度计算还有问题 background:#ffe000 -->
-                    <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{swiperItemHeight}}rpx;" bindchange="bindChange">
-                         <!--专辑简介-start-->
-                         <swiper-item>
-                              <view class="album-detail-hd">
-                                   <text class="{{albumIntroBdClass}}" style='color:#494949;font-size:30rpx;line-height:48rpx;'>{{data.albumInfo.intro}}</text>
-                                   <view class="album-intro-action-btn" bindtap="handleAlbumIntroActionBtn">{{albumIntroBdText}}</view>
-                                   <view class="weui-grids album-tag-grids">
-                                        <block wx:for="{{data.tagList}}" wx:key="data.tagList" wx:for-index="idx" wx:for-item="tagItem">
-                                             <view class="weui-grid album-tag-grid" data-id="{{tagItem.id}}" bindtap="handleTagTap">
-                                                  <image class="weui-grid__icon album-tag-icon circular-squareP" mode="aspectFit" src="{{tagItem.cover}}"></image>
-                                                  < text class="weui-grid__label" style="font-size:26rpx;color:#494949">{{tagItem.name}}</text>
-                                             </view>
-                                        </block>
-                                   </view>
-                              </view>
-                         </swiper-item>
-                         <!--专辑简介-end-->
+      </view> -->
 
-                         <!--故事列表 -start-->
-                         <swiper-item>
-                              <view class="weui-cells album-storys-container">
-                                   <block wx:for="{{data.storyList.items}}" wx:key="data.storyList" wx:for-index="idx" wx:for-item="storyItem">
-                                        <view style="align: center;">
-                                             <view class="album-story-index" style='color:#9B9B9B;font-size:30rpx;'>{{idx + 1}}</view>
-                                             <view class="weui-cell album-story-title" style='color:#494949;font-size:30rpx;'>{{storyItem.title}}</view>
-                                        </view>
-                                   </block>
+      <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
+      <view class="weui-tab__panel" style="background-color:#FFFFFF;">
 
-                                   <!-- <view class="album-story-action-btn">查看更多</view> -->
-                                   <!--加载更多-start-->
-                                   <!-- <view class="weui-loadmore album-story-action-btn">
+          <!--专辑简介-start-->
+            <view class="album-detail-hd" wx:if="{{tab.selectedId == '0'}}">
+              <text class="{{albumIntroBdClass}}" style='color:#494949;font-size:30rpx;line-height:48rpx;'>{{data.albumInfo.intro}}</text>
+              <view class="album-intro-action-btn" bindtap="handleAlbumIntroActionBtn">{{albumIntroBdText}}</view>
+              <view class="weui-grids album-tag-grids">
+                <block wx:for="{{data.tagList}}" wx:key="data.tagList" wx:for-index="idx" wx:for-item="tagItem">
+                  <view class="weui-grid album-tag-grid" data-id="{{tagItem.id}}" bindtap="handleTagTap">
+                    <image class="weui-grid__icon album-tag-icon circular-squareP" mode="aspectFit" src="{{tagItem.cover}}"></image>
+                    < text class="weui-grid__label" style="font-size:26rpx;color:#494949">{{tagItem.name}}</text>
+                  </view>
+                </block>
+              </view>
+            </view>
+          <!--专辑简介-end-->
+
+          <!--故事列表 -start-->
+            <view class="weui-cells album-storys-container" wx:if="{{tab.selectedId == '1'}}">
+              <block wx:for="{{data.storyList.items}}" wx:key="data.storyList" wx:for-index="idx" wx:for-item="storyItem">
+                <view style="align: center;" bindtap='handleAudioPlayTap'data-album_id="{{data.albumInfo.id}}" data-story_id="{{storyItem.id}}" data-story_idx="{{idx}}">
+                  <view wx:if="{{constant.currentPlayStoryId == storyItem.id && constant.playerStatus == 'play'}}">播放中</view>
+                  <view wx:if="{{constant.currentPlayStoryId == storyItem.id && constant.playerStatus == 'pause'}}">暂停</view>
+                  <view class="album-story-index" style='color:#9B9B9B;font-size:30rpx;'>{{idx + 1}}</view>
+                  <view class="weui-cell album-story-title" style='color:#494949;font-size:30rpx;'>{{storyItem.title}}</view>
+                </view>
+              </block>
+
+              <!-- <view class="album-story-action-btn">查看更多</view> -->
+              <!--加载更多-start-->
+              <!-- <view class="weui-loadmore album-story-action-btn">
             <view class="weui-loading"></view>
             <view class="weui-loadmore__tips">正在加载</view>
           </view> -->
-                                   <!--加载更多-end-->
-                              </view>
-                         </swiper-item>
-                         <!--故事列表-end-->
+              <!--加载更多-end-->
+            </view>
+          <!--故事列表-end-->
 
-                         <!--相关专辑-start-->
-                         <swiper-item>
-                              <view class="album-detail-hd page__bd_spacing">
-                                   <view class="weui-flex row-container " style="background-color:#FFFFFF;">
-                                        <block wx:for="{{data.recommendAlbumList}}" wx:key="data.recommendAlbumList" wx:for-index="idx" wx:for-item="albumItem">
-                                             <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:false,isTagNameVisible:false}}" />
-                                        </block>
-                                   </view>
-                              </view>
-                         </swiper-item>
-                         <!--相关专辑-end-->
-                    </swiper>
-               </view>
-               <!--简介 声音 相似 -end-->
+          <!--相关专辑-start-->
+            <view class="album-detail-hd page__bd_spacing" wx:if="{{tab.selectedId == '2'}}">
+              <view class="weui-flex row-container " style="background-color:#FFFFFF;">
+                <block wx:for="{{data.recommendAlbumList}}" wx:key="data.recommendAlbumList" wx:for-index="idx" wx:for-item="albumItem">
+                  <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:false,isTagNameVisible:false}}" />
+                </block>
+              </view>
+            </view>
+          <!--相关专辑-end-->
 
+      </view>
+      <!--简介 声音 相似 -end-->
 
-               <!-- <view class="zan-popup {{ showPopup ? 'zan-popup--show' : ''}}">
-                    <view class="zan-popup__mask" bindtap="togglePopup"></view>
-                    <view class="zan-popup__container popup-example--center"> -->
-
-
-                        
-                    <!--页尾-start-->
-                    <include src="../footer.wxml" />
-                    <!--页尾-end-->
-
-               </view>
+      <!--分享popup 开始-->
+      <view class="popup-example--bottom zan-popup zan-popup--bottom {{ isShowBottomPopup ? 'zan-popup--show' : ''}}">
+        <view class="zan-popup__mask" catchtap="toggleBottomPopup"></view>
+        <view class="zan-popup__container">
+          <view class="zan-btns">
+            <button open-type="share" class="zan-btn" catchtap="toggleBottomPopup">
+              发送给朋友
+            </button>
+            <button class="zan-btn" catchtap="generateShareCard">
+              生成卡片分享至朋友圈
+            </button>
+            <button class="zan-btn" catchtap="toggleBottomPopup">
+              取消
+            </button>
           </view>
-     </view>
+        </view>
+      </view>
+      <!--分享popup 结束-->
 
+      <!-- 直接使用 zan-toast 模板，并且直接传入 zanToast -->
+      <template is="zan-toast" data="{{ zanToast }}"></template>
+
+      <canvas canvas-id="myCanvas" hidden='true' />
+
+      <!--页尾-start-->
+      <include src="../footer.wxml" />
+      <!--页尾-end-->
+
+    </view>
+  </view>
+</view>

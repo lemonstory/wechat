@@ -30,8 +30,27 @@ Page({
   onLoad: function (options) {
 
     var that = this;
+    that.downloadImageFile();
+  },
 
+  onReady: function () {
 
+  },
+
+  onShow: function () {
+    // 生命周期函数--监听页面显示
+  },
+
+  onHide: function () {
+    // 生命周期函数--监听页面隐藏
+  },
+
+  onUnload: function () {
+    // 生命周期函数--监听页面卸载
+  },
+
+  downloadImageFile:function() {
+    var that = this;
     //下载封面图地址
     wx.downloadFile({
 
@@ -224,21 +243,7 @@ Page({
     }
   },
 
-  onReady: function () {
 
-  },
-
-  onShow: function () {
-    // 生命周期函数--监听页面显示
-  },
-
-  onHide: function () {
-    // 生命周期函数--监听页面隐藏
-  },
-
-  onUnload: function () {
-    // 生命周期函数--监听页面卸载
-  },
 
   //canvas生成图片
   //TODO:偶发的会出现 canvasToTempFilePath fail canvas is empty 的错误
