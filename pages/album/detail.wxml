@@ -77,10 +77,10 @@
               <text class="{{albumIntroBdClass}}" style='color:#494949;font-size:30rpx;line-height:48rpx;'>{{data.albumInfo.intro}}</text>
               <view class="album-intro-action-btn" bindtap="handleAlbumIntroActionBtn">{{albumIntroBdText}}</view>
               <view class="weui-grids album-tag-grids">
-                <block wx:for="{{data.tagList}}" wx:key="data.tagList" wx:for-index="idx" wx:for-item="tagItem">
-                  <view class="weui-grid album-tag-grid" data-id="{{tagItem.id}}" bindtap="handleTagTap">
+                <block wx:for="{{data.tagList}}" wx:key="data.tagList" wx:for-index="index" wx:for-item="tagItem">
+                  <view class="weui-grid album-tag-grid" data-index="{{index}}"  data-tag_id="{{tagItem.id}}" bindtap="handleTagTap">
                     <image class="weui-grid__icon album-tag-icon circular-squareP" mode="aspectFit" src="{{tagItem.cover}}"></image>
-                    < text class="weui-grid__label" style="font-size:26rpx;color:#494949">{{tagItem.name}}</text>
+                    <text class="weui-grid__label" style="font-size:26rpx;color:#494949">{{tagItem.name}}</text>
                   </view>
                 </block>
               </view>
