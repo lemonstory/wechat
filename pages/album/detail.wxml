@@ -18,14 +18,14 @@
           <block wx:for="{{[1, 2, 3, 4, 5]}}" wx:key="data.albumInfo.star_level" wx:for-index="idx" wx:for-item="i">
             <block wx:if="{{data.albumInfo.star_level > 0}}">
               <block wx:if="{{idx + 1 <= data.albumInfo.star_level}}">
-                <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_selected.png" class="album-star"></image>
+                <image src="../../icon/ic_album_star_selected.png" class="album-star"></image>
               </block>
               <block wx:else>
-                <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_normal.png" class="album-star"></image>
+                <image src="../../icon/ic_album_star_normal.png" class="album-star"></image>
               </block>
             </block>
             <block wx:else>
-              <image src="http://p.xiaoningmeng.net/static/www/ic_album_star_normal.png" class="album-star"></image>
+              <image src="../../icon/ic_album_star_normal.png" class="album-star"></image>
             </block>
 
           </block>
@@ -40,21 +40,23 @@
     <view class="weui-flex" style="width:100%; background-color:#FFFFFF; border-bottom:1rpx solid #eee;padding-bottom:20rpx; padding-top:20rpx;">
       <view class="weui-flex__item">
         <block wx:if="{{data.albumInfo.fav == 1}}">
-          <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_album_fav_selected.png" style='width:38rpx;height:38rpx;'></image>
+          <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_fav_pressed.png" style='width:38rpx;height:38rpx;'></image>
         </block>
         <block wx:else>
-          <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_fav.png" style='width:38rpx;height:38rpx;'></image>
+          <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_fav_normal.png" style='width:38rpx;height:38rpx;'></image>
         </block>
-        <text class="weui-grid__label album-action-label">{{data.albumInfo.favnum}}</text>
+        <text class="weui-grid__label album-action-label" wx:if="{{data.albumInfo.favnum > 0}}">{{data.albumInfo.favnum}}</text>
+        <text class="weui-grid__label album-action-label" wx:else>收藏</text>
       </view>
 
       <view class="weui-flex__item">
-        <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/ic_album_commit.png" style='width:38rpx;height:38rpx;'></image>
-        <text class="weui-grid__label album-action-label">{{data.albumInfo.commentnum}}</text>
+        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_comment_normal.png" style='width:38rpx;height:38rpx;'></image>
+        <text class="weui-grid__label album-action-label" wx:if="{{data.albumInfo.commentnum > 0}}">{{data.albumInfo.commentnum}}</text>
+        <text class="weui-grid__label album-action-label" wx:else>评论</text>
       </view>
 
       <view class="weui-flex__item" bindtap="toggleBottomPopup">
-        <image class="weui-grid__icon album-action-icon" src="http://p.xiaoningmeng.net/static/www/btn_player_share_normal.png" style='width:38rpx;height:38rpx;'></image>
+        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_album_share.png" style='width:38rpx;height:38rpx;'></image>
         <text class="weui-grid__label album-action-label">分享</text>
       </view>
     </view>
