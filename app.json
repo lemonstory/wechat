@@ -15,9 +15,10 @@
     "pages/history/history",
     "pages/mask/mask",
     "pages/canvas/canvas",
-    "pages/author/list"
+    "pages/author/list",
+    "pages/age",
+    "pages/age/index"
   ],
-  
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
@@ -27,7 +28,6 @@
     "disableScroll": false,
     "onReachBottomDistance": "15px"
   },
-  
   "networkTimeout": {
     "request": 60000,
     "downloadFile": 60000
