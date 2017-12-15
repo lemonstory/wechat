@@ -1781,18 +1781,17 @@
 .zan-tab__title {
      font-size: 14px;
      display: inline-block;
-     color: #666;
+     color: #9b9b9b;
      height: 44px;
      line-height: 44px;
      box-sizing: border-box;
-     margin: 0 10px;
      word-break: keep-all;
      width: 180rpx;
 }
 
 .zan-tab__item--selected .zan-tab__title {
-border-bottom:4rpx solid #FFBE4C; 
-color:#FFBE4C;
+border-bottom:6rpx solid #FFBE4C; 
+color:#494949;
 } 
 
 .zan-tab__bd--scroll {

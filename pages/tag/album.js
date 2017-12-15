@@ -13,8 +13,7 @@ Page(Object.assign({}, Tab, {
       scroll: true,
       height: 45
     },
-    tagalbumlist: [],
-
+  tagalbumlist: [],
     //页面的初始数据
     'constant': app.constant,
     'currentTagId': '',

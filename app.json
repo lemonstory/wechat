@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-     "pages/author/index",
+    "pages/author/index",
     "pages/tag/album",
     "pages/recommend/recommend",
     "pages/author/album",
@@ -17,8 +17,7 @@
     "pages/canvas/canvas",
     "pages/author/list"
   ],
-  
-  "window": {
+"window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "小柠檬-听儿歌故事",
@@ -27,8 +26,7 @@
     "disableScroll": false,
     "onReachBottomDistance": "15px"
   },
-  
-  "networkTimeout": {
+"networkTimeout": {
     "request": 60000,
     "downloadFile": 60000
   },

@@ -16,35 +16,29 @@
      height:100%;
      border-radius: 50%;
 }
-
 .slide-image {
   width: 750rpx;
   height: 300rpx;
 }
-
 .weui-grid__label {
   font-size: 26rpx;
   color: #494949;
 }
-
 .section-title {
   font-size: 24rpx;
   color: #494949;
   margin-bottom: 20rpx;
 }
-
 .weui-flex {
   display: flex;
   justify-content: space-between;
   margin: 0;
 }
-
 .row-container {
   display: flex;
   justify-content: space-between;
   margin: 0;
 }
-
 .weui-media-box__title {
   font-size: 26rpx;
   color: #494949;

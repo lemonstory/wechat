@@ -72,7 +72,7 @@
       </view> -->
 
       <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
-      <view class="weui-tab__panel" style="background-color:#FFFFFF;">
+      <view class="weui-tab__panel" style="background-color:#FFFFFF; color:#9B9B9B">
 
           <!--专辑简介-start-->
             <view class="album-detail-hd" wx:if="{{tab.selectedId == '0'}}">

@@ -2,7 +2,6 @@
 <import src="../../template/sectionTitle.wxml" />
 <import src="../../template/tagItem.wxml" />
 <import src="../../template/albumItem.wxml" />
-
 <view class="page">
   <!--播放浮框  -->
   <navigator url="../player/player">

@@ -4,7 +4,7 @@
   <view class="page__bd page__bd_spacing" style='margin-top:1rpx;background:#F7F7F7;height:100vh;border-top:1rpx solid #F7F7F7'>
     <!--图片旋转开始  -->
     <view class="play_image">
-      <image animation="{{animationData}}" src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}" style='width:440rpx;height:440rpx;border-radius:50%;border:8rpx solid #fff; margin-top:60rpx'></image>
+      <image animation="{{animationData}}" src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
     </view>
 
     <!--图片旋转结束  -->
@@ -32,16 +32,16 @@
     <!--icon图标结束  -->
 
     <!--进度条开始  -->
-    <view class="process">
+    <view class="process" style='margin-top:80rpx'>
     <view class="start_time">{{startTime}}</view>
-    <progress percent="{{progressPercent}}" color="#656565" stroke-width="3" style='width:440rpx;    position: relative;  background: #B7B4B4; border-radius: 10rpx;'/>
+    <progress percent="{{progressPercent}}" color="#656565" stroke-width="3" style='width:440rpx;     background: #B7B4B4; border-radius: 10rpx;'/>
   <view class="end_time">{{endTime}}</view>
     </view>
     <!--进度条结束-->
     <!--底部提示图标开始-->
-    <view class="weui-flex paly_icon" style="width:100%;padding-bottom:20rpx; padding-top:20rpx;">
+    <view class="weui-flex paly_icon" style="width:100%;padding-bottom:20rpx; margin-top:80rpx;">
       <view class="weui-flex__item " bindtap='handleListTap'>
-        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_playlist_normal.png" style='width:60rpx;height:60rpx;'></image>
+        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_playlist_normal.png" style='width:45rpx;height:45rpx;'></image>
       </view>
 
       <view class="weui-flex__item" bindtap='handlePlayPrev'>
@@ -66,13 +66,12 @@
       </view>
 
       <view class="weui-flex__item" data-player_mode="{{constant.playerMode}}"  bindtap="handleChangePlayerMode">
-        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_{{constant.playerMode}}_normal.png" style='width:60rpx;height:60rpx;'></image>
+        <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_{{constant.playerMode}}_normal.png" style='width:45rpx;height:45rpx;'></image>
       </view>
     </view>
-
-    <!--底部提示图标结束  -->
+<!--底部提示图标结束  -->
   </view>
 
-  <!-- 直接使用 zan-toast 模板，并且直接传入 zanToast -->
+<!-- 直接使用 zan-toast 模板，并且直接传入 zanToast -->
   <template is="zan-toast" data="{{ zanToast }}"></template>
 </view>
