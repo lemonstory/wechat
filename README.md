@@ -12,3 +12,22 @@
     page__ft page__ft_spacing 未定义
 
 *需要优化的地方
+
+  // "tabBar": {
+  //   "color": "#626262",
+  //   "selectedColor": "#fdc971",
+  //   "list": [
+  //     {
+  //       "pagePath": "pages/index/index",
+  //       "text": "精选",
+  //       "iconPath": "icon/discover.png",
+  //       "selectedIconPath": "icon/discover-selected.png"
+  //     },
+  //     {
+  //       "pagePath": "pages/my/my",
+  //       "text": "我的",
+  //       "iconPath": "icon/my.png",
+  //       "selectedIconPath": "icon/my-selected.png"
+  //     }
+  //   ]
+  // },

@@ -15,7 +15,7 @@ Page({
     //   title: '加载中...',
     //   icon: 'loading'
     // });
-    
+
   },
 
   // 生命周期函数--监听页面初次渲染完成
@@ -71,10 +71,45 @@ Page({
     this.getData();
   },
 
+  /**
+   * 点击更多
+   */
+  handleMoreTap: function (event) {
+
+    var tagId = event.target.dataset.tag_id;
+    var sectionType = event.target.dataset.type;
+    var path = '';
+    switch (sectionType) {
+
+      case 'author':
+        path = "/pages/author/list";
+        break;
+
+      case 'album':
+
+        if (tagId < 10000) {
+          path = "/pages/tag/album?selectFirstTagId=" + tagId;
+        }else{
+
+
+        }
+
+    }
+
+    console.log("tagId = " + tagId);
+    console.log("type = " + sectionType);
+
+    if (path.length > 0) {
+      wx.navigateTo({
+        url: path
+      })
+    }
+  },
+
   getData: function () {
     var that = this;
     wx.request({
-      url: that.data.constant.domain+'/default/v2.6.4/index.php', //仅为示例，并非真实的接口地址
+      url: that.data.constant.domain + '/default/v2.6.4/index.php', //仅为示例，并非真实的接口地址
       data: {},
       header: {
      'content-type': 'application/json', // 默认值
@@ -101,7 +136,7 @@ Page({
     var albumFocusArr = new Array();
 
     for (var i = 0, len = focusArr.length; i < len; i++) {
-    
+
       var linkUrl = focusArr[i].linkurl;
       if (0 == linkUrl.indexOf("xnm", 0)) {
 
@@ -166,7 +201,7 @@ Page({
     wx.navigateTo({
       url: tagUrl
     })
-  
+
   },
 
   /**

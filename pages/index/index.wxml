@@ -36,7 +36,7 @@
   <!--专辑列表-start-->
   <block wx:for="{{data.section.items}}" wx:key="data.section.items" wx:for-item="sectionItem">
     <view style="background-color: #FFFFFF;">
-      <template is="sectionTitle" data="{{title:sectionItem.title}}" />
+      <template is="sectionTitle" data="{{title:sectionItem.title,tagId:sectionItem.tag_id,type:sectionItem.type}}" />
       <!--专辑-->
       <block wx:if="{{sectionItem.type == constant.sectionTypeAlbum}}">
         <view class="weui-flex row-container page__bd_spacing">

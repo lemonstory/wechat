@@ -1,5 +1,5 @@
 {
-  "pages": [  
+  "pages": [
     "pages/index/index",
     "pages/author/index",
     "pages/tag/album",
@@ -16,8 +16,8 @@
     "pages/mask/mask",
     "pages/canvas/canvas",
     "pages/author/list"
-    
   ],
+  
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
@@ -27,24 +27,7 @@
     "disableScroll": false,
     "onReachBottomDistance": "15px"
   },
-  "tabBar": {
-    "color": "#626262",
-    "selectedColor": "#fdc971",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "精选",
-        "iconPath": "icon/discover.png",
-        "selectedIconPath": "icon/discover-selected.png"
-      },
-      {
-        "pagePath": "pages/my/my",
-        "text": "我的",
-        "iconPath": "icon/my.png",
-        "selectedIconPath": "icon/my-selected.png"
-      }
-    ]
-  },
+  
   "networkTimeout": {
     "request": 60000,
     "downloadFile": 60000
