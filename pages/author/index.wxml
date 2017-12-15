@@ -1,37 +1,39 @@
 <!--
   参考文档：https://weui.io/#badge
 -->
-<view class="page flex">
+<view class="page flex" style='border-top:1rpx solid #eee'>
   <view class="page__bd page__bd_spacing" >
 
     <!--作者列表 -start-->
-    <view class="weui-panel">
+    <view class="weui-panel"  style='width:100%;'>
       <block wx:for="{{data.items}}" wx:key="data.items" wx:for-index="idx" wx:for-item="authorItem">
         <view class="weui-cell">
         <view class="weui-media-box__hd_in-appmsg">
           <image class="circular-squareP weui-media-box__thumb" style="width: 66px; height: 66px; background-color: #eeeeee;" mode="aspectFit" src="{{authorItem.avatar}}"></image>
         </view>
-        <view class="weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__bd_in-appmsg" style='border-bottom:1rpx solid #eee;'>
           <!--<view>{{authorItem.uid}} </view>-->
-          <view class="weui-media-box__title" style="vertical-align: middle">{{authorItem.nickname}}</view>
-          <view class="weui-badge" style="margin-left: 5px;">{{authorItem.album_num}} </view> 
-          <view class="weui-media-box__desc">{{authorItem.card}} </view>
+          <view class="weui-media-box__title" style="font-size:32rpx;color:#494949;vertical-align: middle">{{authorItem.nickname}}         <view class="weui-badge" style="margin-left: 5px;">{{authorItem.album_num}} </view> </view>
+  
+          <view class="weui-media-box__desc" style="font-size:28rpx;color:#9B9B9B">{{authorItem.card}} </view>
         </view>
         </view>
       </block>
     </view>
     <!--作者列表-end-->
-    <view>查看更多</view>
+    <!-- <view>查看更多</view> -->
 
-    <!--加载更多-start-->
-    <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
-      <view class="weui-loading"></view>
-      <view class="weui-loadmore__tips">正在加载</view>
-    </view>
-    <!--加载更多-end-->
+
 
   </view>
 
   <include src="../footer.wxml"/>
   
   </view>
+
+      <!--加载更多-start-->
+    <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <!--加载更多-end-->

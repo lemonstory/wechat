@@ -1787,11 +1787,11 @@
      box-sizing: border-box;
      margin: 0 10px;
      word-break: keep-all;
-     width: 120rpx;
+     width: 180rpx;
 }
 
 .zan-tab__item--selected .zan-tab__title {
-border-bottom:6rpx solid #FFBE4C; 
+border-bottom:4rpx solid #FFBE4C; 
 color:#FFBE4C;
 } 
 

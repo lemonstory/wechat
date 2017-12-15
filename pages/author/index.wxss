@@ -21,3 +21,12 @@
      display: flex;
      justify-content: center;
 }
+.weui-media-box__bd_in-appmsg{
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+     height:140rpx;
+     padding-bottom: 20rpx;
+     padding-top: 20rpx;
+     box-sizing: border-box;
+     }
