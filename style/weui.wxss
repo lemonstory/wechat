@@ -695,10 +695,12 @@ icon {
   display: inline-block;
   padding: .15em .4em;
   min-width: 8px;
-  font-size: 32rpx;
-  color: #9B9B9B;
+  border-radius: 18px;
+  background-color: #eee;
+  color: #494949;
   line-height: 1.2;
   text-align: center;
+  font-size: 12px;
   vertical-align: middle;
 }
 .weui-badge_dot {
