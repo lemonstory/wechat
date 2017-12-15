@@ -32,12 +32,13 @@
     <!--icon图标结束  -->
 
     <!--进度条开始  -->
+    <view class="process">
     <view class="start_time">{{startTime}}</view>
-    <progress percent="{{progressPercent}}" color="#10AEFF" stroke-width="3" />
-    <view class="end_time">{{endTime}}</view>
-    <!--进度条结束  -->
-
-    <!--底部提示图标开始  -->
+    <progress percent="{{progressPercent}}" color="#656565" stroke-width="3" style='width:440rpx;    position: relative;  background: #B7B4B4; border-radius: 10rpx;'/>
+  <view class="end_time">{{endTime}}</view>
+    </view>
+    <!--进度条结束-->
+    <!--底部提示图标开始-->
     <view class="weui-flex paly_icon" style="width:100%;padding-bottom:20rpx; padding-top:20rpx;">
       <view class="weui-flex__item " bindtap='handleListTap'>
         <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_playlist_normal.png" style='width:60rpx;height:60rpx;'></image>

@@ -1,6 +1,5 @@
 //获取应用实例
 //
-
 var Base64 = require('../../utils/base64.modified.js');
 var app = getApp()
 Page({
