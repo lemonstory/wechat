@@ -74,7 +74,7 @@ Page({
       url: that.data.constant.domain+'/default/v2.6.4/index.php', //仅为示例，并非真实的接口地址
       data: {},
       header: {
-        'content-type': 'application/json', // 默认值
+     'content-type': 'application/json', // 默认值
         // 'user-agent': 'api.xiaoningmeng.net/2.8.0/adr (M5 Note,864883030379469,460027404571654,6.0,1080*1920,4.589389937671455,480,wifi,_360,zh)',
       },
       success: function (res) {
@@ -111,7 +111,6 @@ Page({
           } else {
             albumIdSubStr = linkUrl.substring(albumIdIndex);
           }
-
           var albumIdArr = albumIdSubStr.split("=");
           var albumId = parseInt(albumIdArr[1]);
           if (albumId > 0) {

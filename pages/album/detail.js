@@ -36,7 +36,6 @@ Page({
 
       //初始显示声音选项卡
       'currentTab': 1,
-
       'currentPosition': 0,
       'audioPlayBtnImageUrl': audioPlayImageUrl,
     });

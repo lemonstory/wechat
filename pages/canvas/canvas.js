@@ -166,7 +166,7 @@ Page({
 
     //正方形容器,阴影
     //TODO:圆角矩形背景
-    ctx.setFillStyle('#F5F6F5')
+    ctx.setFillStyle('blue')
     // ctx.setShadow(30, 10, 50, '#B5B5B5');
     // ctx.fillRect(30, 10, 300, 400)
     ctx.setStrokeStyle('blue')
