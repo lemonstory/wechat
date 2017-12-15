@@ -369,8 +369,15 @@ Page(Object.assign({}, Tab, Toast, {
    * 处理标签点击
    */
   handleTagTap: function (event) {
-    var tagId = event.currentTarget.dataset.id;
-    var tagUrl = "/pages/tag/album?tagId=" + tagId;
+    var tagId = event.currentTarget.dataset.tag_id;
+    var index = event.currentTarget.dataset.index;
+    var param = "";
+    if (index == 0) {
+      param = "selectFirstTagId=" + tagId;
+    }else{
+      param = "selectSecondTagId=" + tagId;
+    }
+    var tagUrl = "/pages/tag/album?" + param;
     wx.navigateTo({
       url: tagUrl
     })

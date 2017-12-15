@@ -60,8 +60,6 @@
   </block>
   <!--专辑列表-end-->
 
-
-
   <!--页尾-start-->
   <block wx:if="{{isLoaded}}">
     <include src="../footer.wxml" />
