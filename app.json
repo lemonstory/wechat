@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-     "pages/author/index",
+    "pages/author/index",
     "pages/tag/album",
     "pages/recommend/recommend",
     "pages/author/album",
@@ -15,8 +15,6 @@
     "pages/history/history",
     "pages/mask/mask",
     "pages/canvas/canvas",
-    "pages/author/list",
-    "pages/age",
     "pages/age/index"
   ],
   "window": {

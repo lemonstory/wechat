@@ -82,7 +82,7 @@ Page({
     switch (sectionType) {
 
       case 'author':
-        path = "/pages/author/list";
+        path = "/pages/author/index";
         break;
 
       case 'album':
