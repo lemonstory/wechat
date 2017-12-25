@@ -127,6 +127,25 @@ Page({
     wx.navigateTo({
       url: tagUrl
     })
-
   },
+
+  /**
+   * 年龄段-点击
+   */
+  bindTapAgeLevel:function(event) {
+
+    var title = event.currentTarget.dataset.title;
+    var minAge = 0;
+    var maxAge = 0;
+    var ageStr = title.replace('岁', '')
+    var ageArr = ageStr.split("-");
+
+    minAge = ageArr[0];
+    maxAge = ageArr[1];
+
+    var url = "/pages/age/index?minAge=" + minAge + "&maxAge=" + maxAge;
+    wx.navigateTo({
+      url: url,
+    })
+  }
 })

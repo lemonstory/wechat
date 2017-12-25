@@ -4,7 +4,7 @@
     <!--年轮段-->
     <view class="weui-flex" style='background:#fff;border-top:1rpx solid #eee;'>
       <block wx:for="{{data.age_level.items}}" wx:key="data.age_level.items" wx:for-index="idx" wx:for-item="ageLevelItem">
-        <view class="weui-flex__item">
+        <view class="weui-flex__item" data-title="{{ageLevelItem.title}}" bindtap='bindTapAgeLevel'>
           <image style="width: 100%; height: 60rpx;" mode="aspectFit" src="{{ageLevelItem.cover}}"></image>
           <view style='margin-top:10rpx;'>{{ageLevelItem.title}}</view>
         </view>
