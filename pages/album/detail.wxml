@@ -49,9 +49,9 @@
         <text class="weui-grid__label album-action-label" wx:else>收藏</text>
       </view>
 
-      <view class="weui-flex__item">
+      <view class="weui-flex__item" bindtap='bindTapComment'>
         <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_comment_normal.png" style='width:38rpx;height:38rpx;'></image>
-        <text class="weui-grid__label album-action-label" wx:if="{{data.albumInfo.commentnum > 0}}">{{data.albumInfo.commentnum}}</text>
+        <text class="weui-grid__label album-action-label" wx:if="{{data.albumInfo.commentnum > 0}}" >{{data.albumInfo.commentnum}}</text>
         <text class="weui-grid__label album-action-label" wx:else>评论</text>
       </view>
 
