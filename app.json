@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/comment/comment-list",
     "pages/index/index",
     "pages/author/index",
     "pages/tag/album",
@@ -16,13 +17,14 @@
     "pages/mask/mask",
     "pages/canvas/canvas",
     "pages/age/index"
+    
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "小柠檬-听儿歌故事",
     "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true,
+    "enablePullDownRefresh": false,
     "disableScroll": false,
     "onReachBottomDistance": "15px"
   },

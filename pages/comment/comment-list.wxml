@@ -1,0 +1,8 @@
+<!--pages/comment/comment.wxml-->
+<block wx:for="{{commentListData}}" wx:key="commentListData">
+ <image src='{{item.avatar}}'></image> 
+<text>姓名： {{item.uname}}</text>
+ <text>评论： {{item.comment}}</text>
+<text>时间： {{item.addtime}}</text>
+<text>评星： {{item.start_level}}</text> 
+</block>
