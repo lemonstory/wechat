@@ -12,7 +12,7 @@
 <template name="horizontalAlbumItem">
   <view class="weui-cell" data-id="{{id}}" bindtap="handleAlbumTap">
     <view class="weui-media-box__hd">
-      <image class="weui-media-box__thumb" style="width: 320rpx; height: 212rpx;   border-radius: 6rpx;" mode="aspectFill" src="{{cover}}"></image>
+      <image class="weui-media-box__thumb" style="width: 320rpx; height: 212rpx;   border-radius: 6rpx;" mode="aspectFill" src="{{cover ? cover : '/image/bg_album_default.png'}}"></image>
     </view>
     <view class="weui-media-box__bd" style='height: 212rpx;width:auto;margin-left:20rpx;'>
       <view class="weui-media-box__title" style="font-size:28rpx;color:#494949;margin-top:0">{{title}}</view>
