@@ -1,5 +1,6 @@
 /* pages/comment/comment.wxss */
-.page{
+.main{
+  
      border-top:1rpx solid #eee;
 }
 .comment-box{
