@@ -158,7 +158,7 @@ page {
 .pulse {
   width: 8rpx;
   height: 40rpx;
-  background: #fec45f;
+  background: red;
   margin: 8rpx;
   border-radius: 20rpx;
 }
