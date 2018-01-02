@@ -11,12 +11,14 @@
      position: fixed;
      bottom:20rpx;
      left:20rpx;
+        z-index: 9999;
      }
 
 .play image{
      width:100%;
      height:100%;
      border-radius: 50%;
+     z-index: 9999;
 }
 
 .slide-image {
@@ -69,4 +71,7 @@
      position: fixed;
      bottom:120rpx;
 
+}
+.weui-grid album-tag-grid{
+     width:25%;
 }

@@ -11,7 +11,8 @@ Page(Object.assign({}, Tab, {
       list: [],
       selectedId: '',
       scroll: true,
-      height: 45
+      height: 45,
+      albumRotateClass: ''
     },
     tagalbumlist: [],
 
@@ -275,5 +276,26 @@ Page(Object.assign({}, Tab, {
       });
     }
   },
+
+  stopRotateAnimation: function () {
+
+       var that = this;
+       var that = this;
+       that.setData({
+            albumRotateClass: 'rotate-paused'
+       })
+  },
+
+  /**
+   * 开始旋转动画
+   */
+  startRotateAnimation: function () {
+
+       var that = this;
+       that.setData({
+            albumRotateClass: 'rotate-start'
+       })
+  },
+
 
 }));

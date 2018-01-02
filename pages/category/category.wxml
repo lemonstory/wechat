@@ -2,11 +2,11 @@
   <view class="page flex">
 
     <!--播放浮框  -->
-    <navigator url="../player/player">
+     <navigator url="../player/player">
       <view class="play {{albumRotateClass}}">
         <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
       </view>
-    </navigator>
+    </navigator> 
     <!--播放浮框  -->
 
     <!--年轮段-->
