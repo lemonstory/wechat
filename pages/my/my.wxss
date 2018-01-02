@@ -1,12 +1,5 @@
 /* pages/my/my.wxss */
 
-.page {
-     width: 100%;
-     height: 100vh;
-     background: #eee 100%;
-     padding: 0;
-     margin: 0;
-}
 .user_message {
      width: 100%;
      height: 280rpx;

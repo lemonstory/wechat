@@ -79,11 +79,11 @@ Page({
       },
       success: function (res) {
         wx.hideLoading();
-        res.data.isLoaded = true;
         var intro = res.data.data.info.intro.replace(/<(?:.|\n)*?>|&nbsp;/gm, '');
         that.setData(res.data);
         that.setData({
-          'intro': intro,
+          intro: intro,
+          isLoaded:true
         })
         that.setDataCallBack();
         console.log(res.data);
