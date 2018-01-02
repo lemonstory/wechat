@@ -17,7 +17,7 @@ function audioPlaySwitch(albumDetailData, albumId, singer, storyId, storyIdx, ca
   console.log("🎵 🎵 🎵  audioPlay START");
   console.log("albumId = " + albumId + ", storyId = " + storyId + ", storyIdx = " + storyIdx);
 
-  if (!util.isEmpty(albumId)) {
+  if (!util.isEmptyStr(albumId)) {
 
     var currentPagePlayAlbumId = albumId;
     var currentPagePlayStoryId = storyId;

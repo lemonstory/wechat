@@ -7,7 +7,7 @@
 <view class="page">
   <!--播放浮框  -->
   <navigator url="../player/player">
-    <view class="play">
+    <view class="play {{albumRotateClass}}">
       <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
     </view>
   </navigator>

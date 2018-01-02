@@ -63,6 +63,13 @@ Page({
    */
   onShow: function () {
 
+    var that = this;
+    if (that.data.constant.playerStatus == 'play') {
+      that.startRotateAnimation();
+    } else {
+      that.stopRotateAnimation();
+    }
+
   },
 
   /**
@@ -136,11 +143,8 @@ Page({
     var tagId = event.currentTarget.dataset.tag_id;
     var index = event.currentTarget.dataset.index;
     var param = "";
-    if (index == 0) {
-      param = "selectFirstTagId=" + tagId;
-    } else {
-      param = "selectSecondTagId=" + tagId;
-    }
+
+    param = "selectSecondTagId=" + tagId;
     var tagUrl = "/pages/tag/album?" + param;
     wx.navigateTo({
       url: tagUrl
@@ -153,6 +157,29 @@ Page({
    */
   setDataCallBack: function () {
 
-  }
+  },
+
+  /**
+   * 停止旋转动画
+   */
+  stopRotateAnimation: function () {
+
+    var that = this;
+    var that = this;
+    that.setData({
+      albumRotateClass: 'rotate-paused'
+    })
+  },
+
+  /**
+   * 开始旋转动画
+   */
+  startRotateAnimation: function () {
+
+    var that = this;
+    that.setData({
+      albumRotateClass: 'rotate-start'
+    })
+  },
 
 })

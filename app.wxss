@@ -94,3 +94,26 @@
   font-size: 13px;
 }
 
+/** 封面旋转动画 -start **/
+@keyframes rotate{
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+.rotate-start {
+  animation:rotate 20s infinite linear;
+  animation-play-state:running;
+  -webkit-animation-play-state:running; /* Safari 和 Chrome */
+}
+
+.rotate-paused {
+  animation:rotate 20s infinite linear;
+  animation-play-state:paused;
+  -webkit-animation-play-state:paused; /* Safari 和 Chrome */
+}
+/** 封面旋转动画 -end **/
+

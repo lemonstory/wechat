@@ -1,6 +1,14 @@
 <view class="container">
   <view class="page flex">
 
+    <!--播放浮框  -->
+    <navigator url="../player/player">
+      <view class="play {{albumRotateClass}}">
+        <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
+      </view>
+    </navigator>
+    <!--播放浮框  -->
+
     <!--年轮段-->
     <view class="weui-flex" style='background:#fff;border-top:1rpx solid #eee;'>
       <block wx:for="{{data.age_level.items}}" wx:key="data.age_level.items" wx:for-index="idx" wx:for-item="ageLevelItem">
@@ -13,7 +21,7 @@
 
     <!--标签-->
 
-    <view class="section" block wx:for="{{data.tag.items}}" wx:key="data.tag.items" wx:for-index="idx" wx:for-item="tagItem" >
+    <view class="section" block wx:for="{{data.tag.items}}" wx:key="data.tag.items" wx:for-index="idx" wx:for-item="tagItem">
       <view style=" font-size:26rpx;color:#9B9B9B">{{tagItem.name}}
         <view style="float:left;width:6rpx;height:26rpx;background:#fec45f;border-radius:20rpx; margin-right:18rpx; margin-top:6rpx;"></view>
         {{title}}

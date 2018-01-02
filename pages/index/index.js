@@ -6,7 +6,10 @@ Page({
   //页面的初始数据
   data: {
     'isLoaded': false,
-    'constant': app.constant
+    'constant': app.constant,
+
+    //播放专辑class
+    albumRotateClass: ''
   },
 
   onLoad: function (options) {
@@ -39,9 +42,16 @@ Page({
 
   onShow: function () {
     // 生命周期函数--监听页面显示
-    this.setData({
+
+    var that = this;
+    that.setData({
       'constant': app.constant,
     })
+    if (that.data.constant.playerStatus == 'play') {
+      that.startRotateAnimation();
+    } else {
+      that.stopRotateAnimation();
+    }
   },
 
   onHide: function () {
@@ -89,7 +99,7 @@ Page({
 
         if (tagId < 10000) {
           path = "/pages/tag/album?selectFirstTagId=" + tagId;
-        }else{
+        } else {
 
 
         }
@@ -112,7 +122,7 @@ Page({
       url: that.data.constant.domain + '/default/v2.6.4/index.php', //仅为示例，并非真实的接口地址
       data: {},
       header: {
-     'content-type': 'application/json', // 默认值
+        'content-type': 'application/json', // 默认值
         // 'user-agent': 'api.xiaoningmeng.net/2.8.0/adr (M5 Note,864883030379469,460027404571654,6.0,1080*1920,4.589389937671455,480,wifi,_360,zh)',
       },
       success: function (res) {
@@ -242,5 +252,29 @@ Page({
       complete: function (res) {
       }
     });
-  }
+  },
+
+  /**
+ * 停止旋转动画
+ */
+  stopRotateAnimation: function () {
+
+    var that = this;
+    var that = this;
+    that.setData({
+      albumRotateClass: 'rotate-paused'
+    })
+  },
+
+  /**
+   * 开始旋转动画
+   */
+  startRotateAnimation: function () {
+
+    var that = this;
+    that.setData({
+      albumRotateClass: 'rotate-start'
+    })
+  },
+
 });

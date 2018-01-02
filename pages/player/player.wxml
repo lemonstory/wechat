@@ -3,7 +3,7 @@
 <view class="page">
   <view class="page__bd page__bd_spacing" style='margin-top:1rpx;background:#F7F7F7;height:100vh;border-top:1rpx solid #F7F7F7'>
     <!--图片旋转开始  -->
-    <view class="play_image">
+    <view class="play_image {{albumRotateClass}}">
       <image animation="{{animationData}}" src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}" style='width:440rpx;height:440rpx;border-radius:50%;border:8rpx solid #fff; margin-top:60rpx'></image>
     </view>
 
@@ -16,7 +16,7 @@
           <image class="weui-grid__icon album-action-icon" src="btn_player_fav_normal.png" style='width:38rpx;height:38rpx;'></image>
         </block>
         <block wx:else>
-          <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_fav_pressed.png" style='width:38rpx;height:38rpx;'></image>
+          <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_fav_normal.png" style='width:38rpx;height:38rpx;'></image>
         </block>
       </view>
 

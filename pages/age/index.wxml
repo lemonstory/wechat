@@ -7,7 +7,7 @@
 <view class="page">
   <!--播放浮框  -->
   <navigator url="../player/player">
-    <view class="play">
+    <view class="play {{albumRotateClass}}">
       <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
     </view>
   </navigator>
@@ -33,7 +33,7 @@
       <!--专辑-->
       <view class="weui-flex row-container page__bd_spacing">
         <block wx:for="{{sectionItem.items}}" wx:key="sectionItem.items" wx:for-index="idx" wx:for-item="albumItem">
-          <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,recommendDesc:albumItem.recommenddesc,listenNum:albumItem.listen_num,isDescVisible:true,isTagNameVisible:false}}" />
+          <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,recommendDesc:albumItem.recommend_desc,listenNum:albumItem.listen_num,isDescVisible:true,isTagNameVisible:false}}" />
         </block>
       </view>
       <!--专辑-->

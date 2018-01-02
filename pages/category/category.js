@@ -4,7 +4,9 @@ Page({
 
   data: {
     'isLoaded': false,
-    'constant': app.constant
+    'constant': app.constant,
+    //播放专辑class
+    albumRotateClass: ''
   },
 
   onLoad: function (options) {
@@ -147,5 +149,27 @@ Page({
     wx.navigateTo({
       url: url,
     })
-  }
+  },
+
+  /**
+* 停止旋转动画
+*/
+  stopRotateAnimation: function () {
+
+    var that = this;
+    that.setData({
+      albumRotateClass: 'rotate-paused'
+    })
+  },
+
+  /**
+   * 开始旋转动画
+   */
+  startRotateAnimation: function () {
+
+    var that = this;
+    that.setData({
+      albumRotateClass: 'rotate-start'
+    })
+  },
 })
