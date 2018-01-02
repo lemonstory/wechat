@@ -5,42 +5,40 @@
 <import src="../../template/footer.wxml" />
 <view class="page flex">
 
-  <!--作者信息-start-->
-  <view class="page flex">
-    <view class="page__bd page__bd_spacing" style='padding:0'>
-      <!--作者信息-start-->
+     <!--作者信息-start-->
+     <view class="page flex">
+          <view class="page__bd page__bd_spacing" style='padding:0'>
+               <!--作者信息-start-->
+               <view class="weui-panel" style='margin:0'>
+                    <view class="weui-cell" style='padding:0;width:100%; padding-left:30rpx;padding-right:30rpx;margin:0'>
+                    </view>
+                    <view class="weui-panel" style='margin:0' data-url="{{data.info.wiki_url}}" bindtap="handleAuthorTap">
+                         <view class="weui-cell" style='width:100%; padding-left:30rpx;padding-right:30rpx'>
+
+                              <view class="weui-media-box__hd_in-appmsg">
+                                   <image class="circular-squareP weui-media-box__thumb" style="width: 120rpx; height: 120rpx;" mode="aspectFit" src="{{data.info.avator}}"></image>
+                              </view>
+                              <view class="weui-media-box__bd_in-appmsg">
+                                   <!--<view>{{authorItem.uid}} </view>-->
+                                   <view class="weui-media-box__title" style="vertical-align: middle;color:#494949;font-size:32rpx; ">{{data.info.nickname}}</view>
+                                   <view class="weui-media-box__desc" style="padding-right:60rpx; ">{{intro}} </view>
+                              </view>
+                              <!--TODO:向右侧的箭头不出现-->
+                              <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx; position:absoulte;top:30rpx;right:20rpx'></image>
+                         </view>
+                    </view>
+                    <!--作者信息-end-->
+
+                    <!--故事列表 -start-->
+
+                    <view class="weui-cells" style='border:none;margin-top:10rpx; padding-top:10rpx;padding-left:30rpx;padding-right:30rpx'>
+                         <view style='margin-top:20rpx;color:#9B9B9B;font-size:28rpx'>作品</view>
+                         <block wx:for="{{data.items}}" wx:key="data.items" wx:for-index="idx" wx:for-item="albumItem">
+                              <template is="horizontalAlbumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,ageStr:albumItem.age_str,recommendDesc:albumItemrecommenddesc,intro:albumItem.intro,listenNum:albumItem.listennum,isDescVisible:true}}"
+                              />
 
 
-      <view class="weui-panel" style='margin:0'>
-        <view class="weui-cell" style='padding:0;width:100%; padding-left:30rpx;padding-right:30rpx;margin:0'>
-        </view>
-        <view class="weui-panel" style='margin:0' data-url="{{data.info.wiki_url}}" bindtap="handleAuthorTap">
-          <view class="weui-cell" style='width:100%; padding-left:30rpx;padding-right:30rpx'>
-
-            <view class="weui-media-box__hd_in-appmsg">
-              <image class="circular-squareP weui-media-box__thumb" style="width: 120rpx; height: 120rpx;" mode="aspectFit" src="{{data.info.avator}}"></image>
-            </view>
-            <view class="weui-media-box__bd_in-appmsg">
-              <!--<view>{{authorItem.uid}} </view>-->
-              <view class="weui-media-box__title" style="vertical-align: middle;color:#494949;font-size:32rpx; ">{{data.info.nickname}}</view>
-              <view class="weui-media-box__desc" style="padding-right:60rpx; ">{{intro}} </view>
-            </view>
-            <!--TODO:向右侧的箭头不出现-->
-            <image src="http://image.365zhiding.com/wxapp/20171114/1.png" style='width:14rpx;height:24rpx; position:absoulte;top:30rpx;right:20rpx'></image>
-          </view>
-        </view>
-        <!--作者信息-end-->
-
-        <!--故事列表 -start-->
-
-        <view class="weui-cells" style='border:none;margin-top:10rpx; padding-top:10rpx;padding-left:30rpx;padding-right:30rpx'>
-          <view style='margin-top:20rpx;color:#9B9B9B;font-size:28rpx'>作品</view>
-          <block wx:for="{{data.items}}" wx:key="data.items" wx:for-index="idx" wx:for-item="albumItem">
-            <template is="horizontalAlbumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,ageStr:albumItem.age_str,recommendDesc:albumItemrecommenddesc,intro:albumItem.intro,listenNum:albumItem.listennum,isDescVisible:true}}"
-            />
-
-
-            <!-- <view class="weui-cell" data-id="{{albumItem.id}}" bindtap="handleAlbumTap">
+                              <!-- <view class="weui-cell" data-id="{{albumItem.id}}" bindtap="handleAlbumTap">
                               <view class="weui-media-box__hd">
                                    <image class="weui-media-box__thumb" style="width: 320rpx; height: 212rpx;   border-radius: 6rpx;" mode="aspectFill" src="{{albumItem.cover}}"></image>
                               </view>
@@ -51,33 +49,33 @@
                                    <view class="weui-media-box__desc" style="font-size:24rpx;color:#494949;margin-top:10rpx">{{albumItem.recommenddesc}}</view>
                               </view>
                          </view> -->
-          </block>
-        </view>
+                         </block>
+                    </view>
 
-        <!--故事列表-end-->
+                    <!--故事列表-end-->
 
 
-        <!--加载更多-start-->
-        <!-- <view class="weui-loadmore  weui-loadmore_dot">
+                    <!--加载更多-start-->
+                    <!-- <view class="weui-loadmore  weui-loadmore_dot">
                     <view class="weui-loading"></view>
                     <view class="weui-loadmore__tips">更多内容，敬请期待</view>
                </view> -->
-        <!--加载更多-end-->
+                    <!--加载更多-end-->
 
 
 
 
-      </view>
+               </view>
 
 
 
-    </view>
-  </view>
+          </view>
+     </view>
 
 </view>
 
 <!--页尾-start-->
 <block wx:if="{{isLoaded}}">
-  <template is="footer" />
+     <template is="footer" />
 </block>
 <!--页尾-end-->
