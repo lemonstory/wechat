@@ -3,7 +3,7 @@
 <import src="../../template/footer.wxml" />
 <import src="../../zanui-weapp/dist/toast/index.wxml" />
 <import src="../../zanui-weapp/dist/tab/index.wxml" />
-<view class="page flex" style="padding-top:1rpx;">
+<view class="page flex" style="padding-top:1rpx; width:100%;overflow:hidden;">
   <view class="page__bd">
 
     <!--专辑信息-start-->
