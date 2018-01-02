@@ -1,3 +1,4 @@
+@import "../../loading.wxss";
 .container {
   height: 100%;
   display: flex;
