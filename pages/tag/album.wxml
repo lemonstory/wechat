@@ -6,6 +6,11 @@
 <import src="../../zanui-weapp/dist/loadmore/index.wxml" />
 
 <view class="page">
+  <navigator url="../player/player">
+      <view class="play {{albumRotateClass}}">
+        <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
+      </view>
+    </navigator> 
 
   <view style="border-top:1rpx solid #eee;margin-bottom:15rpx;">
     <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
