@@ -1,6 +1,6 @@
 <!--pages/comment/comment.wxml-->
 <import src="../../template/footer.wxml" />
-<view class="main">
+<view class="page">
   <block wx:for="{{commentListData}}" wx:key="commentListData">
     <view class="comment-box">
       <image class="userlogo" src='{{item.avatar}}'></image>

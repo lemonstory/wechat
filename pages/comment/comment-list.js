@@ -132,10 +132,19 @@ Page({
           var currentCommentListData = that.data.commentListData;
           var currentCommentListData = currentCommentListData.concat(res.data.data.items);
 
+          for(var i = 0; i<currentCommentListData.length; i++) {
+            currentCommentListData[i].addtime = util.getShortTimeStr(currentCommentListData[i].addtime)
+          }
 
           that.setData({
             commentListData: currentCommentListData,
             isLoaded:true
+          })
+
+          //设置页面标题
+          var title = "评论("+ res.data.data.total +")";
+          wx.setNavigationBarTitle({
+            title: title
           })
 
           console.log(that.data.commentListData);

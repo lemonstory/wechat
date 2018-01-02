@@ -1,8 +1,5 @@
 /* pages/comment/comment.wxss */
-.main{
-     width:100%;
-     height:100vh;
-     background:#eee;
+.page{
      border-top:1rpx solid #eee;
 }
 .comment-box{
