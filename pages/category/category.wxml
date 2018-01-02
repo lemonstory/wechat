@@ -1,5 +1,5 @@
 <import src="../../template/footer.wxml" />
-<view class="container">
+
   <view class="page flex">
 
     <!--播放浮框  -->
@@ -46,4 +46,3 @@
   </block>
   <!--页尾-end-->
 
-</view>
