@@ -22,7 +22,7 @@
       <view wx:if="{{recommendDesc}}" class="weui-media-box__desc" style="margin-left:10rpx;margin-top:6rpx;font-size:22rpx;width:340rpx; height:26rpx;text-overflow: ellipsis; overflow:hidden">{{recommendDesc}}</view>
       <view wx:else class="weui-media-box__desc" style="margin-left:10rpx;margin-top:6rpx;font-size:22rpx;width:340rpx; height:26rpx;text-overflow: ellipsis; overflow:hidden">{{intro}}</view>
     </block>
-    <image style="width:22rpx;height:22rpx;margin-top:10rpx;margin-left:10rpx;margin-right:10rpx;float:left;" src="http://jic.xiaoningmeng.net/www/img/ic_player.png"></image>
+    <image style="width:22rpx;height:22rpx;margin-top:10rpx;margin-left:10rpx;margin-right:10rpx;float:left;" src="/icon/ic_player.png"></image>
     <view class="weui-media-box__desc" style="text-overflow: ellipsis;margin-top:11rpx; font-size: 22rpx;">{{listenNum}}</view>
     <block wx:if="{{isTagNameVisible}}">
       <view>{{tagName}}</view>
