@@ -1,5 +1,7 @@
 <import src="../../template/tagItem.wxml" />
 <import src="../../template/albumItem.wxml" />
+<import src="../../template/footer.wxml" />
+
 <import src="../../zanui-weapp/dist/tab/index.wxml" />
 <import src="../../zanui-weapp/dist/loadmore/index.wxml" />
 
@@ -27,13 +29,13 @@
 
   <!--加载更多-start-->
   <template is="zan-loadmore" wx:if="{{isLoading}}" data="{{loading: true}}" />
-  <template is="zan-loadmore" wx:if="{{isNoMore}}" data="{{nodata: true,nodata_str:'更多内容, 敬请期待'}}" /> 
+  <template is="zan-loadmore" wx:if="{{isNoMore}}" data="{{nodata: true,nodata_str:'更多内容, 敬请期待'}}" />
   <!--加载更多-end-->
 
   <!--页尾-start-->
-  <!-- <block wx:if="{{isLoaded}}">
-    <include src="../footer.wxml" />
-  </block> -->
+  <block wx:if="{{isNoMore}}">
+    <template is="footer" />
+  </block>
   <!--页尾-end-->
 
 </view>

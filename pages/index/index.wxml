@@ -2,7 +2,8 @@
 <import src="../../template/sectionTitle.wxml" />
 <import src="../../template/tagItem.wxml" />
 <import src="../../template/albumItem.wxml" />
-<import src="../../template/loading.wxml"/>
+<import src="../../template/loading.wxml" />
+<import src="../../template/footer.wxml" />
 
 <view class="page">
   <!--播放浮框  -->
@@ -13,7 +14,7 @@
   </navigator>
   <!--播放浮框  -->
 
-<!--焦点图-start-->
+  <!--焦点图-start-->
   <view class="page__bd ">
     <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" circular="true">
       <block wx:for="{{data.focus.items}}" wx:key="data.focus.items" wx:for-index="idx">
@@ -61,14 +62,14 @@
   </block>
   <!--专辑列表-end-->
 
-  <!--页尾-start-->
-  <block wx:if="{{isLoaded}}">
-    <include src="../footer.wxml" />
-  </block>
-  <!--页尾-end-->
-
 </view>
 
+<!--页尾-start-->
+ <block wx:if="{{isLoaded}}"> 
+  <template is="footer" />
+ </block> 
+<!--页尾-end-->
+
 <block wx:if="{{!isLoaded}}">
-    <template is="loading"/>
+  <template is="loading" />
 </block>

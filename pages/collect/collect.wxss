@@ -1,9 +1,5 @@
 /* pages/collect/collect.wxss */
-
 .page {
-     width: 100%;
-     height: 100vh;
-     background: #fff;
      margin: 0;
      padding-top: 20rpx;
 }

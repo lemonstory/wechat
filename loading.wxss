@@ -1,7 +1,7 @@
 /* pages/others/loading/loading.wxss */
 
-Page {
-  background: #fff;
+page {
+  background: #F3F4F6;
 }
 
 .loading_box {
@@ -158,7 +158,7 @@ Page {
 .pulse {
   width: 8rpx;
   height: 40rpx;
-  background: #1ab394;
+  background: #fec45f;
   margin: 8rpx;
   border-radius: 20rpx;
 }

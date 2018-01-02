@@ -3,6 +3,7 @@
 <import src="../../template/tagItem.wxml" />
 <import src="../../template/albumItem.wxml" />
 <import src="../../template/loading.wxml" />
+<import src="../../template/footer.wxml" />
 
 <view class="page">
   <!--播放浮框  -->
@@ -54,7 +55,7 @@
 
   <!--页尾-start-->
   <block wx:if="{{isLoaded}}">
-    <include src="../footer.wxml" />
+    <template is="footer" />
   </block>
   <!--页尾-end-->
 

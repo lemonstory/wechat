@@ -1,5 +1,6 @@
 <!--参考文档：https://mp.weixin.qq.com/debug/wxadoc/dev/api/getBackgroundAudioManager.html-->
 <import src="../../template/albumItem.wxml" />
+<import src="../../template/footer.wxml" />
 <import src="../../zanui-weapp/dist/toast/index.wxml" />
 <import src="../../zanui-weapp/dist/tab/index.wxml" />
 <view class="page flex" style="padding-top:1rpx;">
@@ -51,7 +52,7 @@
 
       <view class="weui-flex__item" bindtap='bindTapComment'>
         <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_comment_normal.png" style='width:38rpx;height:38rpx;'></image>
-        <text class="weui-grid__label album-action-label" wx:if="{{data.albumInfo.commentnum > 0}}" >{{data.albumInfo.commentnum}}</text>
+        <text class="weui-grid__label album-action-label" wx:if="{{data.albumInfo.commentnum > 0}}">{{data.albumInfo.commentnum}}</text>
         <text class="weui-grid__label album-action-label" wx:else>评论</text>
       </view>
 
@@ -149,15 +150,19 @@
       </view>
       <!--分享popup 结束-->
 
-      <!-- 直接使用 zan-toast 模板，并且直接传入 zanToast -->
-      <template is="zan-toast" data="{{ zanToast }}"></template>
 
-      <canvas canvas-id="myCanvas" hidden='true' />
-
-      <!--页尾-start-->
-      <include src="../footer.wxml" />
-      <!--页尾-end-->
 
     </view>
   </view>
+
+  <!-- 直接使用 zan-toast 模板，并且直接传入 zanToast -->
+  <template is="zan-toast" data="{{ zanToast }}"></template>
+
+  <canvas canvas-id="myCanvas" hidden='true' />
+
+<!--页尾-start-->
+ <block wx:if="{{isLoaded}}"> 
+  <template is="footer" />
+ </block> 
+<!--页尾-end-->
 </view>

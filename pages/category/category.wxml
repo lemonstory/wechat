@@ -1,3 +1,4 @@
+<import src="../../template/footer.wxml" />
 <view class="container">
   <view class="page flex">
 
@@ -39,10 +40,9 @@
     </view>
   </view>
 
-
   <!--页尾-start-->
   <block wx:if="{{isLoaded}}">
-    <include src="../footer.wxml" />
+    <template is="footer" />
   </block>
   <!--页尾-end-->
 

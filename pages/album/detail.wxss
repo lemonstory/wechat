@@ -8,14 +8,7 @@
   box-sizing: border-box;
   width: 100%;
  }
-.page{
-background: #F7F7F7 100%;
- width: 100%;
- padding: 0;
- margin: 0;
- box-sizing: border-box;
- overflow-x: hidden;
-}
+
 .main{
      padding-top: 20rpx;
      padding-left: 300rpx;

@@ -1,0 +1,10 @@
+<template name="footer">
+  <view class="page__ft page__ft_spacing">
+    <view class="weui-footer">
+      <view class="weui-footer__links">
+        <view href="javascript:void(0);" class="weui-footer__link" style='color:#A7A7A9'>小柠檬-听儿歌故事</view>
+      </view>
+      <view class="weui-footer__text" style='color:#D3D4D6'>Copyright © 2018 xiaoningmeng.net</view>
+    </view>
+  </view>
+</template>
