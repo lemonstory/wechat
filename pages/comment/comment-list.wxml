@@ -28,10 +28,9 @@
 
     </view>
   </block>
-
-  <!--页尾-start-->
+<!--页尾-start-->
 <block wx:if="{{isLoaded}}">
-  <template is="footer" />
+  <template is="footer"/>
 </block>
 <!--页尾-end-->
 </view>

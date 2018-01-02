@@ -1,5 +1,9 @@
 /**index.wxss**/
 @import "../../loading.wxss";
+.page {
+  background-color: #F3F4F6;
+  height:auto;
+  }
 .play{
      width:80rpx;
      height:80rpx;
