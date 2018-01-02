@@ -13,6 +13,7 @@ Page({
 
     getParams: {
 
+      isLoaded: false,
       albumId: '',
       direction: 'down',
       startCommentId: '',
@@ -131,8 +132,10 @@ Page({
           var currentCommentListData = that.data.commentListData;
           var currentCommentListData = currentCommentListData.concat(res.data.data.items);
 
+
           that.setData({
-            commentListData: currentCommentListData
+            commentListData: currentCommentListData,
+            isLoaded:true
           })
 
           console.log(that.data.commentListData);

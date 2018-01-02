@@ -50,3 +50,9 @@ box-sizing: border-box;
   padding-bottom: 20rpx;
   box-sizing: border-box;
  }
+
+ .album-star {
+  width:26rpx; 
+  height:26rpx; 
+  margin-right:4rpx;
+}
