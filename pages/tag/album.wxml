@@ -1,18 +1,19 @@
 <import src="../../template/tagItem.wxml" />
 <import src="../../template/albumItem.wxml" />
 <import src="../../template/footer.wxml" />
+<import src="../../template/loading.wxml" />
 
 <import src="../../zanui-weapp/dist/tab/index.wxml" />
 <import src="../../zanui-weapp/dist/loadmore/index.wxml" />
 
 <view class="page">
   <navigator url="../player/player">
-      <view class="play {{albumRotateClass}}">
-        <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
-      </view>
-    </navigator> 
+    <view class="play {{albumRotateClass}}">
+      <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
+    </view>
+  </navigator>
 
-  <view style="border-top:1rpx solid #eee;margin-bottom:15rpx;">
+  <view style="border-top:1rpx solid #eee;margin-bottom:15rpx;" wx:if="{{tab.list.length > 0}}">
     <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
   </view>
 
@@ -28,7 +29,7 @@
   <!--专辑列表-end-->
 
   <!--加载更多-start-->
-  <template is="zan-loadmore" wx:if="{{isLoading}}" data="{{loading: true}}" />
+  <template is="zan-loadmore" wx:if="{{isLoading && !isNoMore && startrelationid > 0}}" data="{{loading: true}}" />
   <template is="zan-loadmore" wx:if="{{isNoMore}}" data="{{nodata: true,nodata_str:'更多内容, 敬请期待'}}" />
   <!--加载更多-end-->
 
@@ -38,11 +39,9 @@
   </block>
   <!--页尾-end-->
 
-</view>
+  <!-- <block wx:if="{{isLoading}}"> -->
+    <template is="loading" />
+  <!-- </block> -->
 
-<!-- <view class="loading_box" wx:if="{{!isLoaded}}">
-  <view class="pulse pulse_1"></view>
-  <view class="pulse pulse_2"></view>
-  <view class="pulse pulse_3"></view>
-  <view class="pulse pulse_4"></view>
-</view> -->
+
+</view>

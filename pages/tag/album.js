@@ -40,6 +40,7 @@ Page(Object.assign({}, Tab, {
       tagalbumlist: [],
       startrelationid:0,
       isNoMore:false,
+      isLoading:true
     });
 
     switch (selectedId) {
@@ -79,7 +80,7 @@ Page(Object.assign({}, Tab, {
     var selectSecondTagId = options.selectSecondTagId;
     this.setData({
       'selectFirstTagId': selectFirstTagId,
-      'selectSecondTagId': selectSecondTagId
+      'selectSecondTagId': selectSecondTagId,
     });
   },
 
@@ -90,10 +91,12 @@ Page(Object.assign({}, Tab, {
       recommend = 1;
       this.setData({
         selectedId: "recommend",
+        isLoading: true
       });
     } else {
       this.setData({
         selectedId: this.data.selectSecondTagId,
+        isLoading: true
       });
     }
 
@@ -182,13 +185,11 @@ Page(Object.assign({}, Tab, {
               'tagalbumlist': tagAlbumList,
               'startrelationid': startRelationId,
               'isNoMore': false,
-              'isLoading':false,
             });
           } else {
 
             that.setData({
               'isNoMore': true,
-              'isLoading': false,
             });
           }
 
@@ -227,6 +228,11 @@ Page(Object.assign({}, Tab, {
           });
 
           that.setDataCallBack();
+        },
+        complete:function(res) {
+          that.setData({
+            'isLoading': false,
+          });
         }
       })
     }
