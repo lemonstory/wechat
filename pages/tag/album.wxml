@@ -29,7 +29,7 @@
   <!--专辑列表-end-->
 
   <!--加载更多-start-->
-  <template is="zan-loadmore" wx:if="{{isLoading && !isNoMore && startrelationid > 0}}" data="{{loading: true}}" />
+  <!-- <template is="zan-loadmore" wx:if="{{isLoading && !isNoMore && startrelationid > 0}}" data="{{loading: true}}" /> -->
   <template is="zan-loadmore" wx:if="{{isNoMore}}" data="{{nodata: true,nodata_str:'更多内容, 敬请期待'}}" />
   <!--加载更多-end-->
 
@@ -38,10 +38,8 @@
     <template is="footer" />
   </block>
   <!--页尾-end-->
-
-  <!-- <block wx:if="{{isLoading}}"> -->
-    <template is="loading" />
-  <!-- </block> -->
-
-
 </view>
+
+<block wx:if="{{isLoading}}">
+  <template is="loading" />
+</block>
