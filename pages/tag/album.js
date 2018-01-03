@@ -12,7 +12,6 @@ Page(Object.assign({}, Tab, {
       selectedId: '',
       scroll: true,
       height: 45,
-      albumRotateClass: ''
     },
     tagalbumlist: [],
 
@@ -27,6 +26,8 @@ Page(Object.assign({}, Tab, {
     'len': 36,
     'isNoMore': false,
     'isLoading':false,
+
+    albumRotateClass: ''
   },
 
   handleZanTabChange(e) {
@@ -105,6 +106,13 @@ Page(Object.assign({}, Tab, {
 
   onShow: function () {
     // 生命周期函数--监听页面显示
+
+    var that = this;
+    if (that.data.constant.playerStatus == 'play') {
+      that.startRotateAnimation();
+    } else {
+      that.stopRotateAnimation();
+    }
   },
 
   onHide: function () {

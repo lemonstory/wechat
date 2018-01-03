@@ -7,8 +7,8 @@
 
 //获取应用实例
 var app = getApp()
-var audioPauseImageUrl = "http://p.xiaoningmeng.net/static/www/btn_album_pause.png";
-var audioPlayImageUrl = "http://p.xiaoningmeng.net/static/www/btn_album_play.png";
+var audioPauseImageUrl = "/icon/btn_album_pause.png";
+var audioPlayImageUrl = "/icon/btn_album_play.png";
 var util = require('../../utils/util.js')
 var play = require('../../utils/play.js')
 
