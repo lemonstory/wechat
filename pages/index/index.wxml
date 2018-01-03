@@ -13,7 +13,7 @@
                     <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
                </view>
           </navigator>
-     </block>
+  </block>
      <!--播放浮框  -->
 
      <!--焦点图-start-->
@@ -63,14 +63,16 @@
           </view>
      </block>
      <!--专辑列表-end-->
+ 
 </view>
-
-<block wx:if="{{!isLoaded}}">
-     <template is="loading" />
-</block>
+     <block wx:if="{{!isLoaded}}">
+     <template is="loading"/>
+</block> 
 
 <!--页尾-start-->
 <block wx:if="{{isLoaded}}">
      <template is="footer" />
 </block>
+
+
 <!--页尾-end-->

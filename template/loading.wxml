@@ -1,7 +1,4 @@
-<!--
-loading 
-    加载中动画                       
--->
+
 <template name="loading">
      <view class="loading_box">
           <view class="pulse pulse_1"></view>

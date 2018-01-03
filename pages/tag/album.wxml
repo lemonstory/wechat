@@ -2,16 +2,18 @@
 <import src="../../template/albumItem.wxml" />
 <import src="../../template/footer.wxml" />
 <import src="../../template/loading.wxml" />
-
 <import src="../../zanui-weapp/dist/tab/index.wxml" />
 <import src="../../zanui-weapp/dist/loadmore/index.wxml" />
 
 <view class="page">
-  <navigator url="../player/player">
-    <view class="play {{albumRotateClass}}">
-      <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
-    </view>
-  </navigator>
+ <block wx:if="{{albumRotateClass=='rotate-start'}}">
+          <navigator url="../player/player">
+               <image class="bgimg" src="../../image/play_album_bg.png"></image>
+               <view class="play {{albumRotateClass}}">
+                    <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
+               </view>
+          </navigator>
+     </block>
 
   <view style="border-top:1rpx solid #eee;margin-bottom:15rpx;" wx:if="{{tab.list.length > 0}}">
     <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
@@ -30,16 +32,18 @@
 
   <!--加载更多-start-->
   <!-- <template is="zan-loadmore" wx:if="{{isLoading && !isNoMore && startrelationid > 0}}" data="{{loading: true}}" /> -->
-  <template is="zan-loadmore" wx:if="{{isNoMore}}" data="{{nodata: true,nodata_str:'更多内容, 敬请期待'}}" />
+  <template is="zan-loadmore" wx:if="{{isNoMore}}" data="{{nodata: true,nodata_str:'更多内容, 敬请期待'}}"/>
   <!--加载更多-end-->
 
   <!--页尾-start-->
+   <block wx:if="{{isLoading}}">
+  <template is="loading"/>
+</block>
   <block wx:if="{{isNoMore}}">
-    <template is="footer" />
+    <template is="footer"/>
   </block>
+  
   <!--页尾-end-->
 </view>
 
-<block wx:if="{{isLoading}}">
-  <template is="loading" />
-</block>
+ 

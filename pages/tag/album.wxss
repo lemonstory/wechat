@@ -1,33 +1,28 @@
 @import "../../loading.wxss";
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-}
-
-.page{
-     width:100%;
-     height:100%;
-     background: #fff;
-}
-.play{
-     width:80rpx;
-     height:80rpx;
+.play {
+     width: 80rpx;
+     height: 80rpx;
      position: fixed;
-     bottom:20rpx;
-     left:20rpx;
-     }
-
-.play image{
-     width:100%;
-     height:100%;
-     border-radius: 50%;
+     bottom: 20rpx;
+     left: 20rpx;
+     z-index: 999;
 }
 
+.play image {
+     width: 100%;
+     height: 100%;
+     border-radius: 50%;
+     z-index: 999;
+}
+
+.bgimg {
+     width: 80rpx;
+     height: 80rpx;
+     position: fixed;
+     bottom: 20rpx;
+     left: 20rpx;
+     border-radius: 50%;
+     z-index: 99;}
 
 .textStyle {
   display: flex;
@@ -91,4 +86,15 @@
 .zan-tab__bd--scroll .zan-tab__text {
       margin:0;
 }
+ .loading_box {
+  width: 100%;
+  height:10vh;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  background: #F3F4F6;
+} 
+
+
+
 

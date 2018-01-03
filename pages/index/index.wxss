@@ -1,9 +1,25 @@
 /**index.wxss**/
 @import "../../loading.wxss";
+.pulse {
+  width: 6rpx;
+  height: 45rpx;
+  background: #5F6770;
+  margin: 8rpx;
+  border-radius: 20rpx;
+  margin-top: 230rpx; 
+}
+swiper{
+     background:#F3F4F6; 
+     margin: 0;
+     padding: 0;
+}
+.more{
+     margin-top: 225rpx;
+}
 
 .page {
      background-color: #f3f4f6;
-     height: auto;
+ 
 }
 
 .play {
@@ -33,7 +49,7 @@
 .slide-image {
      width: 750rpx;
      height: 300rpx;
-}
+}  
 
 .weui-grid__label {
      font-size: 26rpx;

@@ -12,7 +12,7 @@
      </view>
 
 
- <view class="collect_ul">
+     <view class="collect_ul">
           <view class="collect_image">
                <image src="http://p.xiaoningmeng.net/album/2016/12/24/201d546992726352471cfea6b0df0a48.jpg@!460x460?v=1482569558" style='width:270rpx;height:150rpx;border-radius:10rpx' mode="aspectFill"></image>
           </view>
@@ -23,19 +23,7 @@
      </view>
 
 
- <view class="collect_ul">
-          <view class="collect_image">
-               <image src="http://p.xiaoningmeng.net/album/2016/12/24/201d546992726352471cfea6b0df0a48.jpg@!460x460?v=1482569558" style='width:270rpx;height:150rpx;border-radius:10rpx' mode="aspectFill"></image>
-          </view>
-          <view class="collect_message">
-               <view class="collect_title" style='color:#494949;font-size:30rpx;'>海洋世纪</view>
-               <view class="collect_num" style='color:#9B9B9B;font-size:26rpx;'>共10集</view>
-          </view>
-     </view>
-
-
-
- <view class="collect_ul">
+     <view class="collect_ul">
           <view class="collect_image">
                <image src="http://p.xiaoningmeng.net/album/2016/12/24/201d546992726352471cfea6b0df0a48.jpg@!460x460?v=1482569558" style='width:270rpx;height:150rpx;border-radius:10rpx' mode="aspectFill"></image>
           </view>
@@ -47,13 +35,14 @@
 
 
 
-
-
-
-
-
-
-
-
+     <view class="collect_ul">
+          <view class="collect_image">
+               <image src="http://p.xiaoningmeng.net/album/2016/12/24/201d546992726352471cfea6b0df0a48.jpg@!460x460?v=1482569558" style='width:270rpx;height:150rpx;border-radius:10rpx' mode="aspectFill"></image>
+          </view>
+          <view class="collect_message">
+               <view class="collect_title" style='color:#494949;font-size:30rpx;'>海洋世纪</view>
+               <view class="collect_num" style='color:#9B9B9B;font-size:26rpx;'>共10集</view>
+          </view>
+     </view>
 
 </view>
