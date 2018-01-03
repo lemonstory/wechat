@@ -1,22 +1,11 @@
-/* .container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-  width: 100%;
-  overflow: hidden;
- } */
 
 .main{
      padding-top: 20rpx;
      padding-left: 300rpx;
      box-sizing: border-box;
      height:280rpx;
-  
 }
+
 .textStyle {
   display: flex;
   flex-direction: column;
@@ -26,10 +15,8 @@
 .textContainer {
   margin-top: 200px;
 }
-
 .album-detail-hd {
   background-color:#FFFFFF;
-  
   padding: 12rpx;
   margin-top:10rpx;
 }
@@ -199,3 +186,4 @@ canvas{
      background: #FFFFFF 100%;
     
 }
+

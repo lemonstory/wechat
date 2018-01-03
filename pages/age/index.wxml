@@ -7,11 +7,14 @@
 
 <view class="page">
   <!--播放浮框  -->
-  <navigator url="../player/player">
-    <view class="play {{albumRotateClass}}">
-      <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
-    </view>
-  </navigator>
+    <block wx:if="{{albumRotateClass=='rotate-start'}}">
+          <navigator url="../player/player">
+               <image class="bgimg" src="../../image/play_album_bg.png"></image>
+               <view class="play {{albumRotateClass}}">
+                    <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
+               </view>
+          </navigator>
+     </block>
   <!--播放浮框  -->
 
   <!--焦点图-start-->

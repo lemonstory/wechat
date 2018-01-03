@@ -27,9 +27,11 @@
     <!-- <view>查看更多</view> -->
 
   </view>
-  <include src="../footer.wxml" />
-</view>
-
-<block wx:if="{{!isLoaded}}">
+   <block wx:if="{{isLoaded}}">
+          <template is="footer" />
+     </block>
+  <block wx:if="{{!isLoaded}}">
   <template is="loading" />
 </block>
+</view>
+

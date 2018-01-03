@@ -71,11 +71,12 @@
 
           </view>
      </view>
+     <block wx:if="{{isLoaded}}">
+     <template is="footer" />
+</block>
 
 </view>
 
 <!--页尾-start-->
-<block wx:if="{{isLoaded}}">
-     <template is="footer" />
-</block>
+
 <!--页尾-end-->

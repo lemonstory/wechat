@@ -3,14 +3,16 @@
   <view class="page flex">
 
     <!--播放浮框  -->
-     <navigator url="../player/player">
-      <view class="play {{albumRotateClass}}">
-        <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
-      </view>
-    </navigator> 
+      <block wx:if="{{albumRotateClass=='rotate-start'}}">
+          <navigator url="../player/player">
+               <image class="bgimg" src="../../image/play_album_bg.png"></image>
+               <view class="play {{albumRotateClass}}">
+                    <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
+               </view>
+          </navigator>
+     </block>
     <!--播放浮框  -->
-
-    <!--年轮段-->
+<!--年轮段-->
     <view class="weui-flex" style='background:#fff;border-top:1rpx solid #eee;'>
       <block wx:for="{{data.age_level.items}}" wx:key="data.age_level.items" wx:for-index="idx" wx:for-item="ageLevelItem">
         <view class="weui-flex__item" data-title="{{ageLevelItem.title}}" bindtap='bindTapAgeLevel'>
@@ -19,8 +21,7 @@
         </view>
       </block>
     </view>
-
-    <!--标签-->
+<!--标签-->
 
     <view class="section" block wx:for="{{data.tag.items}}" wx:key="data.tag.items" wx:for-index="idx" wx:for-item="tagItem">
       <view style=" font-size:26rpx;color:#9B9B9B">{{tagItem.name}}
@@ -38,11 +39,12 @@
       </view>
 
     </view>
+      <block wx:if="{{isLoaded}}">
+    <template is="footer" />
+  </block>
   </view>
 
   <!--页尾-start-->
-  <block wx:if="{{isLoaded}}">
-    <template is="footer" />
-  </block>
+
   <!--页尾-end-->
 
