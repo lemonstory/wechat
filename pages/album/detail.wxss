@@ -4,8 +4,8 @@
      padding-left: 300rpx;
      box-sizing: border-box;
      height:280rpx;
-  
 }
+
 .textStyle {
   display: flex;
   flex-direction: column;
@@ -15,10 +15,8 @@
 .textContainer {
   margin-top: 200px;
 }
-
 .album-detail-hd {
   background-color:#FFFFFF;
-  
   padding: 12rpx;
   margin-top:10rpx;
 }
@@ -188,3 +186,4 @@ canvas{
      background: #FFFFFF 100%;
     
 }
+

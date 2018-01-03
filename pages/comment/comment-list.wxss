@@ -9,7 +9,7 @@ padding: 20rpx;
 box-sizing: border-box;
 }
 .userlogo{
- width:92rpx;
+width:92rpx;
 height:92rpx;
 border-radius: 50%;
      

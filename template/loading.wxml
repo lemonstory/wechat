@@ -3,12 +3,11 @@ loading
     加载中动画                       
 -->
 <template name="loading">
-  <view class="loading_box">
-    <view class="pulse pulse_1"></view>
-    <view class="pulse pulse_2"></view>
-    <view class="pulse pulse_3"></view>
-    <view class="pulse pulse_4"></view>
-    <view>正在努力加载中...</view>
-  </view>
-  
+     <view class="loading_box">
+          <view class="pulse pulse_1"></view>
+          <view class="pulse pulse_2"></view>
+          <view class="pulse pulse_3"></view>
+          <view class="pulse pulse_4"></view>
+          <view class="more">正在努力加载中...</view>
+     </view>
 </template>
