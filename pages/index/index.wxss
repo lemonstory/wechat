@@ -11,6 +11,9 @@
   box-sizing: border-box;
   margin-top: -20rpx;
 }
+.page {
+  background-color: #F3F4F6;
+}
 .pulse {
   width: 6rpx;
   height: 45rpx;
