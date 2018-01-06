@@ -27,12 +27,6 @@ swiper{
 .more{
      margin-top: 220rpx;
 }
-
-.page {
-     background-color: #f3f4f6;
- 
-}
-
 .play {
      width: 80rpx;
      height: 80rpx;
