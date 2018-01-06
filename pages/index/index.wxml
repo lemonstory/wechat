@@ -70,7 +70,7 @@
 
      <!--页尾-start-->
      <block wx:if="{{isLoaded}}">
-          <template is="footer" />
+          <template is="footer"/>
      </block>
 </view>
 

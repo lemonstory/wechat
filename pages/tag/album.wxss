@@ -1,4 +1,5 @@
 @import "../../loading.wxss";
+
 .play {
      width: 80rpx;
      height: 80rpx;
@@ -7,9 +8,11 @@
      left: 20rpx;
      z-index: 999;
 }
+
 .page {
-  background-color: #F3F4F6;
+     background-color: #f3f4f6;
 }
+
 .play image {
      width: 100%;
      height: 100%;
@@ -24,42 +27,42 @@
      bottom: 20rpx;
      left: 20rpx;
      border-radius: 50%;
-     z-index: 99;}
+     z-index: 99;
+}
 
 .textStyle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
 }
 
 .textContainer {
-  margin-top: 200px;
+     margin-top: 200px;
 }
-.scroll-box {
-  width: 750rpx;
-  background: #fff;
-  height: auto;
-  white-space: nowrap; 
-  display: flex;
-  box-sizing: border-box;
-  overflow: scroll;
-  padding-bottom: 20rpx;
-  padding: 0 15rpx;
-} 
 
- .scroll-box .weui-navbar__item {
-  width: auto;
-  padding-right: 15rpx;
-  padding-left: 15rpx;
-  position: relative; 
-  display: inline-block;
-  height:80rpx;
-  
-} 
+.scroll-box {
+     width: 750rpx;
+     background: #fff;
+     height: auto;
+     white-space: nowrap;
+     display: flex;
+     box-sizing: border-box;
+     overflow: scroll;
+     padding-bottom: 20rpx;
+     padding: 0 15rpx;
+}
+.scroll-box .weui-navbar__item {
+     width: auto;
+     padding-right: 15rpx;
+     padding-left: 15rpx;
+     position: relative;
+     display: inline-block;
+     height: 80rpx;
+}
 
 .zan-tab__item--selected .zan-tab__title {
      color: #494949;
-     border-bottom: 6rpx solid #FFBE4C;
+     border-bottom: 6rpx solid #ffbe4c;
 }
 
 .zan-tab__title {
@@ -71,10 +74,8 @@
      box-sizing: border-box;
      padding: 0 20rpx;
      word-break: keep-all;
-     border:  none;
- 
+     border: none;
 }
-
 
 .zan-tab__bd--scroll {
      display: block;
@@ -82,16 +83,24 @@
 }
 
 .zan-tab__bd--scroll .zan-tab__item {
-    margin: 0;
+     margin: 0;
 }
 
 .zan-tab__bd--scroll .zan-tab__text {
-      margin:0;
+     margin: 0;
+}
+.page__ft {
+   padding-top: 0rpx;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-top: -30rpx;
+    
 }
 
-
-
-
-
-
-
+.zan-loadmore__tips {
+     display: inline-block;
+     vertical-align: middle;
+     height: 20px;
+     line-height: 20px;
+     background-color:#F3F4F6;
+}

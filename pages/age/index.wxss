@@ -13,8 +13,8 @@
   margin-top: -20rpx;
 }
 .pulse {
-  width: 6rpx;
-  height: 45rpx;
+  width: 5rpx;
+  height: 42rpx;
   background: #5F6770;
   margin: 8rpx;
   border-radius: 20rpx;
@@ -27,6 +27,7 @@ swiper{
 }
 .more{
      margin-top: 220rpx;
+     margin-left: 20rpx;
 }
 .play {
      width: 80rpx;

@@ -46,7 +46,7 @@
      </block>
 
      <block wx:if="{{isNoMore}}">
-          <template is="footer" />
+          <template is="footer"/>
      </block>
 
      <!--页尾-end-->
