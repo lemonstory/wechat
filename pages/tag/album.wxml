@@ -2,6 +2,7 @@
 <import src="../../template/albumItem.wxml" />
 <import src="../../template/footer.wxml" />
 <import src="../../template/loading.wxml" />
+<import src="../../template/loadingmore.wxml" />
 <import src="../../zanui-weapp/dist/tab/index.wxml" />
 <import src="../../zanui-weapp/dist/loadmore/index.wxml" />
 
@@ -39,6 +40,11 @@
      <block wx:if="{{isLoading}}">
           <template is="loading" />
      </block>
+
+     <block wx:if="{{isLoadinging==true}}">
+          <template is="loadingmore" />
+     </block>
+
      <block wx:if="{{isNoMore}}">
           <template is="footer" />
      </block>

@@ -63,17 +63,15 @@
           </view>
      </block>
      <!--专辑列表-end-->
- 
-
-     <block wx:if="{{!isLoaded}}">
+<block wx:if="{{!isLoaded}}">
      <template is="loading"/>
 </block> 
 
+
 <!--页尾-start-->
 <block wx:if="{{isLoaded}}">
-     <template is="footer" />
+     <template is="footer"/>
 </block>
-
 </view>
 
 

@@ -15,7 +15,6 @@ Page(Object.assign({}, Tab, {
                albumRotateClass: ''
           },
           tagalbumlist: [],
-
           //页面的初始数据
           'constant': app.constant,
           'currentTagId': '',
@@ -27,12 +26,12 @@ Page(Object.assign({}, Tab, {
           'len': 36,
           'isNoMore': false,
           'isLoading': false,
+          'isLoadinging':false,
      },
 
      handleZanTabChange(e) {
           var componentId = e.componentId;
           var selectedId = e.selectedId;
-
           this.setData({
                [`${componentId}.selectedId`]: selectedId,
                selectSecondTagId: selectedId,
@@ -161,7 +160,6 @@ Page(Object.assign({}, Tab, {
 
 
           // console.log("😀 url = " + url);
-
           if (!that.data.isNoMore) {
                wx.request({
                     url: url,
@@ -182,11 +180,13 @@ Page(Object.assign({}, Tab, {
                                    'tagalbumlist': tagAlbumList,
                                    'startrelationid': startRelationId,
                                    'isNoMore': false,
+                                   
                               });
                          } else {
 
                               that.setData({
                                    'isNoMore': true,
+                                   'isLoadinging': false
                               });
                          }
 
@@ -263,25 +263,22 @@ Page(Object.assign({}, Tab, {
      setDataCallBack: function () {
 
      },
-
      onReachBottom: function () {
-
           if (!this.data.isNoMore) {
                this.setData({
-                    'isLoading': true,
+                    'isLoadinging':true,
                });
                setTimeout(() => {
                     this.getData(this.data.selectedId, this.data.selectFirstTagId, this.data.selectSecondTagId, recommend, hot, goodcomment, this.data.startrelationid, this.data.len);
                }, 500);
           } else {
                this.setData({
-                    'isLoading': false,
+                    'isLoadinging':false,
                });
           }
      },
 
-     stopRotateAnimation: function () {
-
+stopRotateAnimation: function () {
           var that = this;
           var that = this;
           that.setData({
@@ -296,7 +293,7 @@ Page(Object.assign({}, Tab, {
 
           var that = this;
           that.setData({
-               albumRotateClass: 'rotate-start'
+               albumRotateClass:'rotate-start'
           })
      },
 
