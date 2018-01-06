@@ -12,7 +12,6 @@ page {
   align-content: center;
   flex-direction: row;
   background: #F3F4F6;
-  margin-top: -20rpx;
   box-sizing: border-box;
 }
 
