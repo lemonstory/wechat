@@ -16,16 +16,29 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-function isEmpty(n) {
 
-  var ret = false;
-  if (typeof (n) != "undefined" && n != null) {
-    ret = false;
-  } else {
-    ret = true;
-  }
-  return ret;
+/**
+ * 是否为空对象
+ */
+function isEmptyObject(e) {
+  var t;
+  for (t in e)
+    return !1;
+  return !0
 }
+
+/** 
+ * 是否为空字符串，有空格不是空字符串 
+ * @param str 
+ * @returns {Boolean} 
+ */
+function isEmptyStr(str) {
+  if (str == null || typeof str == "undefined" ||
+    str == "") {
+    return true;
+  }
+  return false;
+};
 
 //给数字字符串补零，不支持负数
 function padNumber(num, fill) {
@@ -64,7 +77,8 @@ function randomFrom(min, max) {
 }
 
 module.exports.formatTime = formatTime;
-module.exports.isEmpty = isEmpty;
+module.exports.isEmptyStr = isEmptyStr;
+module.exports.isEmptyObject = isEmptyObject;
 module.exports.padNumber = padNumber;
 module.exports.secondToDate = secondToDate;
 module.exports.randomFrom = randomFrom;

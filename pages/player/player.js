@@ -24,6 +24,9 @@ Page(Object.assign({}, Toast, {
     'endTime': '00:00',
     'endTimeSecond': '0',
     'progressPercent': '0',
+
+    //封面旋转
+    'albumRotateClass':'',
   },
 
   onLoad: function () {
@@ -261,9 +264,11 @@ Page(Object.assign({}, Toast, {
    */
   stopRotateAnimation: function () {
 
-    console.log(this.data.setIntervalRet);
-    clearInterval(this.data.setIntervalRet);
-    console.log("clearInterval run");
+    var that = this;
+    var that = this;
+    that.setData({
+      albumRotateClass: 'rotate-paused'
+    })
   },
 
   /**
@@ -272,25 +277,8 @@ Page(Object.assign({}, Toast, {
   startRotateAnimation: function () {
 
     var that = this;
-    var animation = wx.createAnimation({
-      duration: 1000,
-      timingFunction: 'linear',
-      delay: 0,
-      transformOrigin: '50% 50% 0',
-    })
-
-    //连续动画需要添加定时器,所传参数每次+1就行
-    var ret = setInterval(function () {
-      n = n + 1;
-      console.log("n = " + n);
-      animation.rotate(15 * (n)).step()
-      that.setData({
-        animationData: animation.export()
-      })
-    }.bind(this), 1000)
-
     that.setData({
-      setIntervalRet: ret
+      albumRotateClass:'rotate-start'
     })
   },
 

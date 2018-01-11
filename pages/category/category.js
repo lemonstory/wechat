@@ -4,7 +4,9 @@ Page({
 
   data: {
     'isLoaded': false,
-    'constant': app.constant
+    'constant': app.constant,
+    //播放专辑class
+    albumRotateClass: ''
   },
 
   onLoad: function (options) {
@@ -127,6 +129,47 @@ Page({
     wx.navigateTo({
       url: tagUrl
     })
+  },
 
+  /**
+   * 年龄段-点击
+   */
+  bindTapAgeLevel:function(event) {
+
+    var title = event.currentTarget.dataset.title;
+    var minAge = 0;
+    var maxAge = 0;
+    var ageStr = title.replace('岁', '')
+    var ageArr = ageStr.split("-");
+
+    minAge = ageArr[0];
+    maxAge = ageArr[1];
+
+    var url = "/pages/age/index?minAge=" + minAge + "&maxAge=" + maxAge;
+    wx.navigateTo({
+      url: url,
+    })
+  },
+
+  /**
+* 停止旋转动画
+*/
+  stopRotateAnimation: function () {
+
+    var that = this;
+    that.setData({
+      albumRotateClass: 'rotate-paused'
+    })
+  },
+
+  /**
+   * 开始旋转动画
+   */
+  startRotateAnimation: function () {
+
+    var that = this;
+    that.setData({
+      albumRotateClass: 'rotate-start'
+    })
   },
 })

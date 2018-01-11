@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/index/index",
     "pages/author/index",
     "pages/tag/album",
@@ -15,20 +16,27 @@
     "pages/history/history",
     "pages/mask/mask",
     "pages/canvas/canvas",
-    "pages/author/list"
+    "pages/age/index",
+    "pages/comment/comment-list"
+    
   ],
 "window": {
+
+  "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "小柠檬-听儿歌故事",
     "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true,
+    "enablePullDownRefresh": false,
     "disableScroll": false,
     "onReachBottomDistance": "15px"
   },
 "networkTimeout": {
+  "networkTimeout": {
     "request": 60000,
     "downloadFile": 60000
   },
   "debug": true
+}
+}
 }

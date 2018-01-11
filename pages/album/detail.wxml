@@ -30,7 +30,7 @@
 
           </block>
         </view>
-        <image bindtap="handleAudioPlayTap" src="{{audioPlayBtnImageUrl}}" style="width: 130rpx; height: 130rpx;position:relative;left:250rpx;"  data-album_id="{{data.albumInfo.id}}" data-story_id="{{albumPlayStoryId}}" data-story_idx="{{albumPlayStoryIdx}}">
+        <image bindtap="handleAudioPlayTap" src="{{audioPlayBtnImageUrl}}" style="width: 130rpx; height: 130rpx;position:relative;left:250rpx;" data-album_id="{{data.albumInfo.id}}" data-story_id="{{albumPlayStoryId}}" data-story_idx="{{albumPlayStoryIdx}}">
         </image>
       </view>
     </view>
@@ -49,9 +49,9 @@
         <text class="weui-grid__label album-action-label" wx:else>收藏</text>
       </view>
 
-      <view class="weui-flex__item">
+      <view class="weui-flex__item" bindtap='bindTapComment'>
         <image class="weui-grid__icon album-action-icon" src="../../icon/btn_player_comment_normal.png" style='width:38rpx;height:38rpx;'></image>
-        <text class="weui-grid__label album-action-label" wx:if="{{data.albumInfo.commentnum > 0}}">{{data.albumInfo.commentnum}}</text>
+        <text class="weui-grid__label album-action-label" wx:if="{{data.albumInfo.commentnum > 0}}" >{{data.albumInfo.commentnum}}</text>
         <text class="weui-grid__label album-action-label" wx:else>评论</text>
       </view>
 
@@ -74,54 +74,58 @@
       <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
       <view class="weui-tab__panel" style="background-color:#FFFFFF; color:#9B9B9B">
 
-          <!--专辑简介-start-->
-            <view class="album-detail-hd" wx:if="{{tab.selectedId == '0'}}">
-              <text class="{{albumIntroBdClass}}" style='color:#494949;font-size:30rpx;line-height:48rpx;'>{{data.albumInfo.intro}}</text>
-              <view class="album-intro-action-btn" bindtap="handleAlbumIntroActionBtn">{{albumIntroBdText}}</view>
-              <view class="weui-grids album-tag-grids">
-                <block wx:for="{{data.tagList}}" wx:key="data.tagList" wx:for-index="index" wx:for-item="tagItem">
-                  <view class="weui-grid album-tag-grid" data-index="{{index}}"  data-tag_id="{{tagItem.id}}" bindtap="handleTagTap">
-                    <image class="weui-grid__icon album-tag-icon circular-squareP" mode="aspectFit" src="{{tagItem.cover}}"></image>
-                    <text class="weui-grid__label" style="font-size:26rpx;color:#494949">{{tagItem.name}}</text>
-                  </view>
-                </block>
+        <!--专辑简介-start-->
+        <view class="album-detail-hd" wx:if="{{tab.selectedId == '0'}}">
+          <text class="{{albumIntroBdClass}}" style='color:#494949;font-size:30rpx;line-height:48rpx;'>{{data.albumInfo.intro}}</text>
+          <view class="album-intro-action-btn" bindtap="handleAlbumIntroActionBtn">{{albumIntroBdText}}</view>
+          <view class="weui-grids album-tag-grids">
+            <block wx:for="{{data.tagList}}" wx:key="data.tagList" wx:for-index="index" wx:for-item="tagItem">
+              <view class="weui-grid album-tag-grid" data-index="{{index}}" data-tag_id="{{tagItem.id}}" bindtap="handleTagTap">
+                <image class="weui-grid__icon album-tag-icon circular-squareP" mode="aspectFit" src="{{tagItem.cover}}"></image>
+                <text class="weui-grid__label" style="font-size:26rpx;color:#494949">{{tagItem.name}}</text>
               </view>
-            </view>
-          <!--专辑简介-end-->
+            </block>
+          </view>
+        </view>
+        <!--专辑简介-end-->
 
-          <!--故事列表 -start-->
-            <view class="weui-cells album-storys-container" wx:if="{{tab.selectedId == '1'}}">
-              <block wx:for="{{data.storyList.items}}" wx:key="data.storyList" wx:for-index="idx" wx:for-item="storyItem">
-                <view style="align: center;" bindtap='handleAudioPlayTap'data-album_id="{{data.albumInfo.id}}" data-story_id="{{storyItem.id}}" data-story_idx="{{idx}}">
-  
+        <!--故事列表 -start-->
+        <view class="weui-cells album-storys-container" wx:if="{{tab.selectedId == '1'}}">
+          <block wx:for="{{data.storyList.items}}" wx:key="data.storyList" wx:for-index="idx" wx:for-item="storyItem">
+            <view style="align: center;" bindtap='handleAudioPlayTap' data-album_id="{{data.albumInfo.id}}" data-story_id="{{storyItem.id}}" data-story_idx="{{idx}}">
 
-                  <view class="album-story-index" style='color:#9B9B9B;font-size:30rpx; width:auto'>                <view wx:if="{{constant.currentPlayStoryId == storyItem.id && constant.playerStatus == 'play'}}"><image src="../../icon/ic_horn_on.png" style='width:27rpx;height:23rpx;'></image>
-                  </view>
-                                     <view wx:if="{{constant.currentPlayStoryId == storyItem.id && constant.playerStatus == 'pause'}}"><image src="../../icon/ic_horn_off.png" style='width:27rpx;height:23rpx;'></image></view> 
-                  {{idx + 1}}</view>
-                  <view class="weui-cell album-story-title" style='color:#494949;font-size:30rpx;'>{{storyItem.title}}</view>
+              <view class="album-story-index" style='color:#9B9B9B;font-size:30rpx; width:auto'>
+                <view wx:if="{{constant.currentPlayStoryId == storyItem.id && constant.playerStatus == 'play'}}">
+                  <image src="../../icon/ic_horn_on.png" style='width:27rpx;height:23rpx;'></image>
                 </view>
-              </block>
+                <view wx:if="{{constant.currentPlayStoryId == storyItem.id && constant.playerStatus == 'pause'}}">
+                  <image src="../../icon/ic_horn_off.png" style='width:27rpx;height:23rpx;'></image>
+                </view>
+                <view wx:if="{{constant.currentPlayStoryId != storyItem.id}}">{{idx + 1}}</view>
+              </view>
+              <view class="weui-cell album-story-title" style='color:#494949;font-size:30rpx;'>{{storyItem.title}}</view>
+            </view>
+          </block>
 
-              <!-- <view class="album-story-action-btn">查看更多</view> -->
-              <!--加载更多-start-->
-              <!-- <view class="weui-loadmore album-story-action-btn">
+          <!-- <view class="album-story-action-btn">查看更多</view> -->
+          <!--加载更多-start-->
+          <!-- <view class="weui-loadmore album-story-action-btn">
             <view class="weui-loading"></view>
             <view class="weui-loadmore__tips">正在加载</view>
           </view> -->
-              <!--加载更多-end-->
-            </view>
-          <!--故事列表-end-->
+          <!--加载更多-end-->
+        </view>
+        <!--故事列表-end-->
 
-          <!--相关专辑-start-->
-            <view class="album-detail-hd page__bd_spacing" wx:if="{{tab.selectedId == '2'}}">
-              <view class="weui-flex row-container " style="background-color:#FFFFFF;">
-                <block wx:for="{{data.recommendAlbumList}}" wx:key="data.recommendAlbumList" wx:for-index="idx" wx:for-item="albumItem">
-                  <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:false,isTagNameVisible:false}}" />
-                </block>
-              </view>
-            </view>
-          <!--相关专辑-end-->
+        <!--相关专辑-start-->
+        <view class="album-detail-hd page__bd_spacing" wx:if="{{tab.selectedId == '2'}}">
+          <view class="weui-flex row-container " style="background-color:#FFFFFF;">
+            <block wx:for="{{data.recommendAlbumList}}" wx:key="data.recommendAlbumList" wx:for-index="idx" wx:for-item="albumItem">
+              <template is="albumItem" data="{{index:idx, id: albumItem.id, title: albumItem.title,cover: albumItem.cover,desc:albumItem.recommenddesc,listenNum:albumItem.listennum,isDescVisible:false,isTagNameVisible:false}}" />
+            </block>
+          </view>
+        </view>
+        <!--相关专辑-end-->
 
       </view>
       <!--简介 声音 相似 -end-->

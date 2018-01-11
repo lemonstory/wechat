@@ -62,3 +62,13 @@ progress{
   width: 100%;
  
 }
+<<<<<<< HEAD
+=======
+.progress-box{
+  display: flex;
+  height: 50rpx;
+  margin-bottom: 60rpx;
+}
+
+
+>>>>>>> 82caec2f50dd88e41cb5ccf90ef690d11a9d59bc

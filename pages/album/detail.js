@@ -715,5 +715,19 @@ Page(Object.assign({}, Tab, Toast, {
       console.log("🐛 handlePreviewImage isCanvasToFileOk FALSE")
     }
   },
+
+  /**
+   * 评论-点击
+   */
+  bindTapComment:function(event) {
+
+    var that = this;
+    if (that.data.data.albumInfo.commentnum > 0) {
+      wx.navigateTo({
+        url: '/pages/comment/comment-list?albumId=' + that.data.albumId + '&startCommentId=0',
+      })
+    }
+  }
+
 }));
 
