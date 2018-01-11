@@ -2,7 +2,6 @@
 <import src="../../template/albumItem.wxml" />
 <import src="../../template/footer.wxml" />
 <import src="../../template/loading.wxml" />
-<import src="../../template/loadingmore.wxml" />
 <import src="../../zanui-weapp/dist/tab/index.wxml" />
 <import src="../../zanui-weapp/dist/loadmore/index.wxml" />
 
@@ -33,7 +32,7 @@
 
      <!--加载更多-start-->
      <!-- <template is="zan-loadmore" wx:if="{{isLoading && !isNoMore && startrelationid > 0}}" data="{{loading: true}}" /> -->
-     <template is="zan-loadmore" wx:if="{{isNoMore}}" data="{{nodata: true,nodata_str:'更多内容, 敬请期待'}}" />
+     <!-- <template is="zan-loadmore" wx:if="{{isNoMore}}" data="{{nodata: true,nodata_str:'更多内容, 敬请期待'}}" /> -->
      <!--加载更多-end-->
 
      <!--页尾-start-->
@@ -41,8 +40,8 @@
           <template is="loading" />
      </block>
 
-     <block wx:if="{{isLoadinging==true}}">
-          <template is="loadingmore" />
+     <block wx:if="{{isLoadingMore}}">
+          <template is="zan-loadmore" data="{{ loading: true }}"></template>
      </block>
 
      <block wx:if="{{isNoMore}}">

@@ -26,7 +26,7 @@ Page(Object.assign({}, Tab, {
           'len': 36,
           'isNoMore': false,
           'isLoading': false,
-          'isLoadinging':false,
+          'isLoadingMore':false,
      },
 
      handleZanTabChange(e) {
@@ -180,13 +180,14 @@ Page(Object.assign({}, Tab, {
                                    'tagalbumlist': tagAlbumList,
                                    'startrelationid': startRelationId,
                                    'isNoMore': false,
+                                   'isLoadingMore': false
                                    
                               });
                          } else {
 
                               that.setData({
                                    'isNoMore': true,
-                                   'isLoadinging': false
+                                   'isLoadingMore': false
                               });
                          }
 
@@ -266,14 +267,14 @@ Page(Object.assign({}, Tab, {
      onReachBottom: function () {
           if (!this.data.isNoMore) {
                this.setData({
-                    'isLoadinging':true,
+                    'isLoadingMore':true,
                });
                setTimeout(() => {
                     this.getData(this.data.selectedId, this.data.selectFirstTagId, this.data.selectSecondTagId, recommend, hot, goodcomment, this.data.startrelationid, this.data.len);
                }, 500);
           } else {
                this.setData({
-                    'isLoadinging':false,
+                    'isLoadingMore':false,
                });
           }
      },
