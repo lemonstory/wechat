@@ -1,3 +1,7 @@
+<import src="../../template/footer.wxml" />
 <view class="container">
   <web-view src="{{url}}" />
 </view>
+<!--页尾-start-->
+<template is="footer" />
+<!--页尾-end-->

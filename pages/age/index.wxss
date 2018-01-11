@@ -1,23 +1,59 @@
 /**index.wxss**/
 @import "../../loading.wxss";
-.page{
-     width:100%;
-     height:auto;
-     background: #eee 100%;
-}
-.play{
-     width:80rpx;
-     height:80rpx;
-     position: fixed;
-     bottom:20rpx;
-     left:20rpx;
-     }
 
-.play image{
-     width:100%;
-     height:100%;
-     border-radius: 50%;
+.loading_box {
+  width: 100%; 
+  height:100vh;  
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  background: #F3F4F6;
+  box-sizing: border-box;
+  margin-top: -20rpx;
 }
+.pulse {
+  width: 5rpx;
+  height: 42rpx;
+  background: #5F6770;
+  margin: 8rpx;
+  border-radius: 20rpx;
+  margin-top: 230rpx; 
+}
+swiper{
+     background:#F3F4F6; 
+     margin: 0;
+     padding: 0;
+}
+.more{
+     margin-top: 220rpx;
+     margin-left: 20rpx;
+}
+.play {
+     width: 80rpx;
+     height: 80rpx;
+     position: fixed;
+     bottom: 20rpx;
+     left: 20rpx;
+     z-index: 999;
+}
+
+.play image {
+     width: 100%;
+     height: 100%;
+     border-radius: 50%;
+     z-index: 999;
+}
+
+.bgimg {
+     width: 80rpx;
+     height: 80rpx;
+     position: fixed;
+     bottom: 20rpx;
+     left: 20rpx;
+     border-radius: 50%;
+     z-index: 99;
+     }
 
 .slide-image {
   width: 750rpx;
@@ -69,4 +105,7 @@
      position: fixed;
      bottom:120rpx;
 
+}
+.weui-grid album-tag-grid{
+     width:25%;
 }

@@ -1,15 +1,18 @@
 const Tab = require('../../zanui-weapp/dist/tab/index');
 var app = getApp()
+
 var recommend = 0;
 var hot = 0;
 var goodcomment = 0;
+
 Page(Object.assign({}, Tab, {
      data: {
           tab: {
                list: [],
                selectedId: '',
                scroll: true,
-               height: 45
+               height: 45,
+               albumRotateClass: ''
           },
           tagalbumlist: [],
           //页面的初始数据
@@ -23,6 +26,7 @@ Page(Object.assign({}, Tab, {
           'len': 36,
           'isNoMore': false,
           'isLoading': false,
+          'isLoadinging':false,
      },
 
      handleZanTabChange(e) {
@@ -35,6 +39,7 @@ Page(Object.assign({}, Tab, {
                tagalbumlist: [],
                startrelationid: 0,
                isNoMore: false,
+               isLoading: true
           });
 
           switch (selectedId) {
@@ -61,8 +66,10 @@ Page(Object.assign({}, Tab, {
                     hot = 0;
                     goodcomment = 0;
           }
+
           this.getData(selectedId, this.data.selectFirstTagId, selectedId, recommend, hot, goodcomment, this.data.startrelationid, this.data.len);
      },
+
      onLoad: function (options) {
           recommend = 0;
           hot = 0;
@@ -71,7 +78,7 @@ Page(Object.assign({}, Tab, {
           var selectSecondTagId = options.selectSecondTagId;
           this.setData({
                'selectFirstTagId': selectFirstTagId,
-               'selectSecondTagId': selectSecondTagId
+               'selectSecondTagId': selectSecondTagId,
           });
      },
 
@@ -81,13 +88,14 @@ Page(Object.assign({}, Tab, {
                recommend = 1;
                this.setData({
                     selectedId: "recommend",
+                    isLoading: true
                });
           } else {
                this.setData({
                     selectedId: this.data.selectSecondTagId,
+                    isLoading: true
                });
           }
-
           this.getData(this.data.selectedId, this.data.selectFirstTagId, this.data.selectSecondTagId, recommend, hot, goodcomment, this.data.startrelationid, this.data.len);
      },
 
@@ -152,7 +160,6 @@ Page(Object.assign({}, Tab, {
 
 
           // console.log("😀 url = " + url);
-
           if (!that.data.isNoMore) {
                wx.request({
                     url: url,
@@ -168,17 +175,18 @@ Page(Object.assign({}, Tab, {
                               var tagAlbumList = that.data.tagalbumlist;
                               Array.prototype.push.apply(tagAlbumList, res.data.data.tagalbumlist);
                               var startRelationId = res.data.data.tagalbumlist[tagAlbumListLen - 1].id;
+
                               that.setData({
                                    'tagalbumlist': tagAlbumList,
                                    'startrelationid': startRelationId,
                                    'isNoMore': false,
-                                   'isLoading': false,
+                                   
                               });
                          } else {
 
                               that.setData({
                                    'isNoMore': true,
-                                   'isLoading': false,
+                                   'isLoadinging': false
                               });
                          }
 
@@ -217,6 +225,11 @@ Page(Object.assign({}, Tab, {
                          });
 
                          that.setDataCallBack();
+                    },
+                    complete: function (res) {
+                         that.setData({
+                              'isLoading': false,
+                         });
                     }
                })
           }
@@ -250,21 +263,39 @@ Page(Object.assign({}, Tab, {
      setDataCallBack: function () {
 
      },
-
      onReachBottom: function () {
-
           if (!this.data.isNoMore) {
                this.setData({
-                    'isLoading': true,
+                    'isLoadinging':true,
                });
                setTimeout(() => {
                     this.getData(this.data.selectedId, this.data.selectFirstTagId, this.data.selectSecondTagId, recommend, hot, goodcomment, this.data.startrelationid, this.data.len);
                }, 500);
           } else {
                this.setData({
-                    'isLoading': false,
+                    'isLoadinging':false,
                });
           }
      },
+
+stopRotateAnimation: function () {
+          var that = this;
+          var that = this;
+          that.setData({
+               albumRotateClass: 'rotate-paused'
+          })
+     },
+
+     /**
+      * 开始旋转动画
+      */
+     startRotateAnimation: function () {
+
+          var that = this;
+          that.setData({
+               albumRotateClass:'rotate-start'
+          })
+     },
+
 
 }));

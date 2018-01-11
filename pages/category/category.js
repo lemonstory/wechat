@@ -29,6 +29,12 @@ Page({
 
   onShow: function () {
     // 生命周期函数--监听页面显示
+    var that = this;
+    if (that.data.constant.playerStatus == 'play') {
+      that.startRotateAnimation();
+    } else {
+      that.stopRotateAnimation();
+    }
   },
 
   onHide: function () {

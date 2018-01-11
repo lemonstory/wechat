@@ -1,8 +1,38 @@
 <!--pages/comment/comment.wxml-->
-<block wx:for="{{commentListData}}" wx:key="commentListData">
- <image src='{{item.avatar}}'></image> 
-<text>姓名： {{item.uname}}</text>
- <text>评论： {{item.comment}}</text>
-<text>时间： {{item.addtime}}</text>
-<text>评星： {{item.start_level}}</text> 
-</block>
+<import src="../../template/footer.wxml" />
+<view class="page">
+     <view class="main">
+          <block wx:for="{{commentListData}}" wx:key="commentListData">
+               <view class="comment-box">
+                    <image class="userlogo" src='{{item.avatar}}'></image>
+                    <view class="box">
+                         <view class="first">
+                              <view class="name"> {{item.uname}}</view>
+                              <view class="time">{{item.addtime}}</view>
+                         </view>
+                         <block wx:for="{{[1, 2, 3, 4, 5]}}" wx:key="item.start_level" wx:for-index="idx" wx:for-item="i">
+                              <block wx:if="{{item.start_level > 0}}">
+                                   <block wx:if="{{idx + 1 <= item.start_level}}">
+                                        <image src="/icon/ic_album_star_selected.png" class="album-star"></image>
+                                   </block>
+                                   <block wx:else>
+                                        <image src="/icon/ic_album_star_normal.png" class="album-star"></image>
+                                   </block>
+                              </block>
+                              <block wx:else>
+                                   <image src="/icon/ic_album_star_normal.png" class="album-star"></image>
+                              </block>
+
+                         </block>
+                         <view class="comment">{{item.comment}}</view>
+                    </view>
+
+               </view>
+          </block>
+     </view>
+     <!--页尾-start-->
+     <block wx:if="{{isLoaded}}">
+          <template is="footer" />
+     </block>
+     <!--页尾-end-->
+</view>

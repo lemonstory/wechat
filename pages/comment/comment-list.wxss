@@ -1,1 +1,52 @@
 /* pages/comment/comment.wxss */
+.main{
+  border-top:1rpx solid #eee;
+}
+.comment-box{
+display:flex;
+background: #fff;
+padding: 20rpx;
+box-sizing: border-box;
+}
+.userlogo{
+width:92rpx;
+height:92rpx;
+border-radius: 50%;
+     
+}
+.name{
+    font-size: 26rpx;
+     color: #9B9B9B;
+}  
+.time{
+     font-size: 26rpx;
+     color: #9B9B9B; 
+}
+.comment{
+     width:600rpx;
+     height:auto;
+     font-size: 26rpx;
+     color: #494949;
+}
+.star{
+    font-size: 26rpx;
+     color: #494949;   
+}
+.first{
+     display: flex;
+     justify-content: space-between;
+}
+.box{
+  margin-left: 10rpx;
+  width:auto;
+  height:auto;
+  border-bottom: 1rpx solid #eee;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+ }
+
+ .album-star {
+  width:26rpx; 
+  height:26rpx; 
+  margin-right:4rpx;
+}

@@ -16,6 +16,14 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+	
+function getShortTimeStr(dateTime) {
+		
+  var date = dateTime.substring(8, 10);
+  var month = dateTime.substring(5, 7);
+  return month + "/" + date;
+}
+
 
 /**
  * 是否为空对象
@@ -80,6 +88,7 @@ module.exports.formatTime = formatTime;
 module.exports.isEmptyStr = isEmptyStr;
 module.exports.isEmptyObject = isEmptyObject;
 module.exports.padNumber = padNumber;
+module.exports.getShortTimeStr = getShortTimeStr;
 module.exports.secondToDate = secondToDate;
 module.exports.randomFrom = randomFrom;
 

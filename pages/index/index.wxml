@@ -2,17 +2,18 @@
 <import src="../../template/sectionTitle.wxml" />
 <import src="../../template/tagItem.wxml" />
 <import src="../../template/albumItem.wxml" />
-
-<import src="../../template/loading.wxml"/>
-
-
+<import src="../../template/loading.wxml" />
+<import src="../../template/footer.wxml" />
 <view class="page">
      <!--播放浮框  -->
-     <navigator url="../player/player">
-          <view class="play {{albumRotateClass}}">
-               <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
-          </view>
-     </navigator>
+     <block wx:if="{{albumRotateClass=='rotate-start'}}">
+          <navigator url="../player/player">
+               <image class="bgimg" src="../../image/play_album_bg.png"></image>
+               <view class="play {{albumRotateClass}}">
+                    <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
+               </view>
+          </navigator>
+     </block>
      <!--播放浮框  -->
 
      <!--焦点图-start-->
@@ -53,8 +54,8 @@
                     <view class="weui-flex row-container page__bd_spacing">
                          <block wx:for="{{sectionItem.items}}" wx:key="sectionItem.items" wx:for-index="idx" wx:for-item="authorItem">
                               <view class="weui-flex__item tag-item" style="margin-bottom:20rpx" id="authorItem" data-index="{{idx}}" data-uid="{{authorItem.uid}}" bindtap="handleTapAuthor">
-                                   <image class="circular-squareP weui-media-box__title" style="width: 120rpx; height: 120rpx; background-color: #eeeeee;" mode="aspectFit" src="{{authorItem.avatar}}"></image>
-                                   <view class="weui-media-box__title" style="font-size: 26rpx; margin-top:10rpx; color:#494949;width:100rpx;height:auto; text-align:center">{{authorItem.nickname}}</view>
+                                   <image class="circular-squareP weui-media-box__title" style="width: 120rpx; height: 120rpx; background-color: #eeeeee;" mode="aspectFit" src="{{authorItem.avatar ? authorItem.avatar : '/image/bg_avatar_default.png'}}"></image>
+                                   <view class="weui-media-box__title" style="font-size: 26rpx; margin-top:10rpx; color:#494949;width:120rpx;height:auto; text-align:center">{{authorItem.nickname}}</view>
                               </view>
                          </block>
                     </view>
@@ -62,15 +63,16 @@
           </view>
      </block>
      <!--专辑列表-end-->
+     <block wx:if="{{!isLoaded}}">
+          <template is="loading" />
+     </block>
+
 
      <!--页尾-start-->
      <block wx:if="{{isLoaded}}">
-          <include src="../footer.wxml" />
+          <template is="footer"/>
      </block>
-     <!--页尾-end-->
-
 </view>
 
-<block wx:if="{{!isLoaded}}">
-     <template is="loading" />
-</block>
+
+<!--页尾-end-->

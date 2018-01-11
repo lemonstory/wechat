@@ -3,14 +3,18 @@
 <import src="../../template/tagItem.wxml" />
 <import src="../../template/albumItem.wxml" />
 <import src="../../template/loading.wxml" />
+<import src="../../template/footer.wxml" />
 
 <view class="page">
   <!--播放浮框  -->
-  <navigator url="../player/player">
-    <view class="play {{albumRotateClass}}">
-      <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
-    </view>
-  </navigator>
+    <block wx:if="{{albumRotateClass=='rotate-start'}}">
+          <navigator url="../player/player">
+               <image class="bgimg" src="../../image/play_album_bg.png"></image>
+               <view class="play {{albumRotateClass}}">
+                    <image src="{{constant.currentPlayAlbumDetail.albumInfo.cover}}"></image>
+               </view>
+          </navigator>
+     </block>
   <!--播放浮框  -->
 
   <!--焦点图-start-->
@@ -42,10 +46,10 @@
   <!--专辑列表-end-->
 
   <!--推荐标签-start-->
-  <view class="weui-grids album-tag-grids">
+  <view class="weui-grids album-tag-grids" style='background:#fff; margin-top:20rpx;border:none'>
     <block wx:for="{{data.recommend_tags.items}}" wx:key="data.recommend_tags.items" wx:for-index="index" wx:for-item="tagItem">
-      <view class="weui-grid album-tag-grid" data-index="{{index}}" data-tag_id="{{tagItem.id}}" bindtap="handleTagTap">
-        <image class="weui-grid__icon album-tag-icon circular-squareP" mode="aspectFit" src="{{tagItem.cover}}"></image>
+      <view class="weui-grid album-tag-grid"  style="width:25%; background:#fff; border:none"data-index="{{index}}" data-tag_id="{{tagItem.id}}" bindtap="handleTagTap">
+        <image class="weui-grid__icon album-tag-icon circular-squareP" mode="aspectFit" style='width:100rpx;height:100rpx;' src="{{tagItem.cover}}"></image>
         <text class="weui-grid__label" style="font-size:26rpx;color:#494949">{{tagItem.name}}</text>
       </view>
     </block>
@@ -54,7 +58,7 @@
 
   <!--页尾-start-->
   <block wx:if="{{isLoaded}}">
-    <include src="../footer.wxml" />
+    <template is="footer" />
   </block>
   <!--页尾-end-->
 
