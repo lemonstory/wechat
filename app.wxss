@@ -1,25 +1,27 @@
 /**app.wxss**/
 @import 'style/weui.wxss';
 @import "zanui-weapp/dist/index.wxss";
+
 page {
-  background: #F3F4F6;
+  background: #f3f4f6;
 }
+
 .page {
-  background-color: #F3F4F6;
+  background-color: #f3f4f6;
 }
 
 .page__bd {
-  background-color:#FFFFFF;
+  background-color: #fff;
 }
 
 .page__bd_spacing {
-    padding: 0 8px
+  padding: 0 8px;
 }
 
 .page__ft {
-    padding-top: 40px;
-    padding-bottom: 10px;
-    text-align: center
+  padding-top: 40px;
+  padding-bottom: 10px;
+  text-align: center;
 }
 
 .container {
@@ -33,17 +35,20 @@ page {
 }
 
 .title {
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   width: 100%;
 }
 
 /*https://segmentfault.com/a/1190000003931845*/
+
 /*剪切圆形图片 - 正方形图片*/
-.circular-squareP{
-    border-radius:50%;
+
+.circular-squareP {
+  border-radius: 50%;
 }
+
 .row-flex {
   flex-flow: row wrap;
 }
@@ -52,7 +57,7 @@ page {
   flex: 0 0 50%;
 }
 
-.section__title{
+.section__title {
   display: block;
   margin-bottom: 8px;
   padding-left: 15px;
@@ -60,26 +65,24 @@ page {
 }
 
 .text_ellipsis {
-    text-overflow:ellipsis; 
-    overflow:hidden; 
-    white-space:nowrap; 
-    width:200px; 
-    background:#ccc;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 200px;
+  background: #ccc;
 }
 
 .tag-icon {
-    margin-top: 8px;
-    width: 44px;
-    height: 44px;
+  margin-top: 8px;
+  width: 44px;
+  height: 44px;
 }
 
 .section-title {
-    color:#4A4A4A;
-    background:#FFFFFF;
-    padding-top: 10px;
-    margin-top: 10px;
-
-   
+  color: #4a4a4a;
+  background: #fff;
+  padding-top: 10px;
+  margin-top: 10px;
 }
 
 .row-container {
@@ -89,6 +92,7 @@ page {
 .tag-item {
   flex: 0 0 25%;
 }
+
 .album-item {
   flex: 0 0 50%;
 }
@@ -98,25 +102,30 @@ page {
 }
 
 /** 封面旋转动画 -start **/
-@keyframes rotate{
-    0%{
-        transform:rotate(0deg);
-    }
-    100%{
-        transform:rotate(360deg);
-    }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .rotate-start {
-  animation:rotate 20s infinite linear;
-  animation-play-state:running;
-  -webkit-animation-play-state:running; /* Safari 和 Chrome */
+  -webkit-animation: rotate 20s infinite linear;
+  animation: rotate 20s infinite linear;
+  animation-play-state: running;
+  -webkit-animation-play-state: running;
 }
 
 .rotate-paused {
-  animation:rotate 20s infinite linear;
-  animation-play-state:paused;
-  -webkit-animation-play-state:paused; /* Safari 和 Chrome */
+  -webkit-animation: rotate 20s infinite linear;
+  animation: rotate 20s infinite linear;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+  -webkit-animation: none !important;
 }
-/** 封面旋转动画 -end **/
 
+/** 封面旋转动画 -end **/

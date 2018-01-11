@@ -93,7 +93,7 @@
    padding-top: 0rpx;
     padding-bottom: 10px;
     text-align: center;
-    margin-top: -30rpx;
+    margin-top: 30rpx;
     
 }
 
