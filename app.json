@@ -19,6 +19,8 @@
     "pages/comment/comment-list"
     
   ],
+"window": {
+
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
@@ -28,9 +30,12 @@
     "disableScroll": false,
     "onReachBottomDistance": "15px"
   },
+"networkTimeout": {
   "networkTimeout": {
     "request": 60000,
     "downloadFile": 60000
   },
   "debug": true
+}
+}
 }

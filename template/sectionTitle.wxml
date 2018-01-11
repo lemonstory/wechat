@@ -13,9 +13,7 @@
                <view style="text-align:right; font-size:30rpx;color:#494949" bindtap='handleMoreTap' data-tag_id="{{tagId}}" data-type="{{type}}">更多 ></view>
           </block>
           <block wx:else>
-             <view style="text-align:right; font-size:30rpx;color:#fff" data-tag_id="{{tagId}}" data-type="{{type}}">1</view>
-        </block>
-
-
+               <view style="text-align:right; font-size:30rpx;color:#fff" data-tag_id="{{tagId}}" data-type="{{type}}">1</view>
+          </block>
      </view>
 </template>
