@@ -132,6 +132,7 @@
                <!--简介 声音 相似 -end-->
 
                <!--分享popup 开始-->
+               <block wx:if = "{{isShowBottomPopup}}">
                <view class="popup-example--bottom zan-popup zan-popup--bottom {{ isShowBottomPopup ? 'zan-popup--show' : ''}}">
                     <view class="zan-popup__mask" catchtap="toggleBottomPopup"></view>
                     <view class="zan-popup__container">
@@ -149,6 +150,7 @@
                          </view>
                     </view>
                </view>
+               </block>
                <!--分享popup 结束-->
           </view>
      </view>
