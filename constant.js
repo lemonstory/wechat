@@ -4,7 +4,7 @@ var constant = {
     "appDesc":"让儿歌故事带给宝贝多彩童年",
     "sectionTypeAlbum":"album",
     "sectionTypeAuthor":"author",
-    "domain":"https://api.xiaoningmeng.net",
+    "domain":"https://dev.xiaoningmeng.net",
 
 
     //当前播放的专辑信息 -start

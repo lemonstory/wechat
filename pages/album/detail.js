@@ -20,10 +20,10 @@ const swiperRecommendAlbumItemHeight = 2180;
 const soundLineHeight = 104;
 
 //页面二维码地址
-var qrCodeUrl = "https://wx1.sinaimg.cn/mw690/00019562gy1fmae3hw25tj20sn0trjxp.jpg";
+var qrCodeUrl = "https://lemonpic.oss-cn-hangzhou.aliyuncs.com/static/wx_qrcode.jpg?x-oss-process=style/200x200";
 //用户头像地址
-var avatarUrl = "https://tva3.sinaimg.cn/crop.10.0.1102.1102.50/b8b73ba1jw8fcno216vedj20v90ummzs.jpg";
-var name = "帅帅";
+var avatarUrl = "";
+var name = "我";
 
 const ctx = wx.createCanvasContext('myCanvas');
 

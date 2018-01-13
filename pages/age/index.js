@@ -109,6 +109,40 @@ Page({
 
   },
 
+  /**
+ * 处理专辑点击
+ */
+  handleAlbumTap: function (event) {
+    var albumId = event.currentTarget.dataset.id;
+    var albumDetailUrl = "/pages/album/detail?albumId=" + albumId;
+    wx.navigateTo({
+      url: albumDetailUrl
+    })
+  },
+
+  /**
+ * 点击更多
+ */
+  handleMoreTap: function (event) {
+
+    console.log(event);
+    var tagId = event.target.dataset.tag_id;
+    var sectionType = event.target.dataset.type;
+    var path = '';
+    switch (sectionType) {
+      case 'album':
+        if (tagId > 0) {
+          path = "/pages/tag/album?selectSecondTagId=" + tagId;
+        }
+        break;
+    }
+
+    if (path.length > 0) {
+      wx.navigateTo({
+        url: path
+      })
+    }
+  },
 
   /**
    * 
@@ -137,6 +171,44 @@ Page({
   },
 
   /**
+ * 获取数据成功回调
+ * 修改: 焦点图数据
+ */
+  setDataCallBack: function () {
+
+    var focusArr = this.data.data.focus_pic.items;
+    var albumFocusArr = new Array();
+
+    for (var i = 0, len = focusArr.length; i < len; i++) {
+
+      var linkUrl = focusArr[i].linkurl;
+      if (0 == linkUrl.indexOf("xnm", 0)) {
+
+        var albumIdIndex = linkUrl.indexOf("albumid");
+        var paramIndex = linkUrl.indexOf("&");
+        var albumIdSubStr;
+        if (albumIdIndex != -1) {
+          if (paramIndex != -1) {
+            albumIdSubStr = linkUrl.substring(albumIdIndex, paramIndex);
+          } else {
+            albumIdSubStr = linkUrl.substring(albumIdIndex);
+          }
+          var albumIdArr = albumIdSubStr.split("=");
+          var albumId = parseInt(albumIdArr[1]);
+          if (albumId > 0) {
+            focusArr[i].id = albumId;
+            albumFocusArr.push(focusArr[i]);
+          }
+        }
+      }
+    }
+    this.setData({
+      'data.focus_pic.items': albumFocusArr,
+      'data.focus_pic.total': albumFocusArr.length,
+    });
+  },
+
+  /**
  * 处理标签点击
  */
   handleTagTap: function (event) {
@@ -149,14 +221,6 @@ Page({
     wx.navigateTo({
       url: tagUrl
     })
-  },
-
-
-  /**
-   * 
-   */
-  setDataCallBack: function () {
-
   },
 
   /**
