@@ -82,7 +82,7 @@ page {
   color: #4a4a4a;
   background: #fff;
   padding-top: 10px;
-  margin-top: 10px;
+ 
 }
 
 .row-container {

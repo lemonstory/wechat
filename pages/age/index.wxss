@@ -81,6 +81,7 @@ swiper{
   display: flex;
   justify-content: space-between;
   margin: 0;
+  margin-bottom: 20rpx;
 }
 
 .weui-media-box__title {

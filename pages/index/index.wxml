@@ -30,7 +30,7 @@
      <!--焦点图-end-->
 
      <!--标签列表-start-->
-     <view class="weui-flex row-container" style="background-color: #FFFFFF;padding-bottom:20rpx">
+     <view class="weui-flex row-container" style="background-color: #FFFFFF;padding-bottom:20rpx;">
           <block wx:for="{{data.category.items}}" wx:key="data.category.items" wx:for-item="item" wx:for-index="idx">
                <template is="tagItem" data="{{index:idx,title: item.title,cover: item.cover}}" />
           </block>
@@ -39,7 +39,7 @@
 
      <!--专辑列表-start-->
      <block wx:for="{{data.section.items}}" wx:key="data.section.items" wx:for-item="sectionItem">
-          <view style="background-color: #FFFFFF;">
+          <view style="background-color: #FFFFFF;margin-top:20rpx">
                <template is="sectionTitle" data="{{title:sectionItem.title,tagId:sectionItem.tag_id,type:sectionItem.type}}" />
                <!--专辑-->
                <block wx:if="{{sectionItem.type == constant.sectionTypeAlbum}}">

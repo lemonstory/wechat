@@ -15,7 +15,7 @@
           </navigator>
      </block>
 
-     <view style="border-top:1rpx solid #eee;margin-bottom:15rpx;" wx:if="{{tab.list.length > 0}}">
+     <view style="border-top:1rpx solid #eee;" wx:if="{{tab.list.length > 0}}">
           <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
      </view>
 
