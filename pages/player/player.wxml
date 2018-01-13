@@ -24,7 +24,7 @@
         <image class="weui-grid__icon album-action-icon" src="/icon/btn_player_comment_normal.png" style='width:38rpx;height:38rpx;'></image>
       </view>
 
-      <view class="weui-flex__item" bindtap="handleShareAlbumTap">
+      <view class="weui-flex__item" bindtap="toggleBottomPopup">
         <image class="weui-grid__icon album-action-icon" src="/icon/btn_album_share.png" style='width:38rpx;height:38rpx;'></image>
       </view>
     </view>
@@ -33,9 +33,9 @@
 
     <!--进度条开始  -->
     <view class="process">
-    <view class="start_time">{{startTime}}</view>
-    <progress percent="{{progressPercent}}" color="#656565" stroke-width="3" style='width:440rpx;    position: relative;  background: #B7B4B4; border-radius: 10rpx;'/>
-  <view class="end_time">{{endTime}}</view>
+      <view class="start_time">{{startTime}}</view>
+      <progress percent="{{progressPercent}}" color="#656565" stroke-width="3" style='width:440rpx;    position: relative;  background: #B7B4B4; border-radius: 10rpx;' />
+      <view class="end_time">{{endTime}}</view>
     </view>
     <!--进度条结束-->
     <!--底部提示图标开始-->
@@ -65,10 +65,29 @@
         <image class="weui-grid__icon album-action-icon" src="/icon/btn_player_next_normal.png" style='width:45rpx;height:45rpx;'></image>
       </view>
 
-      <view class="weui-flex__item" data-player_mode="{{constant.playerMode}}"  bindtap="handleChangePlayerMode">
+      <view class="weui-flex__item" data-player_mode="{{constant.playerMode}}" bindtap="handleChangePlayerMode">
         <image class="weui-grid__icon album-action-icon" src="/icon/btn_player_{{constant.playerMode}}_normal.png" style='width:45rpx;height:45rpx;'></image>
       </view>
     </view>
+
+    <!--分享popup 开始-->
+    <view class="popup-example--bottom zan-popup zan-popup--bottom {{ isShowBottomPopup ? 'zan-popup--show' : ''}}">
+      <view class="zan-popup__mask" catchtap="toggleBottomPopup"></view>
+      <view class="zan-popup__container">
+        <view class="zan-btns">
+          <button open-type="share" class="zan-btn" catchtap="toggleBottomPopup">
+             发送给朋友 🍭 
+          </button>
+          <!-- <button class="zan-btn" catchtap="generateShareCard">
+            生成卡片分享至朋友圈
+          </button> -->
+          <button class="zan-btn" catchtap="toggleBottomPopup">
+            取消
+          </button>
+        </view>
+      </view>
+    </view>
+    <!--分享popup 结束-->
 
     <!--底部提示图标结束  -->
   </view>

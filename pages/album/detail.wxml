@@ -137,11 +137,11 @@
                     <view class="zan-popup__container">
                          <view class="zan-btns">
                               <button open-type="share" class="zan-btn" catchtap="toggleBottomPopup">
-                                   发送给朋友
+                                   发送给朋友 🍭 
                               </button>
-                              <button class="zan-btn" catchtap="generateShareCard">
+                              <!-- <button class="zan-btn" catchtap="generateShareCard">
                                    生成卡片分享至朋友圈
-                              </button>
+                              </button> -->
                               <button class="zan-btn" catchtap="toggleBottomPopup">
                                    取消
                               </button>

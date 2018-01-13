@@ -27,6 +27,9 @@ Page(Object.assign({}, Toast, {
 
     //封面旋转
     'albumRotateClass':'',
+
+    //显示底部弹窗
+    'isShowBottomPopup': false,
   },
 
   onLoad: function () {
@@ -152,6 +155,12 @@ Page(Object.assign({}, Toast, {
       complete: function () {
 
       },
+    });
+  },
+
+  toggleBottomPopup() {
+    this.setData({
+      isShowBottomPopup: !this.data.isShowBottomPopup
     });
   },
 
