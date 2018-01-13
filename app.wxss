@@ -161,7 +161,7 @@ page {
   left: 0;
   right: 0;
 }
-button::after {
+button::after{
 content:" ";
 width:200%;
 height:200%;
