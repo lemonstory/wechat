@@ -1,9 +1,9 @@
+@import "../../loading.wxss";
 .textStyle {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 .textContainer {
   margin-top: 200px;
 }
@@ -20,3 +20,4 @@
      padding-top: 20rpx;
      box-sizing: border-box;
      }
+

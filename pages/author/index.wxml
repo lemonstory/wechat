@@ -2,6 +2,7 @@
   参考文档：https://weui.io/#badge
 -->
 <import src="../../template/loading.wxml" />
+<import src="../../template/footer.wxml" />
 <view class="page flex" style='border-top:1rpx solid #eee'>
   <view class="page__bd page__bd_spacing">
 
