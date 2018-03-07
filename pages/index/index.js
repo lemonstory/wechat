@@ -9,7 +9,9 @@ Page({
     'constant': app.constant,
 
     //播放专辑class
-    albumRotateClass: ''
+    albumRotateClass: '',
+    isShow:false,
+    imageUrl:'../../image/1.png'
   },
 
   onLoad: function (options) {
@@ -172,6 +174,7 @@ Page({
     this.setData({
       'data.focus.items': albumFocusArr,
       'data.focus.total': albumFocusArr.length,
+      isShow:true
     });
   },
 
@@ -276,5 +279,22 @@ Page({
       albumRotateClass: 'rotate-start'
     })
   },
+
+  /**
+  * 跳转到灞源味道
+  */
+  handleTapToBYWD: function () {
+    wx.navigateToMiniProgram({
+      appId: 'wx9316e7cf1be9ff66',
+      envVersion: 'release',
+      success(res) {
+        console.log('成功跳转到灞源味道')
+      },
+      fail(res) {
+        console.log('跳转到灞源味道失败')
+        console.error(res)
+      }
+    })
+  }
 
 });
